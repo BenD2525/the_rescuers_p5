@@ -11,8 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="keywords" content="Charity, Animals, Toys, Pets">
   <meta name="author" content="Ben Dawson">
-  <meta name="description"
-    content="Where you can purchase toys for our needy pets!">
+  <meta name="description" content="Where you can purchase toys for our needy pets!">
   {% endblock %}
 
   {% block extra_meta %}
@@ -29,7 +28,7 @@
   {% endblock %}
 
   {% block corejs %}
-  <script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/8e896d3229.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -45,33 +44,57 @@
 </head>
 
 <body>
-  <header class="container-fluid fixed-top">
+  <header class="container-fluid fixed-top header">
     <!-- Navbar with burger menu -->
-    <div class="sm-12 text-center">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-blue">
-        <div class="container-fluid">
-          <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#n_bar"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon ms-auto"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="n_bar">
-            <ul class="nav navbar-nav ms-auto">
-              <li class="nav-item"><a class="nav-link text-white" href="{% url 'home' %}"><strong>Home</strong></a></li>
-              {% if user.is_authenticated %}
-              <li class="nav-item"><a class="nav-link text-white" href="{% url '' %}"><strong>My Health</strong></a>
-              </li>
-              <li class="nav-item"><a class="nav-link text-white"
-                  href="{% url 'account_logout' %}"><strong>Logout</strong></a></li>
-              {% else %}
-              <li class="nav-item"><a class="nav-link text-white"
-                  href="{% url 'account_login' %}"><strong>Login</strong></a></li>
-              <li class="nav-item"><a class="nav-link text-white"
-                  href="{% url 'account_signup' %}"><strong>Signup</strong></a></li>
-              {% endif %}
-            </ul>
+    <div class="row align-items-center nav-row">
+      <div class="col-md-2 text-center">
+        <nav class="navbar navbar-light">
+          <div class="container-fluid text-center">
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#n_bar"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon navbar-light ms-auto display-5"></span>
+            </button>
           </div>
+        </nav>
+      </div>
+      <div class="col-md-8">
+        <h1 class="display-5 fw-bold text-center">The Rescuers</h1>
+      </div>
+      <div class="col-md-2">
+        <div class="text-center my-auto">
+          <a href="{% url 'home' %}">
+            <div><i class="fa-solid fa-cart-shopping fa-lg display-5"></i></div>
+          </a>
         </div>
-      </nav>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="collapse navbar-collapse" id="n_bar">
+        <ul class="nav navbar-nav ms-auto dropdown-list align-items-center">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><strong
+                class="nav-text">Home</strong></a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link nav-text fixed-left" href="{% url '' %}"><strong
+                class="nav-text">My
+                Account</strong></a>
+          </li>
+          <li class="nav-item"><a class="nav-link nav-text" href="{% url 'account_logout' %}"><strong
+                class="nav-text">Logout</strong></a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link nav-text" href="{% url 'account_login' %}"><strong
+                class="nav-text">Login</strong></a></li>
+          <li class="nav-item"><a class="nav-link nav-text" href="{% url 'account_signup' %}"><strong
+                class="nav-text">Signup</strong></a></li>
+          {% endif %}
+          <li class="nav-item list-inline-item"><a class="nav-link nav-text" href="{% url 'home' %}"><strong
+                class="nav-text">Products</strong></a>
+          </li>
+          <li class="nav-item"><a class="nav-link nav-text" href="{% url 'home' %}"><strong
+                class="nav-text">Reviews</strong></a>
+          </li>
+        </ul>
+      </div>
     </div>
   </header>
 

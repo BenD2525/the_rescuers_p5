@@ -46,7 +46,7 @@
 
 <body>
   <header class="container-fluid header">
-    <!-- Navbar with burger menu -->
+    <!-- Burger menu -->
     <div class="row align-items-center nav-row justify-content-between d-flex">
       <div class="col-md-2 text-center">
         <nav class="navbar navbar-light">
@@ -75,7 +75,8 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><strong class="nav-text">Home</strong></a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link nav-text fixed-left" href="{% url '' %}"><strong class="nav-text">My
+          <li class="nav-item"><a class="nav-link nav-text fixed-left" href="{% url 'home' %}"><strong
+                class="nav-text">My
                 Account</strong></a>
           </li>
           <li class="nav-item"><a class="nav-link nav-text" href="{% url 'account_logout' %}"><strong
@@ -96,14 +97,16 @@
       </div>
     </div>
   </header>
-  <div class="container-fluid">
-    {% block content %}
-    {% endblock %}
-  </div>
+
+  {% block content %}
+  {% endblock %}
+
+  <!-- Footer -->
   <footer>
     <div class="container-fluid footer-row fixed-bottom justify-content-between d-flex mt-4">
-      <a href="https://github.com/BenD2525" target="_blank" rel="noopener" aria-label="GitHub" class="text-white">Ben
-        Dawson 2022 <i class="fa-brands fa-github"></i></a>
+      <a href="https://github.com/BenD2525" target="_blank" rel="noopener" aria-label="GitHub" class="text-white">
+        Ben Dawson 2022 <i class="fa-brands fa-github"></i>
+      </a>
       <a href="#"><i class="fa-solid fa-arrow-up fa-lg"></i></a>
     </div>
   </footer>

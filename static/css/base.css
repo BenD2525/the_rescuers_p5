@@ -9,7 +9,7 @@ html {
 --plump-purple: #52489cff;
 --smoky-black: #14110fff;
 --tea-green: #c4d6b0ff;
-058ED9 */
+--deep blue: #058ED9 */
 
 /* Navbar */
 .nav-row {
@@ -36,12 +36,13 @@ html {
 
 /* Footer */
 .footer-row {
-    background-color: #14110fff;
+    background-color: #c4d6b0ff;
+    color: #14110fff;
 }
 
 .footer-row i,
 .footer-row a {
-    color: #c4d6b0ff;
+    color: #14110fff
 }
 
 /* Buttons */
@@ -75,4 +76,51 @@ html {
 .negative-button:active {
     background-color: darkred;
     box-shadow: none;
+}
+
+/* Hero images */
+.hero-image {
+    border-radius: 50%;
+    height: 20%;
+    width: 80%;
+}
+
+/* Home Sections */
+
+.hr-1 {
+    background-color: white;
+    margin-top: 2;
+    margin-bottom: 2;
+    width: 100%;
+    opacity: 1;
+    height: 5px;
+}
+
+
+.home-container {
+    background-color: #14110fff;
+    color: white;
+}
+
+
+.home-1 {
+    background-image: url(../home_background_2_nahil-naseer.jpg);
+    color: white;
+    font-weight: 200;
+}
+
+.home-2 {
+    background-color: #c4d6b0ff;
+    color: #14110fff;
+}
+
+.home-3 {
+    background-color: #c4d6b0ff;
+    color: #14110fff;
+}
+
+/* Wrapper for block content */
+.wrapper {
+    width: 100%;
+    margin: 0;
 }

@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container-fluid home-container">
     <div class="row align-items-center">
-        <div class="col-sm-12 text-center">
+        <div class="col-sm-12 text-center mt-4">
             <h2><strong>Reviews</strong></h2>
         </div>
     </div>
@@ -14,7 +14,7 @@
         <div class="col-sm-12">
             <h2 class="featurette-heading">{{ review.title }}</h2>
             <p class="lead">{{ review.content }}</p>
-            <div class="row justify-content-between mx-2">
+            <div class="row justify-content-between mx-1">
                 <p>By: {{ review.user }}</p>
                 <p>Created on: {{ review.created }}</p>
                 <p>Last Updated: {{ review.updated }}</p>
@@ -29,12 +29,20 @@
         </div>
     </div>
     {% endfor %}
+    
     <div class="row">
         <div class="col-sm-12 text-center py-4">
-            <a href="delete/{{ review.id }}">
+            {% if user.is_authenticated %}
+            <a href="{% url 'home:add_review' %}">
                 <button class="positive-button-lg">Add a review</button>
             </a>
+            {% else %}
+            <p>If you would like to add your own review, please login or sign up if you haven't already!</p>
+            {% endif %}
         </div>
     </div>
+    
+
+    
 </div>
 {% endblock %}

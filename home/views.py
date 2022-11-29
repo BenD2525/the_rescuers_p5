@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.views import View
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView
 from .models import Reviews
+from .forms import ReviewForm
 
 
 def home(request):
@@ -30,6 +32,35 @@ def reviews(request):
         }
     print(serialized_reviews)
     return render(request, 'home/reviews.html', context)
+
+
+class AddReview(View):
+    '''View which allows the user to add a new review.'''
+
+    def get(self, request, *args, **kwargs):
+
+        review = Reviews
+        review_form = ReviewForm
+             
+        context = {
+            'review': review,
+            'review_form': review_form,
+            'user': review.user,
+            'title': review.title,
+            'content': review.content,
+        }
+        return render(request, 'add_review.html', context)
+    
+    def post(self, request, *args, **kwargs):
+
+        review_form = ReviewForm(data=request.POST)
+
+        if review_form.is_valid():
+            obj = review_form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+            
+        return redirect("home:reviews")
 
 
 class DeleteReview(DeleteView):

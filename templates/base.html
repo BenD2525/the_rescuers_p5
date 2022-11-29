@@ -63,7 +63,7 @@
       </div>
       <div class="col-md-2">
         <div class="text-center my-auto">
-          <a href="{% url 'home' %}">
+          <a href="{% url 'home:home' %}">
             <div><i class="fa-solid fa-cart-shopping fa-lg display-5"></i></div>
           </a>
         </div>
@@ -72,10 +72,10 @@
     <div class="row align-items-center">
       <div class="collapse navbar-collapse" id="n_bar">
         <ul class="nav navbar-nav ms-auto dropdown-list align-items-center">
-          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><strong class="nav-text">Home</strong></a>
+          <li class="nav-item"><a class="nav-link" href="{% url 'home:home' %}"><strong class="nav-text">Home</strong></a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link nav-text fixed-left" href="{% url 'home' %}"><strong
+          <li class="nav-item"><a class="nav-link nav-text fixed-left" href="{% url 'home:home' %}"><strong
                 class="nav-text">My
                 Account</strong></a>
           </li>
@@ -87,10 +87,10 @@
           <li class="nav-item"><a class="nav-link nav-text" href="{% url 'account_signup' %}"><strong
                 class="nav-text">Signup</strong></a></li>
           {% endif %}
-          <li class="nav-item list-inline-item"><a class="nav-link nav-text" href="{% url 'home' %}"><strong
+          <li class="nav-item list-inline-item"><a class="nav-link nav-text" href="{% url 'home:home' %}"><strong
                 class="nav-text">Products</strong></a>
           </li>
-          <li class="nav-item"><a class="nav-link nav-text" href="{% url 'reviews' %}"><strong
+          <li class="nav-item"><a class="nav-link nav-text" href="{% url 'home:reviews' %}"><strong
                 class="nav-text">Reviews</strong></a>
           </li>
         </ul>

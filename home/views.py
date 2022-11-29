@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView, DeleteView
 from .models import Reviews
 
 
@@ -28,3 +30,17 @@ def reviews(request):
         }
     print(serialized_reviews)
     return render(request, 'home/reviews.html', context)
+
+
+class DeleteReview(DeleteView):
+    '''View which allows the user to delete the selected review.'''
+    model = Reviews
+    template_name = 'delete_review.html'
+    success_url = reverse_lazy('reviews')
+
+
+class EditReview(UpdateView):
+    '''View which allows the user to edit the selected review.'''
+    model = Reviews
+    template_name = 'edit_review.html'
+    fields = ['title', 'content']

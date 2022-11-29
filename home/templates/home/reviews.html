@@ -19,16 +19,22 @@
                 <p>Created on: {{ review.created }}</p>
                 <p>Last Updated: {{ review.updated }}</p>
             </div>
-            {% if user.is_authenticated %}
+            <!-- Add user authentication if -->
             <div class="text-center">
-            <a href="" class="mx-2">
-                <button class="positive-button mb-2">Edit</button></a>
-            <a href="" class="mx-2 mb-2">
-                <button class="negative-button">Delete</button></a>
+                <a href="edit/{{ review.id }}" class="mx-2">
+                    <button class="positive-button mb-2">Edit</button></a>
+                <a href="delete/{{ review.id }}" class="mx-2 mb-2">
+                    <button class="negative-button">Delete</button></a>
             </div>
-            {% endif %}
         </div>
     </div>
     {% endfor %}
+    <div class="row">
+        <div class="col-sm-12 text-center py-4">
+            <a href="delete/{{ review.id }}">
+                <button class="positive-button-lg">Add a review</button>
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}

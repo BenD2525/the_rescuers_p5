@@ -8,14 +8,27 @@
             <h2><strong>Reviews</strong></h2>
         </div>
     </div>
-    <!-- For Loop -->
+    {% for review in reviews %}
     <hr class="hr-1">
     <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">Heading</h2>
-            <p class="lead">Content</p>
-            <p>Author</p>
+        <div class="col-sm-12">
+            <h2 class="featurette-heading">{{ review.title }}</h2>
+            <p class="lead">{{ review.content }}</p>
+            <div class="row justify-content-between mx-2">
+                <p>By: {{ review.user }}</p>
+                <p>Created on: {{ review.created }}</p>
+                <p>Last Updated: {{ review.updated }}</p>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="text-center">
+            <a href="" class="mx-2">
+                <button class="positive-button mb-2">Edit</button></a>
+            <a href="" class="mx-2 mb-2">
+                <button class="negative-button">Delete</button></a>
+            </div>
+            {% endif %}
         </div>
     </div>
+    {% endfor %}
 </div>
 {% endblock %}

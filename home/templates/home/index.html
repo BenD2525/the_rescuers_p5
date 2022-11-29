@@ -10,50 +10,75 @@
     <p>For now, let us tell you all about why we're here...</p>
 </div>
 <div class="container-fluid home-container">
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <h2><strong>All about us</strong></h2>
-        </div>
-    </div>
-    <hr class="hr-1">
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <h2 class="featurette-heading">Who are we?</h2>
-            <p class="lead mx-4">We are a small, family-run animal charity service based in London whose focus is on
-                caring for unwanted dogs until they can find their forever home.</p>
-        </div>
-    </div>
-    <hr class="hr-1">
-    <div class="row featurette">
-        <div class="col-sm-12 text-center">
-            <h2 class="featurette-heading">What do we do?</h2>
-            <p class="lead mx-4">We look after any animal that comes into our care as if they were our own family,
-                because they are! While we are able to dedicate all the time in the world to looking after our
-                residents, unfortunately this is a very expensive job. We decided to start selling pet products so that
-                you can support our work while getting something tangible in return which you can give to your own
-                four-legged friend.</p>
-        </div>
-    </div>
-    <hr class="hr-1">
-    <div class="container-fluid">
-        <div class="row featurette">
-            <div class="col-sm-12 text-center">
-                <h2 class="featurette-heading">Who would you be helping?<i class="fa-solid fa-paw"></i></h2>
-                <p class="lead mx-4">In order to entice you even more into suporting our charity, we have included some
-                    photos of our longest-staying residents below. How could you ever say no to these three charmers?</p>
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12 text-center py-2">
+                    <h2><strong>All about us</strong></h2>
+                </div>
+            </div>
+            <hr class="hr-1">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="featurette-heading">Who are we?</h2>
+                    <p class="lead mx-4">We are a small, family-run animal charity service based in London whose focus
+                        is on
+                        caring for unwanted dogs until they can find their forever home.</p>
+                </div>
+            </div>
+            <hr class="hr-1">
+            <div class="row featurette">
+                <div class="col-sm-12 text-center">
+                    <h2 class="featurette-heading">What do we do?</h2>
+                    <p class="lead mx-4">We look after any animal that comes into our care as if they were our own
+                        family,
+                        because they are! While we are able to dedicate all the time in the world to looking after our
+                        residents, unfortunately this is a very expensive job. We decided to start selling pet products
+                        so
+                        that
+                        you can support our work while getting something tangible in return which you can give to your
+                        own
+                        four-legged friend.</p>
+                </div>
+            </div>
+            <hr class="hr-1">
+            <div class="container-fluid">
+                <div class="row featurette">
+                    <div class="col-sm-12 text-center">
+                        <h2 class="featurette-heading">Who would you be helping?<i class="fa-solid fa-paw px-2"></i>
+                        </h2>
+                        <p class="lead mx-4">In order to entice you even more into suporting our charity, we have
+                            included
+                            some
+                            photos of our longest-staying residents below. How could you ever say no to these three
+                            charmers?</p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-sm-4 text-center mb-4">
+                        <img class="hero-image" src="static/home_image_justin_veenema.jpg"
+                            alt="Picture of a black and white dog">
+                    </div>
+                    <div class="col-sm-4 text-center mb-5">
+                        <img class="hero-image" src="static/home_image_marliese_streefland.jpg"
+                            alt="Picture of a beagle dog">
+                    </div>
+                    <div class="col-sm-4 text-center mb-4">
+                        <img class="hero-image" src="static/home_image_pauline_loroy.jpg" alt="Picture of a sheepdog">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row align-items-center">
-            <div class="col-sm-4 text-center mb-4">
-                <img class="hero-image" src="static/home_image_justin_veenema.jpg"
-                    alt="Picture of a black and white dog">
-            </div>
-            <div class="col-sm-4 text-center mb-5">
-                <img class="hero-image" src="static/home_image_marliese_streefland.jpg" alt="Picture of a beagle dog">
-            </div>
-            <div class="col-sm-4 text-center mb-4">
-                <img class="hero-image" src="static/home_image_pauline_loroy.jpg" alt="Picture of a sheepdog">
-            </div>
+        <div class="col-sm-6 text-center featurette review-section">
+            <h2 class="featurette-heading">Reviews</h2>
+            <p class="lead">While we are still new, we have managed to collate a few of our favourite reviews from our
+                happy customers here.
+                <br>
+                Feel free to add your own review if you have bought something and your furry friend loves it!
+            </p>
+            <a href="{% url 'reviews' %}">
+                <button class="positive-button-lg">Reviews</button>
+            </a>
         </div>
     </div>
 </div>

@@ -25,12 +25,12 @@ def reviews(request):
             "user": review.user,
             "created": review.created,
             "updated": review.updated,
+            "id": review.id,
         })
 
     context = {
         "reviews": serialized_reviews
         }
-    print(serialized_reviews)
     return render(request, 'home/reviews.html', context)
 
 
@@ -67,7 +67,7 @@ class DeleteReview(DeleteView):
     '''View which allows the user to delete the selected review.'''
     model = Reviews
     template_name = 'home/delete_review.html'
-    success_url = reverse_lazy('reviews')
+    success_url = reverse_lazy('home:reviews')
 
 
 class EditReview(UpdateView):

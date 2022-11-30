@@ -57,9 +57,10 @@ html {
     font-family: "Lato",sans-serif;
 }
 
- {
+.positive-button-lg {
     font-size: 20px;
     font-weight: 500;
+    width: 100px;
 }
 
 .positive-button:active,
@@ -76,9 +77,11 @@ html {
     cursor: pointer;
     font-family: "Lato",sans-serif;
 }
+
 .negative-button-lg {
-    font-size: 13px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 500;
+    width: 100px;
 }
 
 .negative-button:active,

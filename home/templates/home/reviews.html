@@ -21,9 +21,9 @@
             </div>
             {% if review.user == user %}
             <div class="text-center">
-                <a href="review/edit/{{ review.id }}" class="mx-2">
+                <a href="reviews/edit/{{ review.id }}" class="mx-2">
                     <button class="positive-button mb-2">Edit</button></a>
-                <a href="review/edit/{{ review.id }}" class="mx-2 mb-2">
+                <a href="reviews/delete/{{ review.id }}" class="mx-2 mb-2">
                     <button class="negative-button">Delete</button></a>
             </div>
             {% endif %}

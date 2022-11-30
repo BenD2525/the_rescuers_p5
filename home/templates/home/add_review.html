@@ -11,6 +11,7 @@
                 {% csrf_token %}
                 <button type="submit" class="positive-button-lg">Submit</button>
             </form>
-        </div>
+            <a href="{% url 'home:reviews' %}"><button class="my-2 negative-button-lg">Back</button></a>
+        </div> 
     </div>
 {% endblock %}

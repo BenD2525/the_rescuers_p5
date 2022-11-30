@@ -19,13 +19,14 @@
                 <p>Created on: {{ review.created }}</p>
                 <p>Last Updated: {{ review.updated }}</p>
             </div>
-            <!-- Add user authentication if -->
+            {% if review.user == user %}
             <div class="text-center">
-                <a href="edit/{{ review.id }}" class="mx-2">
+                <a href="review/edit/{{ review.id }}" class="mx-2">
                     <button class="positive-button mb-2">Edit</button></a>
-                <a href="delete/{{ review.id }}" class="mx-2 mb-2">
+                <a href="review/edit/{{ review.id }}" class="mx-2 mb-2">
                     <button class="negative-button">Delete</button></a>
             </div>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
@@ -34,15 +35,13 @@
         <div class="col-sm-12 text-center py-4">
             {% if user.is_authenticated %}
             <a href="{% url 'home:add_review' %}">
-                <button class="positive-button-lg">Add a review</button>
+                <button class="positive-button-lg mb-4">Add a review</button>
             </a>
             {% else %}
             <p>If you would like to add your own review, please login or sign up if you haven't already!</p>
             {% endif %}
         </div>
     </div>
-    
-
     
 </div>
 {% endblock %}

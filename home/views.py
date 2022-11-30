@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import View
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView
@@ -49,7 +49,7 @@ class AddReview(View):
             'title': review.title,
             'content': review.content,
         }
-        return render(request, 'add_review.html', context)
+        return render(request, 'home/add_review.html', context)
     
     def post(self, request, *args, **kwargs):
 
@@ -66,12 +66,12 @@ class AddReview(View):
 class DeleteReview(DeleteView):
     '''View which allows the user to delete the selected review.'''
     model = Reviews
-    template_name = 'delete_review.html'
+    template_name = 'home/delete_review.html'
     success_url = reverse_lazy('reviews')
 
 
 class EditReview(UpdateView):
     '''View which allows the user to edit the selected review.'''
     model = Reviews
-    template_name = 'edit_review.html'
+    template_name = 'home/edit_review.html'
     fields = ['title', 'content']

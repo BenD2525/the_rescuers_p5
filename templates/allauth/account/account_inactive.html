@@ -3,10 +3,13 @@
 {% load i18n %}
 
 {% block head_title %}{% trans "Account Inactive" %}{% endblock %}
+<div class="form-container col-sm-12">
+    <div class="col-sm-6 offset-2">
+        {% block content %}
+        <h1>{% trans "Account Inactive" %}</h1>
 
-{% block content %}
-<h1>{% trans "Account Inactive" %}</h1>
-
-<p>{% trans "This account is inactive." %}</p>
-<button class="positive-button">Back to home</button>
+        <p>{% trans "This account is inactive." %}</p>
+        <button class="positive-button">Back to home</button>
+    </div>
+</div>
 {% endblock %}

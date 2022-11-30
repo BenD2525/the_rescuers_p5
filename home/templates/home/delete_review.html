@@ -1,6 +1,29 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
-<h1>Delete</h1>
-{% endblock %}
+
+<!-- Title -->
+<div class="container-fluid review-container">
+    <div class="row">
+        <div class="col-sm-12 text-center mt-4">
+            <h2>Delete Review</h2>
+        </div>
+    </div>
+<!-- Delete review form -->
+    <div class="row justify-content-center">
+        <div class="col-auto text-center p-3">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="positive-button-lg">Delete</button>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-auto text-center p-2">
+            <a href="{% url 'home:reviews' %}"><button class="my-1 negative-button-lg">Back</button></a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

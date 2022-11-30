@@ -1,6 +1,29 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
+{%load crispy_forms_tags %} 
 
 {% block content %}
-<h1>Edit</h1>
-{% endblock %}
+<!-- Title -->
+<div class="container-fluid review-container">
+    <div class="row">
+        <div class="col-sm-12 text-center mt-4">
+            <h2>Edit Review</h2>
+        </div>
+    </div>
+<!-- Edit stats form -->
+    <div class="row justify-content-center">
+        <div class="col-auto text-center p-3">
+            <form method="post">
+                {{ form | crispy }}
+                {% csrf_token %}
+                <button type="submit" class="my-1 positive-button-lg">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-auto text-center p-2">
+            <a href="{% url 'home:reviews' %}"><button class="my-1 negative-button-lg">Back</button></a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -139,6 +139,13 @@ html {
     width: 50px;
 }
 
+/* Forms */
+.review-container {
+    background-color: #14110fff;
+    color: white;
+    height: 100vh;
+}
+
 /* Wrapper for block content */
 .wrapper {
     width: 100%;

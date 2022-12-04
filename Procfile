@@ -1,1 +1,1 @@
-web: gunicorn the_rescuers_p5.wsgi
+web: gunicorn the_rescuers.wsgi

@@ -2,5 +2,21 @@
 {% load static %}
 
 {% block content %}
-<h1>Products</h1>
+<div class="row align-items-center">
+    <div class="col-sm-12 text-center mt-4">
+        <h2><strong>Products</strong></h2>
+    </div>
+</div>
+<div class="row mx-4">
+    {% for product in products %}
+    <div class="col-sm-4 text-center py-4">
+        <a href="{% url 'products:product_detail' %}">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        </a>
+        <p class="lead">{{ product.name }}</p>
+        <hr>
+        <p class="lead">£{{ product.price }}</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

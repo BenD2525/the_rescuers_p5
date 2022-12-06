@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row align-items-center">
+    <div class="col-sm-12 text-center mt-4">
+        <h2><strong>Products</strong></h2>
+        <p>Take a look at our great products below! Yes, we are using photos of our residents to try and guilt you into
+            buying, and no, we're not ashamed!</p>
+    </div>
+    <div class="row mx-4 justify-content-center">
+        {% for product in products %}
+        <div class="col-sm-8 text-center py-4 mx-4 my-4 product-list-container"
+            style="background-image: url({{ product.image_url }})">
+            <div>
+                <a href="{{ product.id }}">
+                    <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-list-image">
+                </a>
+            </div>
+            <p class="product-name">{{ product.name }}</p>
+            <hr>
+            <p class="product-price">£{{ product.price }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

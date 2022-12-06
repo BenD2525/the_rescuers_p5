@@ -154,8 +154,21 @@ html {
 /* Products */
 .product-image {
     border-radius: 20px;
-    width: 500px;
-    height: 500px;
+    width: 80%;
+    height: 50%;
+}
+
+ .product-list-container {
+    border-radius: 20px;
+    margin-left: 200px;
+    background-size: cover;
+} 
+
+.product-list-image {
+    border-radius: 20px;
+    object-fit: cover;
+    width: 20%;
+    height: 20%;
 }
 
 .product-image img {
@@ -167,5 +180,16 @@ html {
     width: 80%;
     color: white;
     background-color: #14110fff;
-    margin-bottom: 50%;
+}
+
+.product-name {
+    color: white;
+    font-size: 250px;
+    font-weight: 500;
+}
+
+.product-price {
+    color: white;
+    font-size: 200px;
+    font-weight: 400;
 }

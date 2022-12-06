@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from .models import Product
 
 
-def products(request):
+def products_list(request):
     ''' Returns the products page.'''
     serialized_products = []
     products = Product.objects.all()
@@ -12,20 +12,19 @@ def products(request):
             "name": product.name,
             "description": product.description,
             "price": product.price,
-            "image": product.image,
+            "image_url": product.image_url,
             "id": product.id,
         })     
     context = {
         "products": serialized_products
         }
 
-    return render(request, 'products/products.html', context)
+    return render(request, 'products/products_list.html', context)
 
 
 def product_detail(request, item_id):
     ''' Returns the product detail page.'''
     product = Product.objects.get(id=item_id)
-    print(product)
     context = {
         "name": product.name,
         "description": product.description,

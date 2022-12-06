@@ -32,6 +32,7 @@ def product_detail(request, item_id):
         "price": product.price,
         "image": product.image,
         "id": product.id,
+        "image_url": product.image_url,
         }
 
     return render(request, 'products/product_detail.html', context)

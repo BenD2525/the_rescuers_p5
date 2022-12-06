@@ -11,7 +11,7 @@
     {% for product in products %}
     <div class="col-sm-4 text-center py-4">
         <a href="{% url 'products:product_detail' %}">
-            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+            <img src="{% static '{{ product.image_url }}' %}" alt="{{ product.name }}">
         </a>
         <p class="lead">{{ product.name }}</p>
         <hr>

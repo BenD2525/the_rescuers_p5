@@ -2,17 +2,20 @@
 {% load static %}
 
 {% block content %}
-<div class="row align-items-center">
-    <div class="col-sm-12 text-center mt-4">
-        <h2><strong>{{ name }}</strong></h2>
+<div class="container-fluid product-container my-5">
+    <div class="row align-items-center">
+        <div class="col-sm-12 text-center mt-4">
+            <h2><strong>{{ name }}</strong></h2>
+        </div>
     </div>
-</div>
-<div class="row mx-4">
-    <div class="col-sm-4 text-center py-4">
-            <img src="{{ image }}" alt="{{ name }}">
-        <p class="lead">{{ description }}</p>
-        <hr>
-        <p class="lead">{{ price }}</p>
+    <div class="row mx-4 align-items-center">
+        <div class="col-sm-12 text-center py-4 mb-4">
+            <img src="{{ image_url }}" alt="{{ name }}" class="product-image">
+            <h3 class="py-4">Description:</h3>
+            <p class="lead">{{ description }}</p>
+            <hr>
+            <p class="lead"><strong>Price: £{{ price }}</strong></p>
+        </div>
     </div>
 </div>
 {% endblock %}

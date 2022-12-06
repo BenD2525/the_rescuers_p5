@@ -150,3 +150,22 @@ html {
     width: 100%;
     margin: 0;
 }
+
+/* Products */
+.product-image {
+    border-radius: 20px;
+    width: 500px;
+    height: 500px;
+}
+
+.product-image img {
+    object-fit: contain;
+}
+
+.product-container {
+    border-radius: 20px;
+    width: 80%;
+    color: white;
+    background-color: #14110fff;
+    margin-bottom: 50%;
+}

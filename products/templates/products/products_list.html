@@ -11,6 +11,18 @@
                 buying, and no, we're not ashamed!</p>
         </div>
     </div>
+    <form method="GET" action="{% url 'products:products_list' %}">
+        <div class="input-group w-100">
+            <input class="form-control border border-black rounded-0" type="text" name="search" placeholder="Search Products">
+            <div class="input-group-append">
+                <button class="form-control positive-button" type="submit">
+                    <span class="icon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </form>
     <div class="row mx-4 justify-content-center mb-4">
         {% for product in products %}
         <a href="{{ product.id }}" class="product-link">
@@ -22,6 +34,11 @@
             </div>
         </a>
         {% endfor %}
+        {% if not products %}
+        <div class="product-container text-center search-error-box my-4">
+            <p>Oops, looks like we're missing something here-try again later!</p>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

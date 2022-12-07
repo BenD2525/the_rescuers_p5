@@ -207,3 +207,8 @@ html {
 .product-link:hover {
     text-decoration: none;
 }
+
+.search-error-box {
+    width: auto;
+    padding: 20px;
+}

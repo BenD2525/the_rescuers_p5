@@ -2,6 +2,10 @@ html {
     height: 100%;
 }
 
+.top-pane {
+    width: 100vw;
+}
+
 
 /* CSS HEX
 --viridian: #558b6eff;
@@ -60,7 +64,7 @@ html {
 .positive-button-lg {
     font-size: 20px;
     font-weight: 500;
-    width: 100px;
+    width: fit-content;
 }
 
 .positive-button:active,
@@ -162,6 +166,8 @@ html {
     border-radius: 20px;
     margin-left: 200px;
     background-size: cover;
+    width: auto;
+    background-position: center;
 } 
 
 .product-list-image {
@@ -184,12 +190,20 @@ html {
 
 .product-name {
     color: white;
-    font-size: 250px;
-    font-weight: 500;
+    font-size: 200px;
+    font-weight: 400;
 }
 
 .product-price {
     color: white;
     font-size: 200px;
     font-weight: 400;
+}
+
+.product-link {
+    text-decoration: none;
+}
+
+.product-link:hover {
+    text-decoration: none;
 }

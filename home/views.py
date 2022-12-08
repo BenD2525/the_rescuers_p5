@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.views import View
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView
-from .models import Reviews
+from .models import Reviews, Resident
 from .forms import ReviewForm
 
 
@@ -75,3 +75,25 @@ class EditReview(UpdateView):
     model = Reviews
     template_name = 'home/edit_review.html'
     fields = ['title', 'content']
+
+
+def residents(request):
+    ''' Returns the featured residents page.'''
+
+    serialized_residents = []
+
+    residents = Resident.objects.all()
+
+    for resident in residents:
+        serialized_residents.append({
+            "name": resident.name,
+            "description": resident.description,
+            "age": resident.age,
+            "favourite_toy": resident.favourite_toy,
+            "image_url": resident.image_url,
+        })
+
+    context = {
+        "residents": serialized_residents
+        }
+    return render(request, 'home/featured_residents.html', context)

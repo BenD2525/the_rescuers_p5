@@ -212,3 +212,13 @@ html {
     width: auto;
     padding: 20px;
 }
+
+/* Residents page */
+.resident-info {
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.resident-image {
+    border-radius: 20px;
+}

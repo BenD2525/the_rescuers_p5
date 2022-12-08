@@ -75,6 +75,7 @@ When creating a functional, informative website, a developer must consider all p
 | Review Page- Add a review                              | 4          | 4                     |
 | Review Page- Edit a review                             | 4          | 4                     |
 | Review Page- Delete a review                    	 | 4          | 4                     |
+| Featured Residents Page                                | 4          | 4
 | Products Page         				 | 5          | 5                     |
 | Products Page - Price details        			 | 5          | 4                     |
 | Products Page - Review details                 	 | 4          | 4                     |
@@ -96,7 +97,7 @@ When creating a functional, informative website, a developer must consider all p
 | Logout functionality					 | 5          | 5                     |
 | Edit profile details					 | 4          | 4                     |
 | ----------------------------------------               | ----       | ----                  |
-| Totals:25                                              | 106        | 109                   |
+| Totals:25                                              | 110        | 113                   |
 
 
 The viability score is higher than the importance score, so I should be able to implement all of the above features. These scores were based on my skill level at the beginning of the project.
@@ -135,6 +136,7 @@ Home
 	- I want to easily leave a review for the product I choose.
 	- I want to easily edit a review for the product I choose.
 	- I want to easily delete a review for the product I choose.
+  - I want to be able to see the residents of the shelter, and who I will be helping when I buy products.
 
 Products
 - As a new user...

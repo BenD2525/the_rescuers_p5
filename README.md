@@ -4,7 +4,7 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
 
 ![Multi Screen Image]()
 
-## [Live Site]()
+## [Live Site](https://the-rescuers-p5.herokuapp.com/)
 
 ## Contents
 
@@ -215,7 +215,7 @@ Coolors generates complimentary colour schemes based on the colour you initially
 The full colour scheme is listed in my base.css file.
 
 ## Agile Development Process
-I used Github's issues functionality, and organised them into milestones, which can be found [here](). I also organised my issues using my project board, found [here](), moving them between in progress and completed as and when. 
+I used Github's issues functionality, and organised them into milestones, which can be found [here](https://github.com/BenD2525/the_rescuers_p5/milestones). I also organised my issues using my project board, found [here](https://github.com/users/BenD2525/projects/3), moving them between in progress and completed as and when. 
 
 ## **Current Features**
 

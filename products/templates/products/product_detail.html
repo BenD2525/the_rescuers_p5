@@ -19,9 +19,9 @@
     </div>
     <div class="row px-4 align-items-center">
         <div class="col-sm-12 text-center mb-4">
-            <a href="">
-                <button class="positive-button-lg mx-4">Add to Basket</button>
-            </a>
+            <!-- <a href=""> -->
+                <button id="add-bag" data-product={{id}} data-action="add" class="positive-button-lg mx-4">Add to Basket</button>
+            <!-- </a> -->
             <a href="{% url 'products:products_list' %}">
                 <button class="negative-button-lg mx-4">Back</button>
             </a>

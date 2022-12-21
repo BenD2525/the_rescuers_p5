@@ -6,5 +6,5 @@ app_name = 'bag'
 
 urlpatterns = [
     path('', views.bag, name='bag'),
-    path('update_bag', views.update_bag, name='update_bag'),
+    path('add/<item_id>/', views.add_to_bag, name='add_to_bag'),
 ]

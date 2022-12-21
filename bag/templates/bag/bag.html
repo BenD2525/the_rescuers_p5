@@ -15,29 +15,30 @@
     <div class="row justify-content-center">
         {% if bag_contents %}
         <div class="col-auto text-center table-responsive">
-            <table class="table table-striped table-hover table-bordered">
+            <table class="table table-striped table-hover table-bordered w-auto">
                 <tr>
-                    <th scope="col">Product:</th>
+                    <th scope="col" colspan="2" class="w-auto">Product:</th>
                     <th scope="col">Price:</th>
                     <th scope="col">Quantity:</th>
+                    <th scope="col">Edit Quantity:</th>
+                    <th scope="col">Remove</th>
                 </tr>
-                {% for item in bag %}
+                {% for item in bag_contents %}
                 <tr>
-                    <td>{{ product.user }}</td>
-                    <td>{{ item.weight }} </td>
-                    <td class="col-2">{{ item.date }}</td>
-                    <td>{{ item.run_distance }}</td>
-                    <td>{{ item.run_time }}</td>
-                    <!-- Edit and Delete buttons -->
+                    <td scope="row">{{ item.product.name }}</td>
+                    <td class="m-0"><img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" class="bag-image"></td>
+                    <td>£{{ item.product.price }} </td>
+                    <td>{{ item.quantity }}</td>
+                    <!-- Edit Quantity and Remove buttons -->
                     <td>
                         <a href="edit/{{ item.id }}"><button type="button" class="btn btn-primary">
-                                Edit
+                                Edit Quantity
                             </button>
                         </a>
                     </td>
                     <td>
                         <a href="delete/{{ item.id }}"><button type="button" class="btn btn-danger">
-                                Delete
+                                Remove
                             </button>
                         </a>
                     </td>

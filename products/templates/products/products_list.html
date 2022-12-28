@@ -57,6 +57,7 @@
 {% endblock %}
 
 {% block postloadjs %}
+{{ block.super }}
 <script type="text/javascript">
     $('#sorter').change(function() {
         const selector = $(this);

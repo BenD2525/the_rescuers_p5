@@ -213,6 +213,18 @@ html {
     padding: 20px;
 }
 
+.quantity-icon {
+    color: white;
+}
+
+.quantity-box {
+    margin-left: 25%;
+}
+
+.product-list-function {
+    margin-left: 25%;
+}
+
 /* Residents page */
 .resident-info {
     font-size: 30px;
@@ -229,14 +241,6 @@ html {
     height: 20%;
 }
 
-.quantity-icon {
-    color: white;
-}
-
-.quantity-box {
-    margin-left: 25%;
-}
-
-.product-list-function {
-    margin-left: 25%;
+.product-column {
+    width: 20%;
 }

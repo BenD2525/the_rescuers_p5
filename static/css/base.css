@@ -232,3 +232,11 @@ html {
 .quantity-icon {
     color: white;
 }
+
+.quantity-box {
+    margin-left: 25%;
+}
+
+.product-list-function {
+    margin-left: 25%;
+}

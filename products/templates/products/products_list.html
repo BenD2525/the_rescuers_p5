@@ -12,8 +12,8 @@
         </div>
     </div>
     <!-- Search bar for filtering -->
-    <form method="GET" action="{% url 'products:products_list' %}">
-        <div class="input-group w-100">
+    <form method="GET" action="{% url 'products:products_list' %}" class="w-50 product-list-function">
+        <div class="input-group w-80">
             <input class="form-control border border-black rounded-0" type="text" name="search" placeholder="Search Products">
             <div class="input-group-append">
                 <button class="form-control positive-button" type="submit">
@@ -25,8 +25,8 @@
         </div>
     </form>
     <!-- Sorting -->
-    <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-        <div class="sort-select-wrapper w-50">
+    <div class="col-12 my-auto d-flex justify-content-center">
+        <div class="sort-select-wrapper w-50 m-4">
             <select id="sorter" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                 <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
@@ -39,7 +39,7 @@
     <div class="row mx-4 justify-content-center mb-4">
         {% for product in products %}
         <a href="{{ product.id }}" class="product-link">
-            <div class="col-sm-12 text-center py-4 mx-4 my-4 product-list-container"
+            <div class="col-md-12 text-center py-4 mx-4 my-4 product-list-container"
                 style="background-image: url({{ product.image_url }})">
                 <p class="product-name">{{ product.name }}</p>
                 <hr class="hr-1">

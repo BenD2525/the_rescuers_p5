@@ -29,7 +29,7 @@
                             class="bag-image"></td>
                     <td>£{{ item.product.price }} </td>
                     <td>
-                        <form class="form update-form" method="POST" action="">
+                        <form class="form update-form" method="POST" action="{% url 'bag:amend_bag' item.item_id %}">
                             {% csrf_token %}
                             <div class="form-group">
                                 <div class="input-group">
@@ -50,13 +50,13 @@
                                     </button>
                                 </div>
                             </div>
-                        </form>
                     </td>
                     <!-- Update and Remove buttons -->
                     <td>
                         <a><button class="update-button positive-button">Update</button></a>
-                        <a id="remove_{{ item.item_id }}"><button class="negative-button">Remove</button></a>
+                        <a><button class="remove-item negative-button" id="remove_{{ item.item_id }}">Remove</button></a>
                     </td>
+                    </form>
                 </tr>
                 {% endfor %}
             </table>
@@ -95,7 +95,7 @@
     $('.remove-item').click(function (e) {
         const csrfToken = "{{ csrf_token }}";
         const itemId = $(this).attr('id').split('remove_')[1];
-        const url = `/bag/remove/${itemId}`;
+        const url = `/bag/remove/${itemId}/`;
         const datum = {
             'csrfmiddlewaretoken': csrfToken
         };

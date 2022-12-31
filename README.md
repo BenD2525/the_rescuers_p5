@@ -227,24 +227,12 @@ The title of the website, I used the bootstrap display class to clearly display 
 
 ![Title](readme/images/title.PNG)
 
-#### **Navbar (Logged Out)**
-When accessing the site on the desktop, the navbar is located next to the title, following the blue and white scheme.
+#### **Navbar(Logged In and Logged Out)**
+The navbar is located in the top left corner of the website, it is set up as a burger menu which opens below the header bar with all links centered. According to the user's logged in status, the options will change. When logged out, 'login' and 'signup' will show, whereas if the user is logged in, 'my account' and 'logout' will show.
 
-![Navbar Desktop](readme/images/navbar.PNG)
-
-On a mobile view, this is changed to a burger menu.
-
-![Navbar Mobile](readme/images/navbar_mobile.PNG)
-
-#### **Navbar (Logged In)**
-When logged in as a user on the desktop, the navbar is located next to the title, following the blue and white scheme.
-When logged in, the login function changes to logout, and the sign up link is removed and replaced with 'My Health' which allows access to the health hub.
-
+![Navbar Desktop Logged Out](readme/images/navbar_logged_out.PNG)
 ![Navbar Desktop Logged In](readme/images/navbar_logged_in.PNG)
 
-On a mobile view, this is changed to a burger menu.
-
-![Navbar Mobile Logged In](readme/images/navbar_mobile_logged_in.PNG)
 
 #### **Footer**
 The footer is located at the bottom of the page. It is fixed there so is always visible to the user wherever they are on the page. It features my name, alongside a Github icon which allows the user to navigate to my Github to view other projects. On the opposite side of the footer, I have included a link to the top of the page the user is on, which allows for easy navigation on the longer pages on mobile view.
@@ -252,17 +240,56 @@ The footer is located at the bottom of the page. It is fixed there so is always 
 ![Footer](readme/images/footer.PNG)
 
 ### **Home Page**
-The home page is the landing page for the website, and serves to tell the user what the website is about. It includes the main section, which explains the purpose of the site, underneath a large image of a person running, which introduces the theme of health. Underneath this, there are the articles which have been loaded into the Articles model. Whenever a new article is added, it will automatically display the title, featured image and topic which is taken from the Articles model. The admin user has the ability to add a new article.
+The home page is the landing page for the website, and serves to tell the user what the website is about. It includes the jumbotron header which contains the title of the website, as well as a brief tagline. Below this, the about us section is divided into 3 sections: Who are we? What do we do? and Who would you be helping? Below this, there is a link to the reviews section which allows the user to see reviews of the website.
 
-#### **Main Section**
-The main section consists of a large welcome image and the purpose of the website underneath it.
+#### **Jumbotron**
+The jumbotron is at the top of the home page and sets out the purpose of the website to the user. It has a background image with leaves on which reflects the green values of the charity.
 
-![Main Section](readme/images/home_main_section.PNG)
+![Jumbotron](readme/images/home_jumbotron.PNG)
 
-#### **Article Section**
-The article section shows the user an introduction to each article that is available to read, alongside a link to the article and the article's featured image.
+#### **About us Section**
+The about us section tells the user about the charity in 3 sections: 
+- Who are we?
+- What do we do? 
+- Who would you be helping?
 
-![Article Section](readme/images/home_article_feature.PNG)
+Each section sets out to answer the question at the title of the section, and the final section includes 3 images of dogs which are residents of the charity.
+
+![About us Section](readme/images/home_about_us.PNG)
+
+#### **Home Reviews Section**
+The reviews section allows the user to access the reviews page, which is also available on the navbar. 
+
+![Home Reviews Section](readme/images/home_reviews.PNG)
+
+### **Reviews Page**
+The reviews page serves as a repository of user-submitted reviews of the website and the charity. If the user is logged in, they are able to add a new review, edit or delete any of their previously submitted reviews. If the user is not logged in, they are unable to edit or submit any reviews.
+Each review consists of a title, a description, an author, a created date and a last modified date. These are contained within the review model.
+
+#### **Reviews Section (Not Logged In)**
+The reviews section allows an anonymous user to read any submitted reviews in the reviews section.
+
+![Reviews Section (Not Logged In)](readme/images/reviews.PNG)
+
+#### **Reviews Section (Logged in)**
+The reviews section allows a logged in user to submit a new review, or edit/delete one of their existing reviews. The options to edit or delete a review will only show if the user is the author of that review.
+
+![Reviews Section (Logged in)](readme/images/reviews_logged_in.PNG)
+
+#### **Add a Review Form**
+If a user clicks the 'add a review' button, they are presented with a form, formatted with crispy forms, which captures the title and review content in text boxes. The author and dates are all captured automatically. Once submitted, the entry is added to the Review model.
+
+![Add a Review Form](readme/images/reviews_add_a_review.PNG)
+
+#### **Edit a Review Form**
+If a user clicks the 'edit' button, they are presented with a form, formatted with crispy forms, which displays the current title and content of the review. Once edited and submitted, the review will be displayed with any edits applied. The last modified date will be updated to the date on which the review has been edited.
+
+![Edit a Review Form](readme/images/reviews_edit_a_review.PNG)
+
+#### **Delete a Review**
+If a user clicks the 'delete' button, they are presented with a screen asking them to confirm whether they would like to delete the review they have selected.
+
+![Delete a Review](readme/images/reviews_delete_a_review.PNG)
 
 ### **Login Page**
 The login page features a login form using AllAuth and formatted with the crispy forms package.

@@ -233,6 +233,11 @@ The navbar is located in the top left corner of the website, it is set up as a b
 ![Navbar Desktop Logged Out](readme/images/navbar_logged_out.PNG)
 ![Navbar Desktop Logged In](readme/images/navbar_logged_in.PNG)
 
+#### **Bag Link**
+The bag link is located in the top right corner of the website, on the header bar. It provides a live snapshot of the user's bag. It displays both the number of items currently in the bag, and the current value of the bag.
+
+![Bag Link Empty](readme/images/bag_link_empty.PNG)
+![Bag Link Products in Bag](readme/images/bag_link_products_in_bag.PNG)
 
 #### **Footer**
 The footer is located at the bottom of the page. It is fixed there so is always visible to the user wherever they are on the page. It features my name, alongside a Github icon which allows the user to navigate to my Github to view other projects. On the opposite side of the footer, I have included a link to the top of the page the user is on, which allows for easy navigation on the longer pages on mobile view.
@@ -294,61 +299,85 @@ If a user clicks the 'delete' button, they are presented with a screen asking th
 ### **Login Page**
 The login page features a login form using AllAuth and formatted with the crispy forms package.
 
-![Login Form](readme/images/login_form.PNG)
+![Login Form](readme/images/login.PNG)
 
 Once the user logs in, they are redirected to the home page and a successful message shows.
 
 ### **Signup Page**
 The Signup page features a signup form using AllAuth and formatted with the crispy forms package.
 
-![Signup Form](readme/images/signup_form.PNG)
+![Signup Form](readme/images/signup.PNG)
 
-### **Article Page**
-The Article Detail page allows the user to learn more about health and fitness. Once the user clicks 'read more' next to one of the articles on the homepage, they are directed here and are able to read the entire article, and go back to the home page.
+### **Logout Page**
+The Logout page features a logout button which when clicked, logs the user out of the site.
 
-![Article Detail](readme/images/article_detail.PNG)
+![Logout Page](readme/images/signout.PNG)
 
-### **Health Hub**
-The Health Hub page is specific to the logged in user, and only available once the user is logged in. It includes the details of their latest stats entry displayed in table format. This data is brought through from the health stats model, and if there are no entries, the table will read blank. Below the table are buttons to take the user to the other parts of the Health Hub, or back to the home page. 
+### **Featured Residents Page**
+The Featured Residents page allows the user to see a selection of dogs which are currently residents at the shelter. They can see their photos, names, descriptions, ages and favourite toys.
 
-![Health Hub](readme/images/health_hub.PNG)
+#### **Featured Residents Detail**
+The Featured Residents detail shows all of the details of the Resident model in order. This allows the user to view the featured residents' details, this can be easily updated by the site admin when the featured residents change.
 
-#### **Update Stats**
-The update stats form allows the user to add a new instance into the Health Stats model. The User and Date instances are automatically collected and stored, and the user is asked to provide the other stats. It requires all fields to be filled out, and in the formats described on the field labels. Once the form is submitted, the user is redirected to the health hub.
+![Featured Residents Detail](readme/images/featured_residents_detail.PNG)
 
-![Update Stats](readme/images/update_stats.PNG)
+### **Products List Page**
+The Products page is accessible from the navbar and allows the user to see all products that are available to purchase. All products are contained within the products model. The user is able to search for a keyword using the search bar, sort the product list in various ways and click on any of the products to see them in more detail.
 
-#### **Health Hub History**
-The Health History page shows the user all of their logged data, displayed in table format with the most recent one at the top. On a mobile view, I added a horizontal scroll function to the table, in order to allow the user to view all of their data easily. The table has buttons to allows the user to edit and delete each entry in the final two columns. These are colour coded to emphasise the functionality- red for delete and blue for edit.
-If the user has logged stats, the button for the weight track will also show to enable the user to track their weight.
+#### **Products List Title**
+The products list contains a title, which serves to introduce the user to the product list, as well as a short paragraph with some humour which echoes the website's conversational tone.
 
-![Health Hub History](readme/images/health_history.PNG)
+![Products List Title](readme/images/product_list_title.PNG)
 
-#### **Edit Stats**
-If the user clicks the edit button on an entry on the health history table, they are presented with a form, with the current values of that entry already filled out. The user is then able to edit the details they wish and and update the entry. Once the form is submitted, the user is redirected to the health history page.
+#### **Products List Search**
+The products list also contains a search bar which allows the user to input a keyword. The product list view then takes the input and uses it as a query. It looks up the keyword in the product title or description, filters the products and returns any results as a new list.
 
-![Edit Stats](readme/images/edit_form.PNG)
+![Products List Search](readme/images/product_list_search.png)
 
-#### **Delete Stats**
-If the user clicks the delete button on an entry on the health history table, they are presented with a warning message asking the user to confirm they are happy to delete this entry. The user can confirm, or go back to the previous page. If the user confirms, the entry is deleted and they are redirected to the health history page (minus the deleted entry).
+#### **Products List Sort**
+The products list also contains a sort functionality which allows the user to sort by name or price. According to the selection, the results are then sorted in order.
 
-![Delete Stats](readme/images/delete_entry.PNG)
+![Products List Sort](readme/images/product_list_sort.PNG)
 
-#### **Health Hub Tracker**
-The Health Hub Tracker page allows the user to track their weight stats over time in the form of a line graph. The Y axis displays the user's weight stats and the X axis displays the dates that these stats were registered. The date information is automatically gathered whenever the user submits a new entry using the Update Stats form. This provides some basic data visualisation for the user, and is an area which could be further developed to enable a wider variety of tracking options.
+#### **Products List Products**
+Below the sort and search functionality, the products are listed in either the default order (by product ID) or by the order in which they have been sorted. The products are displayed in large squares, with the background image being the product's image. Each square contains the product's name, price and acts as a hyperlink to the product detail page for that product.
 
-![Health Hub Tracker](readme/images/health_tracker.PNG)
+![Products List Products](readme/images/product_list_product.PNG)
+
+### **Product Detail Page**
+The Product Detail page displays the user's chosen product in further detail, and allows the user to see the product's description, adjust their requested quantities of the product, add the product to their basket or go back to the products list.
+
+#### **Product Detail Product**
+The product detail page displays the product title, description and price.
+
+![Product Detail Product](readme/images/product_detail_product.PNG)
+
+#### **Product Detail Quantity**
+Below the product details, the user is able to adjust the quantity of the product that they may wish to add to their bag. The plus and minus buttons allow the user to adjust the quantity, and they are able to type in a number up to 99. If the user then decides to add the product to their bag, the quantity of the product required will be added to the bag.
+
+![Product Detail Quantity](readme/images/product_detail_quantity.PNG)
+
+#### **Product Detail Buttons**
+Below the quantity adjuster, the add to bag button allows the user to add the product to their bag, or the back button will return them to the products list.
+
+![Product Detail Buttons](readme/images/product_detail_buttons.PNG)
+
+### **Bag**
+The Bag allows the user to see what they will be paying for when they checkout. It can be accessed by the bag icon in the header and it displays a link to the checkout page. It also provides the user with the ability to edit their bag; update quantities and remove items. Alternatively, it displays a message encouraging the user to shop if there is nothing in their bag.
+
+#### **Empty Bag**
+The message below is displayed if the user accesses an empty bag.
+
+![Empty Bag](readme/images/bag_empty.PNG)
+
+#### **Products in Bag**
+The bag displays the details of the products contained in it in table format. In each row, the product names, pictures and prices are displayed. At the end of the product details, there is the ability to adjust the quantity of items in the bag using the plus and minus buttons. Once the new quantity is selected, the user can update their bag by clicking the update button at the end of the row. Alternatively, they can click the remove button to remove the product from their bag.
+
+![Products in Bag](readme/images/bag_products_table.PNG)
+
 
 ## **Future Development**
 
-### Chart Variation
-The ability to have multiple different chart types for different stats, and being able to change them in realtime would be a feature to develop in future.
-
-### Stat Choice
-The ability for the user to choose which stats to log and track. This would require multiple forms and the logic to choose between them.
-
-### Workout Planner
-A workout planner held within the Health Hub which would allow the user to plan their workouts on a calendar, tick them off and register the stats from them. 
 
 ## Testing
 Details of all testing undertaken can be found [here](TESTING.md).
@@ -380,29 +409,26 @@ Steps to deploy:
 - Django AllAuth
 - Bootstrap
 - Crispy Forms
-- Cloudinary (for image hosting)
+- AWS
 - Balsamiq
+- Lucid Chart
 - Unsplash (for images)
-- Chart.js
-- PostGreSQL
+- ElephantSQL
 
 ## Honourable Mentions
-- Tom Ainsworth for the Readme structure, thanks so much!
-- Christian Brown for helping me set up Cloudinary
 - Slack
 - Stack Overflow
-- Daisy Gunn for helping me figure out why signup emails weren't sending
-- CI London Community for general support when traversing the Django learning curve!
 
 ## Credits
-- [Balsamiq](https://balsamiq.com/) for creating the wireframes
-- VS Code for the text editor
-- [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-  - Version 5.1.3, CSS framework for building a responsive front end.
-- [Cloudinary](https://cloudinary.com/)
+- Boutique Ado
+  - Code Institute walkthrough project for guidance on implementing many features, including the product list, bag and checkout pages.
+- [Balsamiq](https://balsamiq.com/) for creating the wireframes.
+- [Bootstrap](https://getbootstrap.com/docs/4.4/getting-started/download/)
+  - Version 4.4.1, CSS framework for building a responsive front end.
+- [AWS](https://aws.amazon.com/)
   - Used to store static files and media.
 - [GitHub](https://github.com/)
-  - Used for version control throughout the build process
+  - Used for version control throughout the build process.
   - GitHub Projects used to organise user stories and tasks.
   - Milestones were used to group user stories into sections.
 - [Google Fonts](https://fonts.google.com/)
@@ -413,10 +439,8 @@ Steps to deploy:
   - Django docs
   - Bootstrap Docs
   - W3Schools
-  - Chart.js docs
 - [Unsplash](https://unsplash.com/) for providing the images, specifically:
-  - Brian Erickson for the home page image
-  - Jenny Hill for the running article image
-  - Jose Vazquez for the yoga article image
-  - Sushil Ghimire for the Weightlifting article image
+  - Nahil Naseer for the jumbotron image.
+  - Justin Veenema, Marliese Streefland and Pauline Loroy for the images on the home page.
+  - Angel Luciano, Victor Grabarczyk and my personal photos for the featured residents images.
 - [Lucid Chart](https://www.lucidchart.com/)- used for the creation of the database schema table.

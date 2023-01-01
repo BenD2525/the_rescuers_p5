@@ -62,6 +62,13 @@
                 {% endfor %}
             </table>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="{% url 'checkout:checkout' %}">
+                    <button class="positive-button-lg mx-4">Checkout</button>
+                </a>
+            </div>
+        </div>
         {% else %}
         <div class="row">
             <div class="col-sm-12 mx-4">

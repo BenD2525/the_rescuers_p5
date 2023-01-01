@@ -23,6 +23,24 @@ class Order(models.Model):
     county = models.CharField(max_length=80, null=True, blank=True)
     country = models.CharField(max_length=40, null=False, blank=False)  
 
+    def _generate_order_number(self):
+        """
+        Generate a random, unique order number using UUID.
+        """
+        return uuid.uuid4().hex.upper()
+
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the order number
+        if there isn't one already.
+        """
+        if not self.order_number:
+            self.order_number = self._generate_order_number()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.order_number
+
 
 class OrderDetail(models.Model):
     """
@@ -30,6 +48,15 @@ class OrderDetail(models.Model):
     """
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='details')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-    product_size = models.CharField(max_length=2, null=True, blank=True) # XS, S, M, L, XL
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    subtotal = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+
+    def save(self, *args, **kwargs):
+        """
+        Override the save method and set the subtotal to the product price * quantity.
+        """
+        self.subtotal = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f' {self.product.name} | {self.order.order_number}'

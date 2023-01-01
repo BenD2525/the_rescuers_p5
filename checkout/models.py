@@ -11,6 +11,7 @@ class Order(models.Model):
     """
        Model for Orders, created when checking out the bag.
     """
+    order_number = models.CharField(default='', max_length=32, null=False, editable=False)
     first_name = models.CharField(max_length=30, null=False, blank=False)
     last_name = models.CharField(max_length=30, null=False, blank=False)
     email = models.EmailField(max_length=250, null=False, blank=False)
@@ -22,12 +23,20 @@ class Order(models.Model):
     postcode = models.CharField(max_length=10, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     country = models.CharField(max_length=40, null=False, blank=False)  
+    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
 
     def _generate_order_number(self):
         """
         Generate a random, unique order number using UUID.
         """
         return uuid.uuid4().hex.upper()
+
+    def update_total(self):
+        """
+        Update total each time a line item is added.
+        """
+        self.order_total = self.lineitems.aggregate(Sum('subtotal'))['subtotal__sum']
+        self.save()
 
     def save(self, *args, **kwargs):
         """

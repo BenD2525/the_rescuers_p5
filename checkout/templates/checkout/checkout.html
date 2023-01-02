@@ -3,6 +3,10 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<!-- Paypal Script -->
+<script
+    src="https://www.paypal.com/sdk/js?client-id=ARwpTasqupsB1v8gSLJQDf9bguf0Zsn2Cp8oNyfylFWcb0kwQ6p6A-HVk9DXGnyWs3MBuZkM8QxGSEX2&currency=GBP">
+</script>
 <div class="container mb-5">
     <div class="row align-items-center">
         <div class="col-md-12">
@@ -33,7 +37,7 @@
                 {% endfor %}
                 <tr>
                     <td><strong>Subtotal:</strong></td>
-                    <td><strong>£ {{ total }} </strong></td>
+                    <td><strong>{{ total }}</strong></td>
                 </tr>
             </table>
         </div>
@@ -66,65 +70,74 @@
                             {{ order_form.country | as_crispy_field }}
                             <div class="form-check form-check-inline float-right mr-0">
                                 {% if user.is_authenticated %}
-                                    <label class="form-check-label" for="id-save-info">Save this information to my profile</label>
-                                    <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+                                <label class="form-check-label" for="id-save-info">Save this information to my
+                                    profile</label>
+                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info"
+                                    name="save-info" checked>
                                 {% else %}
-                                    <label class="form-check-label" for="id-save-info">
-                                        <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
-                                        <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
-                                    </label>
+                                <label class="form-check-label" for="id-save-info">
+                                    <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
+                                    <a class="text-info" href="{% url 'account_login' %}">login</a> to save this
+                                    information
+                                </label>
                                 {% endif %}
                             </div>
                         </fieldset>
                         <fieldset class="px-3">
                             <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
- 
+                            <div id="paypal-button-container"></div>
                             <p class="small text-danger my-0">
-                               Your card will be charged <strong>£{{ total|floatformat:2 }}</strong>
+                                Your card will be charged <strong>£{{ total|floatformat:2 }}</strong>
                             </p>
-                        </div>
-                    </form>
                 </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-sm-12 text-center">
-                    <a href="{% url 'bag:bag' %}">
-                        <button class="negative-button mx-4">Back</button>
-                    </a>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-12 text-center">
+                <a href="{% url 'bag:bag' %}">
+                    <button class="negative-button mx-4">Back</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
-{% include 'products/includes/product_detail.html' %}
 
-<script type="text/javascript">
-    // Update quantity on click
-    $('.update-button').click(function (e) {
-        const form = $(this).prev('.update-form');
-        form.submit();
-    })
+<script>
+    const paymentAmount = {{ total | safe }}
 
-    // Remove item and reload on click
-    $('.remove-item').click(function (e) {
-        const csrfToken = "{{ csrf_token }}";
-        const itemId = $(this).attr('id').split('remove_')[1];
-        const url = `/bag/remove/${itemId}/`;
-        const datum = {
-            'csrfmiddlewaretoken': csrfToken
-        };
-
-        $.post(url, datum)
-            .done(function () {
-                location.reload();
+    paypal.Buttons({
+        // Sets up the transaction when a payment button is clicked
+        createOrder: (data, actions) => {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: paymentAmount
+                    }
+                }]
             });
-    })
+        },
+        // Finalize the transaction after payer approval
+        onApprove: (data, actions) => {
+            return actions.order.capture().then(function (orderData) {
+                // Successful capture! For dev/demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                const transaction = orderData.purchase_units[0].payments.captures[0];
+                alert(
+                    `Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                // When ready to go live, remove the alert and show a success message within this page. For example:
+                // const element = document.getElementById('paypal-button-container');
+                // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                // Or go to another URL:  actions.redirect('thank_you.html');
+            });
+        }
+    }).render('#paypal-button-container');
 </script>
 {% endblock %}

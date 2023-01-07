@@ -54,27 +54,26 @@
 <body>
   <header class="container-fluid top-pane">
     <!-- Burger menu -->
-    <div class="row align-items-center nav-row justify-content-between d-flex">
-      <div class="col-md-2 text-center">
+    <div class="row align-items-center nav-row d-flex justify-content-between">
+      <div class="col-2">
         <nav class="navbar navbar-light">
-          <div class="container-fluid text-center">
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#n_bar"
+          <div class="ms-auto">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#n_bar"
               aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon navbar-light ms-auto display-5"></span>
+              <span class="navbar-toggler-icon navbar-light ms-auto"></span>
             </button>
           </div>
         </nav>
       </div>
-      <div class="col-md-8">
-        <h1 class="display-5 fw-bold text-center">The Rescuers</h1>
+      <div class="col-8">
+        <h1 class="fw-bold text-center mx-4">The Rescuers</h1>
       </div>
-      <div class="col-md-2">
-        <div class="text-center my-auto">
+      <div class="col-2">
+        <div class="text-center">
           <a href="{% url 'bag:bag' %}">
-            <div><i class="fa-solid fa-cart-shopping fa-lg display-5"></i>
-              {{ product_count }} items
-              <br>
-              £{{ total }}</div>
+            <i class="fa-solid fa-cart-shopping fa-lg"></i>
+            <p class="d-none d-sm-inline">{{ product_count }} items
+              £{{ total }}</p>
           </a>
         </div>
       </div>

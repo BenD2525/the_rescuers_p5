@@ -2,23 +2,23 @@
 {% load static %}
 
 {% block content %}
-<div class="container product-container mt-4 align-items-center">
-    <div class="row align-items-center">
-        <div class="col-sm-12 text-center mt-4">
+<div class="align-items-center">
+    <div class="row">
+        <div class="col-12 text-center mt-4">
             <h2><strong>{{ name }}</strong></h2>
         </div>
     </div>
     <div class="row mx-4 align-items-center">
-        <div class="col-sm-12 text-center py-4 mb-4">
+        <div class="col-12 text-center py-4 mb-4">
             <img src="{{ image_url }}" alt="{{ name }}" class="product-image">
             <h3 class="py-4">Description:</h3>
-            <p class="lead px-4">{{ description }}</p>
-            <h3 class="py-4">Price:</h3>
+            <p class="lead">{{ description }}</p>
+            <h3 class="pt-4">Price:</h3>
             <p class="lead"><strong> £{{ price }}</strong></p>
         </div>
     </div>
     <div class="row px-4 align-items-center">
-        <div class="col-sm-12 text-center mb-4">
+        <div class="col-12 text-center mb-4">
             <form class="form mb-4" action="{% url 'bag:add_to_bag' id %}" method="POST">
                 {% csrf_token %}
                 <div class="form-row">

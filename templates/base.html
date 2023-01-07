@@ -110,18 +110,16 @@
       </div>
     </div>
   </header>
-
+  <div class="content-wrapper">
   {% block content %}
   {% endblock %}
-
+  </div>
   <!-- Footer -->
-  <footer>
-    <div class="container-fluid footer-row fixed-bottom justify-content-between d-flex mt-4">
-      <a href="https://github.com/BenD2525" target="_blank" rel="noopener" aria-label="GitHub" class="text-white">
+  <footer class="footer-row justify-content-between d-flex mt-4 fixed-bottom">
+      <a href="https://github.com/BenD2525" target="_blank" rel="noopener" aria-label="GitHub" class="fw-bold">
         Ben Dawson 2022 <i class="fa-brands fa-github"></i>
       </a>
       <a href="#"><i class="fa-solid fa-arrow-up fa-lg"></i></a>
-    </div>
   </footer>
 
   {% block postloadjs %}

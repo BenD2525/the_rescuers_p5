@@ -2,69 +2,71 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid mb-4">
-    <div class="row align-items-center">
-        <div class="col-sm-12 text-center mt-4">
-            <h2><strong>Products</strong></h2>
-            <p>Take a look at our great products below! Yes, we are using photos of our residents to try and guilt you
-                into
-                buying, and no, we're not ashamed!</p>
+<div class="row align-items-center">
+    <div class="col-sm-12 text-center mt-4">
+        <h2><strong>Products</strong></h2>
+        <p>Take a look at our great products below! Yes, we are using photos of our residents to try and guilt you
+            into
+            buying, and no, we're not ashamed!</p>
+    </div>
+</div>
+<!-- Search bar for filtering -->
+<form method="GET" action="{% url 'products:products_list' %}" class="w-50 product-list-function">
+    <div class="input-group w-80">
+        <input class="form-control border border-black rounded-0" type="text" name="search"
+            placeholder="Search">
+        <div class="input-group-append">
+            <button class="form-control positive-button" type="submit">
+                <span class="icon">
+                    <i class="fas fa-search"></i>
+                </span>
+            </button>
         </div>
     </div>
-    <!-- Search bar for filtering -->
-    <form method="GET" action="{% url 'products:products_list' %}" class="w-50 product-list-function">
-        <div class="input-group w-80">
-            <input class="form-control border border-black rounded-0" type="text" name="search" placeholder="Search Products">
-            <div class="input-group-append">
-                <button class="form-control positive-button" type="submit">
-                    <span class="icon">
-                        <i class="fas fa-search"></i>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </form>
-    <!-- Sorting -->
-    <div class="col-12 my-auto d-flex justify-content-center">
-        <div class="sort-select-wrapper w-50 m-4">
-            <select id="sorter" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-                <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
-                <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-            </select>
-        </div>
+</form>
+<!-- Sorting -->
+<div class="col-12 my-auto d-flex justify-content-center">
+    <div class="sort-select-wrapper w-50 m-4">
+        <select id="sorter"
+            class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)
+            </option>
+            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)
+            </option>
+            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+        </select>
     </div>
-    <div class="row mx-4 justify-content-center mb-4">
-        {% for product in products %}
-        <a href="{{ product.id }}" class="product-link">
-            <div class="col-md-12 text-center py-4 mx-4 my-4 product-list-container"
-                style="background-image: url({{ product.image_url }})">
-                <p class="product-name">{{ product.name }}</p>
-                <hr class="hr-1">
-                <p class="product-price">£{{ product.price }}</p>
-            </div>
-        </a>
-        {% endfor %}
-        {% if not products %}
-        <div class="product-container text-center search-error-box my-4">
-            <p>Oops, looks like we're missing something here-try again later!</p>
+</div>
+<div class="row mx-4 justify-content-center mb-4">
+    {% for product in products %}
+    <a href="{{ product.id }}" class="product-link">
+        <div class="col-12 text-center py-4 mx-4 my-4 product-list-container"
+            style="background-image: url({{ product.image_url }})">
+            <p class="product-name">{{ product.name }}</p>
+            <hr class="hr-1">
+            <p class="product-price">£{{ product.price }}</p>
         </div>
-        {% endif %}
+    </a>
+    {% endfor %}
+    {% if not products %}
+    <div class="product-container text-center search-error-box my-4">
+        <p>Oops, looks like we're missing something here-try again later!</p>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-    $('#sorter').change(function() {
+    $('#sorter').change(function () {
         const selector = $(this);
         const currentUrl = new URL(window.location);
 
         const selectedVal = selector.val();
-        if(selectedVal != "reset"){
+        if (selectedVal != "reset") {
             const sort = selectedVal.split("_")[0];
             const direction = selectedVal.split("_")[1];
 

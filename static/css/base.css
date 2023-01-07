@@ -6,7 +6,15 @@ html {
     width: 100vw;
 }
 
+.content-wrapper {
+    padding-bottom: 2rem;    /* Footer height */
+    background-color: #14110fff;
+    color: white;
+  }
 
+footer {
+    height: 2rem;
+}
 /* CSS HEX
 --viridian: #558b6eff;
 --wild-blue-yonder: #98a6d4ff;
@@ -166,8 +174,9 @@ html {
     border-radius: 20px;
     margin-left: 200px;
     background-size: cover;
-    width: auto;
     background-position: center;
+    width: 100%;
+    max-width: 320px;
 } 
 
 .product-list-image {
@@ -184,19 +193,20 @@ html {
 .product-container {
     border-radius: 20px;
     width: 80%;
+    height: 400px;
     color: white;
     background-color: #14110fff;
 }
 
 .product-name {
     color: white;
-    font-size: 200px;
+    font-size: 50px;
     font-weight: 400;
 }
 
 .product-price {
     color: white;
-    font-size: 200px;
+    font-size: 50px;
     font-weight: 400;
 }
 

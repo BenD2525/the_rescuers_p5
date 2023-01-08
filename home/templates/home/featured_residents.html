@@ -2,28 +2,26 @@
 {% load static %}
 
 {% block content %}
-    <div class="row align-items-center">
-        <div class="col-sm-12 text-center mt-4">
-            <h2><strong>Featured Residents</strong></h2>
-        </div>
+<div class="jumbotron home-1 text-center mb-4">
+    <h1 class="display-4"><strong>Featured Residents</strong></h1>
+</div>
+{% for resident in residents %}
+<hr class="hr-1">
+<div class="row featurette">
+    <div class="col-sm-12 text-center">
+        <h2 class="featurette-heading my-4">{{ resident.name }}</h2>
+        <img src="{{ resident.image_url }}" alt="{{ resident.name }}" class="w-50 resident-image">
+        <p class="px-4 resident-info my-4">{{ resident.description }}</p>
+        <p class="resident-info">Age: {{ resident.age }}</p>
+        <p class="resident-info">Favourite Toy: {{ resident.favourite_toy }}</p>
     </div>
-    {% for resident in residents %}
-    <hr class="hr-1">
-    <div class="row featurette">
-        <div class="col-sm-12 text-center">
-            <h2 class="featurette-heading my-4">{{ resident.name }}</h2>
-            <img src="{{ resident.image_url }}" alt="{{ resident.name }}" class="w-50 resident-image">
-            <p class="px-4 resident-info my-4">{{ resident.description }}</p>
-            <p class="resident-info">Age: {{ resident.age }}</p>
-            <p class="resident-info">Favourite Toy: {{ resident.favourite_toy }}</p>
-        </div>
+</div>
+{% endfor %}
+<div class="row align-items-center">
+    <div class="col-12 d-flex justify-content-center mb-4">
+        <a href="{% url 'home:home' %}">
+            <button class="negative-button-lg mx-4">Back</button>
+        </a>
     </div>
-    {% endfor %}
-    <div class="row align-items-center">
-        <div class="col-12 d-flex justify-content-center mb-4">
-            <a href="{% url 'home:home' %}">
-                <button class="negative-button-lg mx-4">Back</button>
-            </a>
-        </div>
-    </div>
+</div>
 {% endblock %}

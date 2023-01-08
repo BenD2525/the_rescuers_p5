@@ -2,12 +2,10 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid home-container">
-    <div class="row align-items-center">
-        <div class="col-sm-12 text-center mt-4">
-            <h2><strong>Reviews</strong></h2>
-        </div>
-    </div>
+<div class="jumbotron home-1 text-center mb-4">
+    <h1 class="display-4"><strong>Reviews</strong></h1>
+</div>
+<div class="container-fluid">
     {% for review in reviews %}
     <hr class="hr-1">
     <div class="row featurette">
@@ -30,18 +28,19 @@
         </div>
     </div>
     {% endfor %}
-    
-    <div class="row">
-        <div class="col-sm-12 text-center py-4">
-            {% if user.is_authenticated %}
-            <a href="{% url 'home:add_review' %}">
-                <button class="positive-button-lg mb-4">Add a review</button>
-            </a>
-            {% else %}
-            <p>If you would like to add your own review, please login or sign up if you haven't already!</p>
-            {% endif %}
-        </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 text-center py-4">
+        {% if user.is_authenticated %}
+        <a href="{% url 'home:add_review' %}">
+            <button class="positive-button-lg mb-4">Add a review</button>
+        </a>
+        {% else %}
+        <p>If you would like to add your own review, please login or sign up if you haven't already!</p>
+        {% endif %}
     </div>
-    
+</div>
+
 </div>
 {% endblock %}

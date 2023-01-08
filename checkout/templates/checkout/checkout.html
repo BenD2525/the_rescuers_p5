@@ -3,23 +3,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<!-- Paypal Script -->
-<script
-    src="https://www.paypal.com/sdk/js?client-id=ARwpTasqupsB1v8gSLJQDf9bguf0Zsn2Cp8oNyfylFWcb0kwQ6p6A-HVk9DXGnyWs3MBuZkM8QxGSEX2&currency=GBP">
-</script>
-<div class="container mb-5">
-    <div class="row align-items-center">
-        <div class="col-md-12">
-            <div class="text-center">
-                <h1>Checkout</h1>
-            </div>
-        </div>
-    </div>
+
+<div class="jumbotron home-1 text-center mb-4">
+    <h1 class="display-4"><strong>Checkout</strong></h1>
 </div>
 
 <div class="container-fluid">
     <div class="row justify-content-center mx-4 w-80">
-        <div class="col-md-12 text-center table-responsive">
+        <div class="col-12 text-center table-responsive bg-white px-0">
             <table class="table table-striped table-hover w-auto table-bordered">
                 <tr>
                     <th scope="col" colspan="2" class="w-auto">Product:</th>
@@ -36,8 +27,8 @@
                 </tr>
                 {% endfor %}
                 <tr>
-                    <td><strong>Subtotal:</strong></td>
-                    <td><strong>{{ total }}</strong></td>
+                    <td colspan=3><strong>Subtotal:</strong></td>
+                    <td colspan=2><strong>£{{ total }}</strong></td>
                 </tr>
             </table>
         </div>
@@ -109,7 +100,10 @@
 {% endblock %}
 
 {% block postloadjs %}
-
+<!-- Paypal Script -->
+<script
+    src="https://www.paypal.com/sdk/js?client-id=ARwpTasqupsB1v8gSLJQDf9bguf0Zsn2Cp8oNyfylFWcb0kwQ6p6A-HVk9DXGnyWs3MBuZkM8QxGSEX2&currency=GBP">
+</script>
 <script>
     const paymentAmount = {{ total | safe }}
 
@@ -140,4 +134,5 @@
         }
     }).render('#paypal-button-container');
 </script>
+
 {% endblock %}

@@ -2,13 +2,11 @@
 {% load static %}
 
 {% block content %}
-<div class="row align-items-center">
-    <div class="col-12 text-center mt-4 px-4">
-        <h2><strong>Products</strong></h2>
-        <p>Take a look at our great products below! Yes, we are using photos of our residents to try and guilt you
+<div class="jumbotron home-1 text-center mb-4">
+        <h1 class="display-4"><strong>Products</strong></h1>
+        <p class="lead">Take a look at our great products below! Yes, we are using photos of our residents to try and guilt you
             into
             buying, and no, we're not ashamed!</p>
-    </div>
 </div>
 <!-- Search bar for filtering -->
 <form method="GET" action="{% url 'products:products_list' %}" class="w-50 product-list-function">

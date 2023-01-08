@@ -5,6 +5,7 @@ from django.views.generic import UpdateView, DeleteView
 from .models import Reviews, Resident
 from .forms import ReviewForm
 from django.http import HttpResponse
+from django.contrib import messages
 
 
 def custom_404(request, exception):
@@ -64,7 +65,7 @@ class AddReview(View):
             obj = review_form.save(commit=False)
             obj.user = request.user
             obj.save()
-            
+            messages.success(request, "Thanks for adding a review!")
         return redirect("home:reviews")
 
 
@@ -74,12 +75,22 @@ class DeleteReview(DeleteView):
     template_name = 'home/delete_review.html'
     success_url = reverse_lazy('home:reviews')
 
+    def delete(self, request, *args, **kwargs):
+        '''Displays message on successful deletion of the review.'''
+        messages.success(self.request, 'Your review was deleted successfully.')
+        return super().delete(request, *args, **kwargs)
+
 
 class EditReview(UpdateView):
     '''View which allows the user to edit the selected review.'''
     model = Reviews
     template_name = 'home/edit_review.html'
-    fields = ['title', 'content']
+    fields = ['title', 'content']   
+
+    def form_valid(self, form):
+        '''Displays message on successful editing of the review.'''
+        messages.success(self.request, 'Your review was updated successfully.')
+        return super().form_valid(form)
 
 
 def residents(request):

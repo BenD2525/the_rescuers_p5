@@ -10,6 +10,7 @@ html {
     padding-bottom: 2rem;    /* Footer height */
     background-color: #14110fff;
     color: white;
+    height: 100%;
   }
 
 footer {
@@ -102,6 +103,15 @@ footer {
     box-shadow: none;
 }
 
+/* Toasts */
+#toast-container {
+    position: absolute; 
+    top: 0; 
+    right: 0;
+    width: 30%;
+    z-index: 1;
+}
+
 /* Hero images */
 .hero-image {
     border-radius: 50%;
@@ -175,8 +185,7 @@ footer {
     margin-left: 200px;
     background-size: cover;
     background-position: center;
-    width: 100%;
-    max-width: 320px;
+    width: 80%;
 } 
 
 .product-list-image {
@@ -201,13 +210,13 @@ footer {
 .product-name {
     color: white;
     font-size: 50px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .product-price {
     color: white;
     font-size: 50px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .product-link {

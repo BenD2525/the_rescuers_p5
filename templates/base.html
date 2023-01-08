@@ -41,7 +41,32 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
   </script>
+  <script>
+    function showToast(message) {
+      // create a new toast element
+      let toast = document.createElement("div");
+      toast.classList.add("toast", "toast-body");
+      toast.innerHTML = message;
+      // add the toast to the container
+      let container = document.getElementById("toast-container");
+      container.appendChild(toast);
 
+      // show the toast for 3 seconds
+      setTimeout(function () {
+        toast.classList.add("show");
+      }, 1);
+      setTimeout(function () {
+        container.classList.add("show");
+      }, 1);
+      setTimeout(function () {
+        toast.classList.remove("show");
+      }, 3000);
+      setTimeout(function () {
+        container.classList.remove("show");
+        container.classList.add("d-none");
+      }, 3000);
+    }
+  </script>
   {% endblock %}
 
   {% block extra_js %}
@@ -110,16 +135,30 @@
       </div>
     </div>
   </header>
+  <div id="toast-container">
+    <div class="toast-body">
+      {{ message }}
+    </div>
+  </div>
+  <!-- Displays Messages -->
+  {% if messages %}
+  {% for message in messages %}
+  <script>
+    showToast("{{ message }}");
+  </script>
+  {% endfor %}
+  {% endif %}
+
   <div class="content-wrapper">
-  {% block content %}
-  {% endblock %}
+    {% block content %}
+    {% endblock %}
   </div>
   <!-- Footer -->
   <footer class="footer-row justify-content-between d-flex mt-4 fixed-bottom">
-      <a href="https://github.com/BenD2525" target="_blank" rel="noopener" aria-label="GitHub" class="fw-bold">
-        Ben Dawson 2022 <i class="fa-brands fa-github"></i>
-      </a>
-      <a href="#"><i class="fa-solid fa-arrow-up fa-lg"></i></a>
+    <a href="https://github.com/BenD2525" target="_blank" rel="noopener" aria-label="GitHub" class="fw-bold">
+      Ben Dawson 2022 <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="#"><i class="fa-solid fa-arrow-up fa-lg"></i></a>
   </footer>
 
   {% block postloadjs %}

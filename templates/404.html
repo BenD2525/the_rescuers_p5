@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="error-image"></div>
+<h1>Uh oh! Looks like something's missing here!</h1>
+<div class="row align-items-center">
+    <div class="col-12 d-flex justify-content-center mb-4">
+        <a href="{% url 'home:home' %}">
+            <button class="negative-button-lg mx-4">Back</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

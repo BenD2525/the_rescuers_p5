@@ -4,6 +4,11 @@ from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView
 from .models import Reviews, Resident
 from .forms import ReviewForm
+from django.http import HttpResponse
+
+
+def custom_404(request, exception):
+    return render(request, '404.html')
 
 
 def home(request):

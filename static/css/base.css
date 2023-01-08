@@ -254,3 +254,12 @@ footer {
 .product-column {
     width: 20%;
 }
+
+/* Custom 404 */
+.error-image {
+    width: 50vw;
+    height: 50vh;
+    background-image: url(static/404_mike_burke.jpg);
+    background-position: center;
+    background-size: cover;
+}

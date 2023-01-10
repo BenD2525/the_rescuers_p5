@@ -2,12 +2,12 @@ from django.shortcuts import render
 from .models import UserProfile
 from django.views.generic import UpdateView, DeleteView
 from django.contrib import messages
+from checkout.models import Order
 
 
 def user_profile(request):
     """ Displays the user's profile. """
     profile = UserProfile.objects.get(user=request.user)
-    print(profile)
     template = 'profiles/user_profile.html'
     context = {
         'city': profile.default_city,
@@ -37,3 +37,25 @@ class EditProfile(UpdateView):
         '''Displays message on successful editing of the profile.'''
         messages.success(self.request, 'Profile updated successfully.')
         return super().form_valid(form)
+
+
+def order_history(request):
+    """ Displays the user's order history. """
+    serialized_orders = []
+
+    orders = Order.objects.all()
+    user_orders = orders.get(user=request.user)
+
+    for order in user_orders:
+        serialized_orders.append({
+            "order_number": order.order_number,
+            "order_total": order.order_total,
+            "date": order.date,
+            "id": order.id,
+        })
+
+    context = {
+        "orders": serialized_orders
+        }
+    return render(request, 'profiles/order_history.html', context)
+

@@ -30,6 +30,7 @@ class Order(models.Model):
     country = CountryField(blank_label="Country *", null=False, blank=False)
     order_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
+    date = models.DateField(auto_now_add=True)
 
     def _generate_order_number(self):
         """

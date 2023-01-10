@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import UserProfile
 from django.views.generic import UpdateView, DeleteView
+from django.contrib import messages
 
 
 def user_profile(request):
@@ -25,12 +26,14 @@ def user_profile(request):
 
 class EditProfile(UpdateView):
     '''View which allows the user to edit their profile details.'''
-
     model = UserProfile
     template_name = 'profiles/edit_profile.html'
-    fields = ['email', 'phone_number', 'address_1', 'address_2', 'city', 'postcode', 'county', 'country']   
+    fields = ['default_email', 'default_phone_number',
+              'default_street_address_1', 'default_street_address_2',
+              'default_city', 'default_postcode', 'default_county',
+              'default_country']
 
     def form_valid(self, form):
         '''Displays message on successful editing of the profile.'''
-        messages.success(self.request, 'Your profile was updated successfully.')
+        messages.success(self.request, 'Profile updated successfully.')
         return super().form_valid(form)

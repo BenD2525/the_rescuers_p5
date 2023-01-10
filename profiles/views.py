@@ -9,6 +9,18 @@ def user_profile(request):
     """ Displays the user's profile. """
     profile = UserProfile.objects.get(user=request.user)
     template = 'profiles/user_profile.html'
+    serialized_orders = []
+
+    user_orders = Order.objects.filter(user=request.user)
+
+    for order in user_orders:
+        serialized_orders.append({
+            "order_number": order.order_number,
+            "order_total": order.order_total,
+            "date": order.date,
+            "id": order.id,
+        })
+
     context = {
         'city': profile.default_city,
         'email': profile.default_email,
@@ -19,6 +31,7 @@ def user_profile(request):
         'county': profile.default_county,
         'country': profile.default_country,
         'user': profile.user,
+        "orders": serialized_orders,
     }
 
     return render(request, template, context)
@@ -38,24 +51,4 @@ class EditProfile(UpdateView):
         messages.success(self.request, 'Profile updated successfully.')
         return super().form_valid(form)
 
-
-def order_history(request):
-    """ Displays the user's order history. """
-    serialized_orders = []
-
-    orders = Order.objects.all()
-    user_orders = orders.get(user=request.user)
-
-    for order in user_orders:
-        serialized_orders.append({
-            "order_number": order.order_number,
-            "order_total": order.order_total,
-            "date": order.date,
-            "id": order.id,
-        })
-
-    context = {
-        "orders": serialized_orders
-        }
-    return render(request, 'profiles/order_history.html', context)
 

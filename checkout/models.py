@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 
+from django.contrib.auth.models import User
 from products.models import Product
 from django_countries.fields import CountryField
 from profiles.models import UserProfile
@@ -31,6 +32,7 @@ class Order(models.Model):
     order_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
     date = models.DateField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def _generate_order_number(self):
         """

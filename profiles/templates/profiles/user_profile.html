@@ -8,37 +8,35 @@
     <h1 class="display-4"><strong>My Profile</strong></h1>
 </div>
 <!-- Current Details -->
-<div class="row algin-items-center">
-    <div class="col-6 fw-bold">
+<div class="row justify-content-center">
+    <div class="col-6 fw-bold mx-4 my-4">
         <h2>Current Details</h2>
-        <ul>
+        <ul class="details_list">
             <li>
-                Email: {{ email }}
+                <strong>Email: </strong> {{ email }}
             </li>
             <li>
-                Phone Number: {{ phone_number }}
+                <strong>Phone Number: </strong> {{ phone_number }}
             </li>
             <li>
-                Address 1: {{ address_1 }}
+                <strong>Address 1: </strong> {{ address_1 }}
             </li>
             <li>
-                Address 2: {{ address_2 }}
+                <strong>Address 2: </strong> {{ address_2 }}
             </li>
             <li>
-                City: {{ city }}
+                <strong>City: </strong> {{ city }}
             </li>
             <li>
-                Postcode: {{ postcode }}
+                <strong>Postcode: </strong> {{ postcode }}
             </li>
             <li>
-                County: {{ county }}
+                <strong>County: </strong> {{ county }}
             </li>
             <li>
-                Country: {{ country }}
+                <strong>Country: </strong> {{ country }}
             </li>
         </ul>
-    </div>
-    <div class="col-auto text-center p-2">
         <a href="edit/{{ user }}"><button class="my-1 positive-button-lg">Update my Details</button></a>
     </div>
     <!-- Order History -->
@@ -56,7 +54,8 @@
                 <td scope="row">{{ order.order_number }}</td>
                 <td> {{ order.date }} </td>
                 <td>£{{ order.order_total }} </td>
-                <td><a href="order/{{ order.id }}"><button class="update-button positive-button">Order Details</button></a>
+                <td><a href="order/{{ order.id }}"><button class="update-button positive-button">Order
+                            Details</button></a>
             </tr>
             {% endfor %}
         </table>

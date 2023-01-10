@@ -303,3 +303,9 @@ footer {
     background-position: center;
     background-size: cover;
 }
+
+/* Profile */
+.details_list {
+    list-style: none;
+    font-size: 20px;
+}

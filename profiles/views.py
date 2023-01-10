@@ -3,6 +3,8 @@ from .models import UserProfile
 from django.views.generic import UpdateView, DeleteView
 from django.contrib import messages
 from checkout.models import Order
+from checkout.forms import OrderForm
+from .forms import OrderDetailForm
 
 
 def user_profile(request):
@@ -52,3 +54,15 @@ class EditProfile(UpdateView):
         return super().form_valid(form)
 
 
+def order_detail(request, pk):
+    '''View for the Order Detail page.
+    Displays the selected Order from the Order model.'''
+
+    order = Order.objects.get(pk=pk)
+    form = OrderDetailForm(instance=order)
+
+    context = {
+            "order_details_form": form,
+        }
+
+    return render(request, 'profiles/order_detail.html', context)

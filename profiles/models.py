@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.text import slugify
 
 
 class UserProfile(models.Model):
@@ -10,6 +11,7 @@ class UserProfile(models.Model):
     A model which stores the user's profile.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True)
     default_email = models.EmailField(max_length=250, null=True, blank=True)
     default_phone_number = models.CharField(max_length=20, null=True,
                                             blank=True)
@@ -24,7 +26,18 @@ class UserProfile(models.Model):
                                    blank=True)
 
     def __str__(self):
+        """
+        Sets a string of the model's name.
+        """
         return self.user.username
+    
+    def save(self, *args, **kwargs):
+        """
+        Saves the model instance with a slug based on the user.
+        """
+        if not self.slug:
+            self.slug = slugify(self.user)
+        super().save(*args, **kwargs)
 
 
 @receiver(post_save, sender=User)

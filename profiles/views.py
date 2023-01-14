@@ -29,11 +29,13 @@ def user_profile(request):
         })
 
     context = {
+        'first_name': profile.default_first_name,
+        'last_name': profile.default_last_name,
         'city': profile.default_city,
         'email': profile.default_email,
         'phone_number': profile.default_phone_number,
-        'address_1': profile.default_street_address_1,
-        'address_2': profile.default_street_address_2,
+        'street_address_1': profile.default_street_address_1,
+        'street_address_2': profile.default_street_address_2,
         'postcode': profile.default_postcode,
         'county': profile.default_county,
         'country': profile.default_country,
@@ -48,7 +50,8 @@ class EditProfile(UpdateView):
     '''View which allows the user to edit their profile details.'''
     model = UserProfile
     template_name = 'profiles/edit_profile.html'
-    fields = ['default_email', 'default_phone_number',
+    fields = ['default_first_name', 'default_last_name', 'default_email',
+              'default_phone_number',
               'default_street_address_1', 'default_street_address_2',
               'default_city', 'default_postcode', 'default_county',
               'default_country']

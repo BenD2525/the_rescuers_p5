@@ -13,6 +13,10 @@ class UserProfile(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True)
+    default_first_name = models.CharField(max_length=30, null=False,
+                                          blank=False)
+    default_last_name = models.CharField(max_length=30, null=False,
+                                         blank=False)
     default_email = models.EmailField(max_length=250, null=True, blank=True)
     default_phone_number = models.CharField(max_length=20, null=True,
                                             blank=True)

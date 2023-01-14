@@ -11,9 +11,9 @@ def user_profile(request):
     """ Displays the user's profile. """
     # If user is not logged in, display custom 404 page
     valid_user = request.user.is_authenticated
-    print(valid_user)
     if valid_user is False:
         return render(request, "404.html")
+
     profile = UserProfile.objects.get(user=request.user)
     template = 'profiles/user_profile.html'
     serialized_orders = []

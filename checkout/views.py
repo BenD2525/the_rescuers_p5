@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
+from django.urls import reverse
 
 from .forms import OrderForm
 
@@ -12,9 +13,12 @@ def checkout(request):
 
     order_form = OrderForm()
     template = 'checkout/checkout.html'
+    success_url = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu82.gitpod.io/checkout/thankyou'
     context = {
         'order_form': order_form,
+        'success_url': success_url
     }
+    print(success_url)
 
     return render(request, template, context)
 

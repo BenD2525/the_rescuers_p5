@@ -12,6 +12,7 @@ html {
     background-color: #14110fff;
     color: white;
     height: 100%;
+    width: 100%;
 }
 
 footer {
@@ -302,6 +303,7 @@ footer {
     background-image: url(static/404_mike_burke.jpg);
     background-position: center;
     background-size: cover;
+    border-radius: 20px;
 }
 
 /* Profile */

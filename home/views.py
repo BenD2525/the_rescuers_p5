@@ -47,7 +47,7 @@ class AddReview(View):
 
         review = Reviews
         review_form = ReviewForm
-             
+
         context = {
             'review': review,
             'review_form': review_form,
@@ -56,7 +56,7 @@ class AddReview(View):
             'content': review.content,
         }
         return render(request, 'home/add_review.html', context)
-    
+
     def post(self, request, *args, **kwargs):
 
         review_form = ReviewForm(data=request.POST)
@@ -85,7 +85,7 @@ class EditReview(UpdateView):
     '''View which allows the user to edit the selected review.'''
     model = Reviews
     template_name = 'home/edit_review.html'
-    fields = ['title', 'content']   
+    fields = ['title', 'content']
 
     def form_valid(self, form):
         '''Displays message on successful editing of the review.'''

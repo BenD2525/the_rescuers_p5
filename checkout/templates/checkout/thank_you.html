@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron home-1 text-center mb-4">
+    <h1 class="display-4"><strong>Thank you for your order!</strong></h1>
+</div>
+<div class="col-10 offset-1 text-center">
+    <p class="lead">Your order number is <strong>{{ product_count }}</strong>
+        <hr class="hr-1">
+        You should receive an email confirming your order details within the next 10 minutes. Please also check your
+        spam folder.
+        <br>
+        If you have not received an email after 15 minutes, please contact us and we will be happy to help!
+    </p>
+</div>
+<div class="row align-items-center">
+    <div class="col-sm-12 text-center my-4">
+        <a href="{% url 'profiles:user_profile' %}">
+            <button class="negative-button mx-4">My Profile</button>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

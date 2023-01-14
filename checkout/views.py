@@ -17,3 +17,12 @@ def checkout(request):
     }
 
     return render(request, template, context)
+
+
+def order_success(request):
+    """
+    View that displays the successful order page after an order has been
+    processed.
+    """
+
+    return render(request, 'checkout/thank_you.html')

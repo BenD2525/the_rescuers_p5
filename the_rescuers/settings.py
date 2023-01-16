@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'profiles',
+    'paypal.standard.ipn',
 ]
+
+PAYPAL_TEST = True
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

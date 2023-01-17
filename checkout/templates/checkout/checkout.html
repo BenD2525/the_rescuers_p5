@@ -104,8 +104,54 @@
 <script
     src="https://www.paypal.com/sdk/js?client-id=ARwpTasqupsB1v8gSLJQDf9bguf0Zsn2Cp8oNyfylFWcb0kwQ6p6A-HVk9DXGnyWs3MBuZkM8QxGSEX2&currency=GBP">
 </script>
+<!-- Script to load bag contents -->
 <script>
-    const paymentAmount = {{ total | safe }}
+    let bagContents = '{{ bag_products|safe }}';
+</script>
+<script>
+    // Taken from Django docs, allows creation of a csrf token for fetch
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+
+    const paymentAmount = '{{ total | safe }}';
+    // Parse bagContents, then for each create a variable for name, id and quantity
+    let bag = JSON.parse(bagContents);
+    for (let i = 0; i < bag.length; i++) {
+        let itemName = bag[i].name;
+        let itemId = bag[i].id;
+        let itemQuantity = bag[i].quantity;
+        console.log(itemName);
+        console.log(itemId);
+        console.log(itemQuantity);
+    }   
+
+
+    function completeOrder(){
+        let url = '{{ success_url }}'
+
+        fetch(url, {
+            method: 'POST',
+            headers:{
+                'Content-type':'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body:JSON.stringify({'bagContents': 'bagContents'})
+        })
+    }
 
     paypal.Buttons({
         // Sets up the transaction when a payment button is clicked
@@ -124,6 +170,7 @@
                 // Successful capture! For dev/demo purposes:
                 console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                 const transaction = orderData.purchase_units[0].payments.captures[0];
+                completeOrder()
                 actions.redirect("{{ success_url }}");
                 // When ready to go live, remove the alert and show a success message within this page. For example:
                 // const element = document.getElementById('paypal-button-container');

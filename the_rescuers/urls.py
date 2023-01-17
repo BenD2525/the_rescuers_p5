@@ -9,4 +9,5 @@ urlpatterns = [
     path('bag/', include('bag.urls')),
     path('checkout/', include('checkout.urls')),
     path('profiles/', include('profiles.urls')),
+    path('paypal/', include('paypal.standard.ipn.urls')),
 ]

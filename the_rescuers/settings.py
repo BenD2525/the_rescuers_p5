@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'checkout',
     'profiles',
     'paypal.standard.ipn',
+    'jsonify',
 ]
 
 PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = 'sb-iwv4b24002130@business.example.com'
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

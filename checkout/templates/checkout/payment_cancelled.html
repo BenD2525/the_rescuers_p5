@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron home-1 text-center mb-4">
+    <h1 class="display-4"><strong>Your payment was cancelled.</strong></h1>
+</div>
+<div class="col-10 offset-1 text-center">
+    <p class="lead">We're sorry, your payment was cancelled.</strong>
+        <hr class="hr-1">
+        Please contact Paypal to see why this has happened.
+    </p>
+</div>
+{% if user.is_authenticated %}
+<div class="row align-items-center">
+    <div class="col-sm-12 text-center my-4">
+        <a href="{% url 'profiles:user_profile' %}">
+            <button class="negative-button mx-4">My Profile</button>
+        </a>
+    </div>
+</div>
+{% else %}
+<div class="row align-items-center">
+    <div class="col-sm-12 text-center my-4">
+        <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
+        <a class="text-info" href="{% url 'account_login' %}">login</a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

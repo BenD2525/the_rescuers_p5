@@ -140,17 +140,19 @@
     }   
 
 
-    function completeOrder(){
+    async function completeOrder(){
         let url = '{{ success_url }}'
 
-        fetch(url, {
+        const request= await fetch(url, {
             method: 'POST',
             headers:{
                 'Content-type':'application/json',
                 'X-CSRFToken': csrftoken,
             },
-            body:JSON.stringify({'bagContents': 'bagContents'})
+            body:JSON.stringify({"bagContents": bagContents})
         })
+        console.log("hello", request)
+        return request
     }
 
     paypal.Buttons({
@@ -166,17 +168,16 @@
         },
         // Finalize the transaction after payer approval
         onApprove: (data, actions) => {
-            return actions.order.capture().then(function (orderData) {
+            return actions.order.capture().then(async function (orderData) {
                 // Successful capture! For dev/demo purposes:
                 console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                 const transaction = orderData.purchase_units[0].payments.captures[0];
-                completeOrder()
-                actions.redirect("{{ success_url }}");
+                return await completeOrder()})
+                .then (()=>actions.redirect("{{ success_url }}"));
                 // When ready to go live, remove the alert and show a success message within this page. For example:
                 // const element = document.getElementById('paypal-button-container');
                 // element.innerHTML = '<h3>Thank you for your payment!</h3>';
                 // Or go to another URL:  actions.redirect('thank_you.html');
-            });
         }
     }).render('#paypal-button-container');
 </script>

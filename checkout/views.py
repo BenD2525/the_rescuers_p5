@@ -42,7 +42,7 @@ def checkout(request):
             'county': profile.default_county,
         })
     template = 'checkout/checkout.html'
-    success_url = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu82.gitpod.io/checkout/thankyou'
+    success_url = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/thankyou'
     context = {
         'order_form': order_form,
         'success_url': success_url,
@@ -56,9 +56,12 @@ def order_success(request):
     View that displays the successful order page after an order has been
     processed.
     """
-    print(request.body)
-    body = json.loads(request.body)
-    print('BODY:', body)
+    print("request.body", request.body)
+    request2 = request.body
+    # body = json.dump(request.body)
+    my_json = request2.decode('utf8').replace("'", '"')
+    print("my_json", my_json)
+
     return JsonResponse('Success!', safe=False)
 
 

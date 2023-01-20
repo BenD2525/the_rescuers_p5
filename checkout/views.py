@@ -58,11 +58,11 @@ def order_success(request):
     """
     print("request.body", request.body)
     request2 = request.body
-    # body = json.dump(request.body)
+    # print("Decoded: ", request2.decode('utf8'))
     my_json = request2.decode('utf8').replace("'", '"')
-    print("my_json", my_json)
+    print("Decoded: ", my_json)
 
-    return JsonResponse('Success!', safe=False)
+    return render(request, 'checkout/thank_you.html')
 
 
 @csrf_exempt

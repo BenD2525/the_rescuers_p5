@@ -42,19 +42,20 @@ def checkout(request):
             'county': profile.default_county,
         })
     template = 'checkout/checkout.html'
-    success_url = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/thankyou'
+    success_url = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/order_success'
+    thank_you = 'checkout/thank_you.html'
     context = {
         'order_form': order_form,
         'success_url': success_url,
         'bag_products': bag_products,
+        'thank_you': thank_you,
     }
     return render(request, template, context)
 
 
 def order_success(request):
     """
-    View that displays the successful order page after an order has been
-    processed.
+    View that creates a new object with the JSON data, then redirects to the thankyou page.
     """
     print("request.body", request.body)
     request2 = request.body
@@ -62,6 +63,13 @@ def order_success(request):
     my_json = request2.decode('utf8').replace("'", '"')
     print("Decoded: ", my_json)
 
+    return redirect('checkout:thank_you')
+
+
+def thank_you(request):
+    """
+    View that displays the thankyou page after processing an order.
+    """
     return render(request, 'checkout/thank_you.html')
 
 

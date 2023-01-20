@@ -7,6 +7,8 @@ from django.urls import reverse
 from profiles.models import UserProfile
 from django.views.decorators.csrf import csrf_exempt
 from products.models import Product
+from django.views.decorators.http import require_POST
+from .models import Order, OrderDetail
 
 
 from .forms import OrderForm
@@ -55,15 +57,31 @@ def checkout(request):
 
 def order_success(request):
     """
-    View that creates a new object with the JSON data, then redirects to the thankyou page.
+    View that creates a new object with the JSON data, then redirects to the
+    thankyou page.
     """
-    print("request.body", request.body)
+    # Take the request, decode it, split it into bag_contents and order_data
+    # and use this data to create a new order
     request2 = request.body
-    # print("Decoded: ", request2.decode('utf8'))
     my_json = request2.decode('utf8').replace("'", '"')
-    print("Decoded: ", my_json)
+    json_data = json.loads(my_json)
+    bag_contents = json_data.get('bagContents')
+    bag_contents = json.loads(bag_contents)
+    order_data = json_data.get('jsonData')
+    order_data = json.loads(order_data)
+    # Manually fill the user_id field with the user's id
+    order_data["user_id"] = request.user.id
+    # Create a new instance of the Order model using the order_data received
+    order = Order.objects.create(**order_data)
+    order.save()
+    # Loop through the bag_contents and save the details in OrderDetail model
+    for item in bag_contents:
+        product = Product.objects.get(pk=item['id'])
+        order_detail = OrderDetail(order=order, product=product, quantity=item['quantity'])
+        order_detail.save()
+    order.update_total()
 
-    return redirect('checkout:thank_you')
+    return redirect(reverse('checkout:thank_you'))
 
 
 def thank_you(request):
@@ -80,4 +98,3 @@ def payment_canceled(request):
     cancelled.
     """
     return render(request, 'checkout/payment_cancelled.html')
-

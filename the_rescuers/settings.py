@@ -22,6 +22,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['the-rescuers-p5.herokuapp.com', 'localhost']
 
+APP_URL = 'https://the-rescuers-p5.herokuapp.com/'
 
 # Application definition
 

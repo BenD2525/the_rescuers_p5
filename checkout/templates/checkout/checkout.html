@@ -42,7 +42,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-auto text-center p-3">
-                    <form method="post" action="{% url 'checkout:checkout' %}">
+                    <form method="post" action="{% url 'checkout:checkout' %}" id="order_form"
                         {% csrf_token %}
                         <fieldset class="rounded px-3 mb-5">
                             <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
@@ -61,10 +61,7 @@
                             {{ order_form.country | as_crispy_field }}
                             <div class="form-check form-check-inline float-right mr-0">
                                 {% if user.is_authenticated %}
-                                <label class="form-check-label" for="id-save-info">Save this information to my
-                                    profile</label>
-                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info"
-                                    name="save-info" checked>
+                                <label class="form-check-label" for="id-save-info">This info will save to your profile</label>
                                 {% else %}
                                 <label class="form-check-label" for="id-save-info">
                                     <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
@@ -139,6 +136,11 @@
         console.log(itemQuantity);
     }   
 
+    const form = document.getElementById("order_form");
+
+    let formData = new FormData(form);
+    let jsonData = JSON.stringify(Object.fromEntries(formData));
+
 
     async function completeOrder(){
         let url = '{{ success_url }}'
@@ -149,7 +151,7 @@
                 'Content-type':'application/json',
                 'X-CSRFToken': csrftoken,
             },
-            body:JSON.stringify({"bagContents": bagContents})
+        body:JSON.stringify({"bagContents": bagContents, "jsonData": jsonData} )
         })
     }
 
@@ -171,7 +173,6 @@
                 console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                 const transaction = orderData.purchase_units[0].payments.captures[0];
                 return await completeOrder()})
-                .then (()=>actions.redirect("{{ thank_you }}"));
                 // When ready to go live, remove the alert and show a success message within this page. For example:
                 // const element = document.getElementById('paypal-button-container');
                 // element.innerHTML = '<h3>Thank you for your payment!</h3>';

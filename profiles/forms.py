@@ -2,7 +2,7 @@ from django import forms
 from checkout.models import Order
 
 
-class OrderDetailForm(forms.ModelForm):
+class ShippingDetailForm(forms.ModelForm):
     """
         Form which displays the order detail for the chosen order.
     """

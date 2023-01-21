@@ -168,7 +168,6 @@ footer {
 .form-container {
     background-color: #14110fff;
     color: white;
-    height: 100vh;
 }
 
 /* Wrapper for block content */
@@ -312,3 +311,15 @@ footer {
     list-style: none;
     font-size: 20px;
 }
+
+/* Media query for tables in my profile */
+@media (max-width: 600px) {
+    .profile-table {
+      font-size: 0.8em;
+      overflow-x: auto;
+    }
+    .profile-table>th, td {
+      white-space: nowrap;
+    }
+  }
+  

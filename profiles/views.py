@@ -1,10 +1,11 @@
-from django.shortcuts import render
-from .models import UserProfile
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.views.generic import UpdateView, DeleteView
 from django.contrib import messages
-from checkout.models import Order
+
+from .models import UserProfile
+from checkout.models import Order, OrderDetail
 from checkout.forms import OrderForm
-from .forms import OrderDetailForm
+from .forms import ShippingDetailForm
 
 
 def user_profile(request):
@@ -34,8 +35,8 @@ def user_profile(request):
         'city': profile.default_city,
         'email': profile.default_email,
         'phone_number': profile.default_phone_number,
-        'street_address_1': profile.default_street_address_1,
-        'street_address_2': profile.default_street_address_2,
+        'address_1': profile.default_street_address_1,
+        'address_2': profile.default_street_address_2,
         'postcode': profile.default_postcode,
         'county': profile.default_county,
         'country': profile.default_country,
@@ -66,11 +67,16 @@ def order_detail(request, pk):
     '''View for the Order Detail page.
     Displays the selected Order from the Order model.'''
 
-    order = Order.objects.get(pk=pk)
-    form = OrderDetailForm(instance=order)
+    order = get_object_or_404(Order, pk=pk)
+    print(order)
+    order_products = OrderDetail.objects.filter(pk=pk)
+    form = ShippingDetailForm(instance=order)
+    order_total = order.order_total
 
     context = {
             "order_details_form": form,
+            "order_products": order_products,
+            "order_total": order_total,
         }
 
     return render(request, 'profiles/order_detail.html', context)

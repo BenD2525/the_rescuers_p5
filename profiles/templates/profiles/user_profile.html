@@ -9,50 +9,60 @@
 </div>
 <!-- Current Details -->
 <div class="row justify-content-center">
-    <div class="col-6 fw-bold mx-4 my-4">
+    <div class="col-6 fw-bold mx-4 my-4 text-center">
         <h2>Current Details</h2>
-        <ul class="details_list">
-            <li>
-                <strong>First Name: </strong> {{ first_name }}
-            </li>
-            <li>
-                <strong>Last Name: </strong> {{ last_name }}
-            </li>
-            <li>
-                <strong>Email: </strong> {{ email }}
-            </li>
-            <li>
-                <strong>Phone Number: </strong> {{ phone_number }}
-            </li>
-            <li>
-                <strong>Address 1: </strong> {{ address_1 }}
-            </li>
-            <li>
-                <strong>Address 2: </strong> {{ address_2 }}
-            </li>
-            <li>
-                <strong>City: </strong> {{ city }}
-            </li>
-            <li>
-                <strong>Postcode: </strong> {{ postcode }}
-            </li>
-            <li>
-                <strong>County: </strong> {{ county }}
-            </li>
-            <li>
-                <strong>Country: </strong> {{ country }}
-            </li>
-        </ul>
+        <table class="table table-striped table-hover w-auto table-bordered text-white table-responsive my-4 profile-table">
+            <tr>
+                <td><strong>First Name: </strong></td>
+                <td>{{ first_name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Last Name: </strong></td>
+                <td>{{ last_name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Email: </strong></td>
+                <td>{{ email }}</td>
+            </tr>
+            <tr>
+                <td><strong>Phone Number: </strong></td>
+                <td>{{ phone_number }}</td>
+            </tr>
+            <tr>
+                <td><strong>Address 1: </strong></td>
+                <td>{{ address_1 }}</td>
+            </tr>
+            <tr>
+                <td><strong>Address 2: </strong></td>
+                <td>{{ address_2 }}</td>
+            </tr>
+            <tr>
+                <td><strong>City: </strong></td>
+                <td>{{ city }}</td>
+            </tr>
+            <tr>
+                <td><strong>Postcode: </strong></td>
+                <td>{{ postcode }}</td>
+            </tr>
+            <tr>
+                <td><strong>County: </strong></td>
+                <td>{{ county }}</td>
+            </tr>
+            <tr>
+                <td><strong>Country: </strong></td>
+                <td>{{ country }}</td>
+            </tr>
+        </table>
         <a href="edit/{{ user }}"><button class="my-1 positive-button-lg">Update my Details</button></a>
     </div>
     <!-- Order History -->
-    <div class="col-6 fw-bold">
+    <div class="col-6 fw-bold text-center">
         <h2>Order History</h2>
         {% if orders %}
-        <table class="table table-striped table-hover w-auto table-bordered text-white">
+        <table class="table table-striped table-hover w-auto table-bordered text-white my-4 table-responsive profile-table">
             <tr>
                 <th scope="col" class="w-auto">Order Number:</th>
-                <th scope="col">Order Date:</th>
+                <th scope="col" class="w-auto">Order Date:</th>
                 <th scope="col" colspan=2>Total:</th>
             </tr>
             {% for order in orders %}

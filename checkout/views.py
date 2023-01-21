@@ -8,7 +8,8 @@ from profiles.models import UserProfile
 from products.models import Product
 from django.views.decorators.http import require_POST
 from .models import Order, OrderDetail
-
+from django.core.mail import send_mail
+from the_rescuers.settings import DEFAULT_FROM_EMAIL
 
 from .forms import OrderForm
 
@@ -43,8 +44,8 @@ def checkout(request):
             'county': profile.default_county,
         })
     template = 'checkout/checkout.html'
-    success_url = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/order_success'
-    thank_you = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/thank_you'
+    success_url = 'https://the-rescuers-p5.herokuapp.com/checkout/order_success'
+    thank_you = 'https://the-rescuers-p5.herokuapp.com/checkout/thank_you'
     context = {
         'order_form': order_form,
         'success_url': success_url,
@@ -84,6 +85,12 @@ def order_success(request):
     order.update_total()
     # Create a value to check in the thank_you view
     request.session['redirected_from_order_success'] = True
+    # Send email to the provided email address
+    send_mail(f'Order Confirmation for order number: {order.order_number}',
+              f'Your order has been received and is being processed. Your order number is {order.order_number}. Your furry friend is very lucky to have such a kind human!',
+              DEFAULT_FROM_EMAIL,
+              [order.email],
+              fail_silently=False,)
 
     return HttpResponseRedirect(reverse('checkout:thank_you'))
 

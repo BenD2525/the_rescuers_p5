@@ -138,6 +138,8 @@ footer {
 .home-container {
     background-color: #14110fff;
     color: white;
+    padding-left: 4rem;
+    padding-right: 4rem;
 }
 
 
@@ -312,7 +314,7 @@ footer {
     font-size: 20px;
 }
 
-/* Media query for tables in my profile */
+/* Media queries for profile app */
 @media (max-width: 600px) {
     .profile-table {
       font-size: 0.8em;
@@ -321,5 +323,17 @@ footer {
     .profile-table>th, td {
       white-space: nowrap;
     }
+    .section-title {
+      font-size: 1.8em; 
+    }
   }
-  
+
+/* Media queries for home app */
+@media (max-width: 600px) {
+  .home-container {
+    background-color: #14110fff;
+    color: white;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+}

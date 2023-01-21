@@ -47,9 +47,12 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'jsonify',
 ]
-
+# Paypal settings
 PAYPAL_TEST = True
 PAYPAL_RECEIVER_EMAIL = 'sb-iwv4b24002130@business.example.com'
+
+# Custom 404 setting
+HANDLER404 = 'home.views.custom_404'
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

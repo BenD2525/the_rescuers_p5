@@ -3,6 +3,7 @@ from . import views
 
 
 app_name = 'profiles'
+handler404 = 'home.views.custom_404'
 
 urlpatterns = [
     path('', views.user_profile, name='user_profile'),

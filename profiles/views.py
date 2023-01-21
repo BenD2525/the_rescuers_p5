@@ -9,7 +9,8 @@ from .forms import ShippingDetailForm
 
 
 def user_profile(request):
-    """ Displays the user's profile. """
+    """ Checks whether the user is logged in, then displays the relevant
+    profile or redirects to 404. Past orders from the user are displayed. """
     # If user is not logged in, display custom 404 page
     valid_user = request.user.is_authenticated
     if valid_user is False:
@@ -68,8 +69,8 @@ def order_detail(request, pk):
     Displays the selected Order from the Order model.'''
 
     order = get_object_or_404(Order, pk=pk)
-    print(order)
-    order_products = OrderDetail.objects.filter(pk=pk)
+    order_products = OrderDetail.objects.filter(order=order)
+    print(order_products)
     form = ShippingDetailForm(instance=order)
     order_total = order.order_total
 

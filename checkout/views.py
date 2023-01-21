@@ -103,8 +103,9 @@ def thank_you(request):
     # making an order
     if 'redirected_from_order_success' not in request.session:
         return render(request, "404.html")
-    # Clear the bag now that the order has been created
+    # Clear the bag and redirection token now that the order has been created
     request.session.pop('bag', None)
+    request.session.pop('redirected_from_order_success', None)
     return render(request, 'checkout/thank_you.html')
 
 

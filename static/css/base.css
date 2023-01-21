@@ -181,8 +181,8 @@ footer {
 /* Products */
 .product-image {
     border-radius: 20px;
-    width: 80%;
-    height: 50%;
+    width: 400px;
+    height: 400px;
 }
 
 .product-list-container {
@@ -249,13 +249,22 @@ footer {
     margin-left: 25%;
 }
 
-/* Media Query to display product list as contents on Smaller screens */
+/* Media Queries for the products app */
 
 @media screen and (max-width: 670px) {
     .product-link {
         display: contents;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .product-image {
+        border-radius: 20px;
+        width: 200px;
+        height: 200px;
+    }
+}
+
 
 /* Residents page */
 .resident-info {

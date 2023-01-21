@@ -1,11 +1,10 @@
 import json
 
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponseRedirect
 from django.http import JsonResponse
 from django.contrib import messages
 from django.urls import reverse
 from profiles.models import UserProfile
-from django.views.decorators.csrf import csrf_exempt
 from products.models import Product
 from django.views.decorators.http import require_POST
 from .models import Order, OrderDetail
@@ -44,8 +43,8 @@ def checkout(request):
             'county': profile.default_county,
         })
     template = 'checkout/checkout.html'
-    success_url = 'https://the-rescuers-p5.herokuapp.com/checkout/order_success'
-    thank_you = 'https://the-rescuers-p5.herokuapp.com/checkout/thank_you'
+    success_url = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/order_success'
+    thank_you = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/thank_you'
     context = {
         'order_form': order_form,
         'success_url': success_url,
@@ -71,27 +70,37 @@ def order_success(request):
     order_data = json.loads(order_data)
     # Manually fill the user_id field with the user's id
     order_data["user_id"] = request.user.id
+    # Remove the csrf token from the data
+    order_data.pop("csrfmiddlewaretoken", None)
     # Create a new instance of the Order model using the order_data received
     order = Order.objects.create(**order_data)
     order.save()
     # Loop through the bag_contents and save the details in OrderDetail model
     for item in bag_contents:
         product = Product.objects.get(pk=item['id'])
-        order_detail = OrderDetail(order=order, product=product, quantity=item['quantity'])
+        order_detail = OrderDetail(order=order, product=product,
+                                   quantity=item['quantity'])
         order_detail.save()
     order.update_total()
+    # Create a value to check in the thank_you view
+    request.session['redirected_from_order_success'] = True
 
-    return
+    return HttpResponseRedirect(reverse('checkout:thank_you'))
 
 
 def thank_you(request):
     """
     View that displays the thankyou page after processing an order.
     """
+    # Redirect to the custom 404 page if trying to access the page without
+    # making an order
+    if 'redirected_from_order_success' not in request.session:
+        return render(request, "404.html")
+    # Clear the bag now that the order has been created
+    request.session.pop('bag', None)
     return render(request, 'checkout/thank_you.html')
 
 
-@csrf_exempt
 def payment_canceled(request):
     """
     View that displays the cancelled payment page after an order has been

@@ -44,8 +44,8 @@ def checkout(request):
             'county': profile.default_county,
         })
     template = 'checkout/checkout.html'
-    success_url = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/order_success'
-    thank_you = 'checkout/thank_you.html'
+    success_url = 'https://the-rescuers-p5.herokuapp.com/checkout/order_success'
+    thank_you = 'https://the-rescuers-p5.herokuapp.com/checkout/thank_you'
     context = {
         'order_form': order_form,
         'success_url': success_url,
@@ -81,7 +81,7 @@ def order_success(request):
         order_detail.save()
     order.update_total()
 
-    return redirect(reverse('checkout:thank_you'))
+    return
 
 
 def thank_you(request):

@@ -42,7 +42,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-auto text-center p-3">
-                    <form method="post" action="{% url 'checkout:checkout' %}" id="order_form"
+                    <form method="post" id="order_form"
                         {% csrf_token %}
                         <fieldset class="rounded px-3 mb-5">
                             <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
@@ -173,6 +173,9 @@
                 console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                 const transaction = orderData.purchase_units[0].payments.captures[0];
                 return await completeOrder()})
+                .then(() => {
+                    window.location.href = "{{ thank_you }}";
+                });
                 // When ready to go live, remove the alert and show a success message within this page. For example:
                 // const element = document.getElementById('paypal-button-container');
                 // element.innerHTML = '<h3>Thank you for your payment!</h3>';

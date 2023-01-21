@@ -9,7 +9,7 @@
         <h1>{% trans "Account Inactive" %}</h1>
 
         <p>{% trans "This account is inactive." %}</p>
-        <button class="positive-button">Back to home</button>
+        <button class="positive-button" a href="{% url 'home:home' %}">Back to home</button>
     </div>
 </div>
 {% endblock %}

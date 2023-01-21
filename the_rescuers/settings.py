@@ -63,8 +63,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = f"The Rescuers <{os.environ.get('EMAIL_HOST_USER')}>"
 ACCOUNT_EMAIL_SUBJECT_PREFIX = 'The Rescuers '
-EMAIL_CONFIRMATION_SUBJECT = f'Order Confirmation: #{order.order_number}'
-EMAIL_CONFIRMATION_CONTENT = f'Your order has been received and is being processed. Your order number is {order.order_number}. Your furry friend is very lucky to have such a kind human! Many thanks, The Rescuers.'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

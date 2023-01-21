@@ -9,7 +9,7 @@ from products.models import Product
 from django.views.decorators.http import require_POST
 from .models import Order, OrderDetail
 from django.core.mail import send_mail
-from the_rescuers.settings import DEFAULT_FROM_EMAIL, EMAIL_CONFIRMATION_CONTENT, EMAIL_CONFIRMATION_SUBJECT
+from the_rescuers.settings import DEFAULT_FROM_EMAIL
 
 from .forms import OrderForm
 
@@ -86,8 +86,8 @@ def order_success(request):
     # Create a value to check in the thank_you view
     request.session['redirected_from_order_success'] = True
     # Send email to the provided email address
-    send_mail(EMAIL_CONFIRMATION_SUBJECT,
-              EMAIL_CONFIRMATION_CONTENT,
+    send_mail(f'Order Confirmation: #{order.order_number}',
+              f'Your order has been received and is being processed. Your order number is {order.order_number}. Your furry friend is very lucky to have such a kind human! Many thanks, The Rescuers.',
               DEFAULT_FROM_EMAIL,
               [order.email],
               fail_silently=False,)

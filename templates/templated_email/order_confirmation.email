@@ -1,3 +1,6 @@
+{% block subject %} Order Confirmation for #{{ order_number }} {% endblock %}
+
+{% block plain %}
 Hello {{ name }},
 
 Thank you for ordering from us. You have a very lucky pet! We will be in touch when your order is on it's way!
@@ -12,3 +15,4 @@ Please log into your account to see your order in more detail, it is saved to yo
 Many thanks,
 
 The Rescuers.
+{% endblock %}

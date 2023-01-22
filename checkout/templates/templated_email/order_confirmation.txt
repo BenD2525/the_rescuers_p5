@@ -1,0 +1,14 @@
+Hello {{ name }},
+
+Thank you for ordering from us. You have a very lucky pet! We will be in touch when your order is on it's way!
+Your order number is: #{{ order_number }}.
+
+You have been charged the below amount:
+
+£{{ order_total }}
+
+Please log into your account to see your order in more detail, it is saved to your profile.
+
+Many thanks,
+
+The Rescuers.

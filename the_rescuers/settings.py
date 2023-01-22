@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'profiles',
     'paypal.standard.ipn',
     'jsonify',
+    'templated_email',
 ]
 # Paypal settings
 PAYPAL_TEST = True

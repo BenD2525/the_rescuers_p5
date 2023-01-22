@@ -332,6 +332,7 @@ footer {
 .profile-list {
     text-align: center;
     list-style-type: none;
+    padding: 0;
 }
 
 /* Media queries for profile app */
@@ -347,12 +348,6 @@ footer {
       font-size: 1.8em; 
     }
   }
-
-  @media (max-width: 340px) {
-  .order-number {
-    font-size: 12px;
-  }
-}
 
 /* Media queries for home app */
 @media (max-width: 600px) {

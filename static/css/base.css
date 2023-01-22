@@ -323,6 +323,17 @@ footer {
     font-size: 20px;
 }
 
+.profile-table {
+    margin: 0 auto;
+    background-color: white;
+    color: black;
+    }
+
+.profile-list {
+    text-align: center;
+    list-style-type: none;
+}
+
 /* Media queries for profile app */
 @media (max-width: 600px) {
     .profile-table {
@@ -336,6 +347,12 @@ footer {
       font-size: 1.8em; 
     }
   }
+
+  @media (max-width: 340px) {
+  .order-number {
+    font-size: 12px;
+  }
+}
 
 /* Media queries for home app */
 @media (max-width: 600px) {

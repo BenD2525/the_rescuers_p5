@@ -86,7 +86,7 @@ def order_success(request):
     order.update_total()
     # Create a value to check in the thank_you view
     request.session['redirected_from_order_success'] = True
-    print("Original: ",request.session)
+    print("Original: ", request.session)
     # Send email to the provided email address
     send_templated_mail(
         template_name='order_confirmation',
@@ -107,14 +107,14 @@ def thank_you(request):
     # Redirect to the custom 404 page if trying to access the page without
     # making an order
     if request.session.get('redirected_from_order_success'):
-    # Clear the bag and redirection token now that the order has been created
+        # Clear the bag and redirection token now that the order has been created
         request.session.pop('bag', None)
         request.session['redirected_from_order_success'] = False
         print("Made it: ", request.session)
-        return redirect('checkout:thank_you')
+        return render(request, 'checkout/thank_you.html')
     else:
         print("Diverted it: ", request.session)
-        return render(request, "404.html")  
+        return render(request, "404.html")
 
 
 def payment_canceled(request):

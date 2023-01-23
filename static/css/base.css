@@ -327,7 +327,7 @@ footer {
     margin: 0 auto;
     background-color: white;
     color: black;
-    }
+}
 
 .profile-list {
     text-align: center;
@@ -338,23 +338,34 @@ footer {
 /* Media queries for profile app */
 @media (max-width: 600px) {
     .profile-table {
-      font-size: 0.8em;
-      overflow-x: auto;
+        font-size: 0.8em;
+        overflow-x: auto;
     }
-    .profile-table>th, td {
-      white-space: nowrap;
+
+    .profile-table>th,
+    td {
+        white-space: nowrap;
     }
+
     .section-title {
-      font-size: 1.8em; 
+        font-size: 1.8em;
     }
-  }
+}
 
 /* Media queries for home app */
 @media (max-width: 600px) {
-  .home-container {
-    background-color: #14110fff;
-    color: white;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    .home-container {
+        background-color: #14110fff;
+        color: white;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
 }
+
+@media (max-width: 400px) {
+    .error-image {
+        height: 250px;
+        width: 250px;
+    }
 }

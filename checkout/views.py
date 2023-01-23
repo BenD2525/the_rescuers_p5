@@ -45,8 +45,8 @@ def checkout(request):
             'county': profile.default_county,
         })
     template = 'checkout/checkout.html'
-    success_url = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/order_success'
-    thank_you = 'https://8000-bend2525-therescuersp5-77ck14x21o2.ws-eu83.gitpod.io/checkout/thank_you'
+    success_url = '/checkout/order_success'
+    thank_you = '/checkout/thank_you'
     context = {
         'order_form': order_form,
         'success_url': success_url,
@@ -86,6 +86,7 @@ def order_success(request):
     order.update_total()
     # Create a value to check in the thank_you view
     request.session['redirected_from_order_success'] = True
+    print("Original: ",request.session)
     # Send email to the provided email address
     send_templated_mail(
         template_name='order_confirmation',
@@ -105,12 +106,15 @@ def thank_you(request):
     """
     # Redirect to the custom 404 page if trying to access the page without
     # making an order
-    if 'redirected_from_order_success' not in request.session:
-        return render(request, "404.html")
+    if request.session.get('redirected_from_order_success'):
     # Clear the bag and redirection token now that the order has been created
-    request.session.pop('bag', None)
-    request.session['redirected_from_order_success'] = False
-    return render(request, 'checkout/thank_you.html')
+        request.session.pop('bag', None)
+        request.session['redirected_from_order_success'] = False
+        print("Made it: ", request.session)
+        return redirect('checkout:thank_you')
+    else:
+        print("Diverted it: ", request.session)
+        return render(request, "404.html")  
 
 
 def payment_canceled(request):

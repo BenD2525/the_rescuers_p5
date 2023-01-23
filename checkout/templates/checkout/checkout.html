@@ -171,9 +171,6 @@
             return actions.order.capture().then(async function (orderData) {
                 const transaction = orderData.purchase_units[0].payments.captures[0];
                 return await completeOrder()})
-                .then(() => {
-                    window.location.href = "{{ thank_you }}";
-                });
         }
     }).render('#paypal-button-container');
 </script>

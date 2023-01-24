@@ -46,7 +46,7 @@ def checkout(request):
         })
     template = 'checkout/checkout.html'
     success_url = '/checkout/order_success'
-    thank_you = '/checkout/thank_you'
+    thank_you = reverse('checkout:thank_you')
     context = {
         'order_form': order_form,
         'success_url': success_url,
@@ -97,7 +97,7 @@ def order_success(request):
                  'order_total': order.order_total,
                  },
     )
-    return HttpResponseRedirect(reverse('checkout:thank_you'))
+    return redirect(reverse('checkout:thank_you'))
 
 
 def thank_you(request):

@@ -1,0 +1,17 @@
+{% block subject %} Thankyou for your query! {% endblock %}
+
+{% block plain %}
+Hi!
+
+Thank you for your query. We will aim to get back to you on the same day.
+
+Your query:
+
+Title: {{ title }}
+
+Enquiry: {{ content }}
+
+Many thanks,
+
+The Rescuers.
+{% endblock %}

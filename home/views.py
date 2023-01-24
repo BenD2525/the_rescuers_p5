@@ -6,6 +6,8 @@ from .models import Reviews, Resident, Enquiry
 from .forms import ReviewForm, EnquiryForm
 from django.http import HttpResponse
 from django.contrib import messages
+from the_rescuers.settings import DEFAULT_FROM_EMAIL
+from templated_email import send_templated_mail
 
 
 def custom_404(request, exception):
@@ -138,5 +140,13 @@ class ContactUs(View):
         if enquiry_form.is_valid():
             obj = enquiry_form.save(commit=False)
             obj.save()
+            send_templated_mail(
+                template_name='contact_us',
+                from_email=DEFAULT_FROM_EMAIL,
+                recipient_list=[obj.email],
+                context={'title': obj.title,
+                         'content': obj.content,
+                         },
+            )
             messages.success(request, "Thanks for submitting an enquiry!")
         return redirect("home:home")

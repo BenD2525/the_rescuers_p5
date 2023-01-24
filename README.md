@@ -203,6 +203,7 @@ A wireframe for the website was produced using a desktop version of Balsamiq in 
 ![Bag page]()
 ![Checkout page]()
 ![Profile page]()
+![Contact Us page]()
 
 #### Site Flow
 Using Balsamiq, I then created a flow map showing what I would visualise as the user's journey through the website.
@@ -233,6 +234,10 @@ The full colour scheme is listed in my base.css file.
 I used Github's issues functionality, and organised them into milestones, which can be found [here](https://github.com/BenD2525/the_rescuers_p5/milestones). I also organised my issues using my project board, found [here](https://github.com/users/BenD2525/projects/3), moving them between in progress and completed as and when. 
 
 ## **Current Features**
+
+### Custom 404 page
+This page is a page which shows whenever a 404 error occurs. It displays a funny image of a dog looking unimpressed, and a link to take the user back to the home page.
+![Custom 404]()
 
 ### Base Features
 The below features are part of my base template, and as such are included on all pages.
@@ -310,6 +315,11 @@ If a user clicks the 'edit' button, they are presented with a form, formatted wi
 If a user clicks the 'delete' button, they are presented with a screen asking them to confirm whether they would like to delete the review they have selected.
 
 ![Delete a Review](readme/images/reviews_delete_a_review.PNG)
+
+### Contact Us Page
+This page is accessible from the nav bar and allows the user to submit an enquiry to the website. The page displays a form which allows the user to provide their email, a title for their enquiry, and a text box in which they can submit the enquiry. Upon submitting the enquiry, the user will receive a successful enquiry pop up in their top right corner, and they will receive an email as acknowledgement of the enquiry being received. The email displays the details of the enquiry and advises the user of a timeframe in which they can expect an answer.
+
+![Contact Us Page]()
 
 ### **Login Page**
 The login page features a login form using AllAuth and formatted with the crispy forms package.
@@ -390,6 +400,46 @@ The bag displays the details of the products contained in it in table format. In
 
 ![Products in Bag](readme/images/bag_products_table.PNG)
 
+### **Checkout**
+The checkout displays the bag and allows the user to fill in their shipping details. If the user is signed in and has details already saved in their profile, the form will pre-fill with these details. The user is then able to pay via Paypal. In order to pay via Paypal, the user can log into the test account using the details provided and click 'pay'. Once payment is successful, the site will create an order and send a confirmation email to the e-mail address provided. After this, the user will be redirected to a thank you page.
+
+#### **Shipping Details**
+The below form is displayed which allows the user to input their shipping details. If the user is logged in and has their details saved to their profile, this form will be pre-filled, making it easier for the user to checkout.
+
+![Shipping Details]()
+
+#### **Paypal Payment Options**
+The below buttons are displayed which allow the user to pay via Paypal.
+
+![Paypal Options]()
+
+#### **Thankyou Page**
+This page is displayed once the user has paid for their order- if the user tries to access this url without being redirected from a successful order, this page will be replaced by the custom 404 page.
+
+![Thankyou Page]()
+
+### **Profile**
+The profile section is only available to logged in users, and will not display if a non-authenticated user attempts to access the url without logging in. Within the profile section, the user can see and edit their current contact and shipping details, and see any previous orders they have made. They can also click on any of the orders to see all of the information concerning the order.
+
+#### **Current Details**
+The below section displays the current contact and shipping details saved to the user's profile. If these are incorrect, the user is able to amend them.
+
+![Profile Details]()
+
+#### **Edit Details**
+If the user wishes to edit their details within the profile app, they can click the 'Update my Details' button, to allow them to amend their current details. Once any amendments have been made to the form, they can submit and the new details will be saved. The new details will also pull through to the checkout when the user next goes to pay for a product.
+
+![Edit Details]()
+
+#### **Order History**
+At the bottom of the user profile, there is a table which displays any past orders that the user has made. There is some limited information displayed in this table, however the user is able to click the 'order details' button next to any of the orders to see that order in more detail.
+
+![Order History]()
+
+#### **Order Details**
+If the user wishes to see a particular order in more detail, they can see the contact and shipping details, as well as the product details in this screen.
+
+![Order Details]()
 
 ## **Future Development**
 

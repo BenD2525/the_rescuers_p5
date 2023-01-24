@@ -307,6 +307,12 @@ footer {
     }
 }
 
+/* Checkout */
+.payment-box {
+    color: #14110fff;
+    background-color: white;
+}
+
 /* Custom 404 */
 .error-image {
     width: 50vw;

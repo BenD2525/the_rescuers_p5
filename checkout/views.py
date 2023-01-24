@@ -61,43 +61,47 @@ def order_success(request):
     View that creates a new object with the JSON data, then redirects to the
     thankyou page.
     """
-    # Take the request, decode it, split it into bag_contents and order_data
-    # and use this data to create a new order
-    request2 = request.body
-    my_json = request2.decode('utf8').replace("'", '"')
-    json_data = json.loads(my_json)
-    bag_contents = json_data.get('bagContents')
-    bag_contents = json.loads(bag_contents)
-    order_data = json_data.get('jsonData')
-    order_data = json.loads(order_data)
-    # Manually fill the user_id field with the user's id
-    order_data["user_id"] = request.user.id
-    # Remove the csrf token from the data
-    order_data.pop("csrfmiddlewaretoken", None)
-    # Create a new instance of the Order model using the order_data received
-    order = Order.objects.create(**order_data)
-    order.save()
-    # Loop through the bag_contents and save the details in OrderDetail model
-    for item in bag_contents:
-        product = Product.objects.get(pk=item['id'])
-        order_detail = OrderDetail(order=order, product=product,
-                                   quantity=item['quantity'])
-        order_detail.save()
-    order.update_total()
-    # Create a value to check in the thank_you view
-    request.session['redirected_from_order_success'] = True
-    print("Original: ", request.session)
-    # Send email to the provided email address
-    send_templated_mail(
-        template_name='order_confirmation',
-        from_email=DEFAULT_FROM_EMAIL,
-        recipient_list=[order.email],
-        context={'name': order.first_name,
-                 'order_number': order.order_number,
-                 'order_total': order.order_total,
-                 },
-    )
-    return redirect(reverse('checkout:thank_you'))
+    try:
+        # Take the request, decode it, split it into bag_contents and order_data
+        # and use this data to create a new order
+        request2 = request.body
+        my_json = request2.decode('utf8').replace("'", '"')
+        json_data = json.loads(my_json)
+        bag_contents = json_data.get('bagContents')
+        bag_contents = json.loads(bag_contents)
+        order_data = json_data.get('jsonData')
+        order_data = json.loads(order_data)
+        # Manually fill the user_id field with the user's id
+        order_data["user_id"] = request.user.id
+        # Remove the csrf token from the data
+        order_data.pop("csrfmiddlewaretoken", None)
+        # Create a new instance of the Order model using the order_data received
+        order = Order.objects.create(**order_data)
+        order.save()
+        # Loop through the bag_contents and save the details in OrderDetail model
+        for item in bag_contents:
+            product = Product.objects.get(pk=item['id'])
+            order_detail = OrderDetail(order=order, product=product,
+                                       quantity=item['quantity'])
+            order_detail.save()
+        order.update_total()
+        # Create a value to check in the thank_you view
+        request.session['redirected_from_order_success'] = True
+        print("Original: ", request.session)
+        # Send email to the provided email address
+        # send_templated_mail(
+        #     template_name='order_confirmation',
+        #     from_email=DEFAULT_FROM_EMAIL,
+        #     recipient_list=[order.email],
+        #     context={'name': order.first_name,
+        #              'order_number': order.order_number,
+        #              'order_total': order.order_total,
+        #              },
+        # )
+        messages.success(request, "Thank you for your order!")
+        return redirect(reverse('checkout:thank_you'))
+    except Exception:
+        return redirect(reverse('checkout:payment_canceled'))
 
 
 def thank_you(request):
@@ -118,9 +122,10 @@ def thank_you(request):
         return render(request, "404.html")
 
 
-def payment_canceled(request):
+def payment_failed(request):
     """
-    View that displays the cancelled payment page after an order has been
-    cancelled.
+    View that displays the cancelled payment page after an order has
+    been cancelled.
     """
-    return render(request, 'checkout/payment_cancelled.html')
+    messages.error(request, "There was an error with your payment, please contact your bank.")
+    return render(request, 'checkout/payment_failed.html')

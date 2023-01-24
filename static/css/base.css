@@ -335,6 +335,14 @@ footer {
     padding: 0;
 }
 
+.current-details {
+    width: 70%;
+}
+
+.order-details {
+    width: 100%;
+}
+
 /* Media queries for profile app */
 @media (max-width: 600px) {
     .profile-table {

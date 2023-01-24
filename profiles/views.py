@@ -70,7 +70,6 @@ def order_detail(request, pk):
 
     order = get_object_or_404(Order, pk=pk)
     order_products = OrderDetail.objects.filter(order=order)
-    print(order_products)
     form = ShippingDetailForm(instance=order)
     order_total = order.order_total
 

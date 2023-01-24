@@ -30,7 +30,7 @@ class Order(models.Model):
     county = models.CharField(max_length=80, null=True, blank=True)
     country = CountryField(blank_label="Country *", null=False, blank=False)
     order_total = models.DecimalField(max_digits=10, decimal_places=2,
-                                      null=False, default=0)
+                                      null=True, default=0)
     date = models.DateField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

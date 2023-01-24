@@ -33,3 +33,10 @@ class Resident(models.Model):
     def __str__(self):
         return self.name
 
+
+class Enquiry(models.Model):
+    '''Model which stores customer enquiries.'''
+    email = models.EmailField()
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    created = models.DateField(auto_now_add=True)

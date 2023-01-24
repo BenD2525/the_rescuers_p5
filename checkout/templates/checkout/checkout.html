@@ -142,10 +142,10 @@
     let jsonData = JSON.stringify(Object.fromEntries(formData));
 
 
-    async function completeOrder(){
+    function completeOrder(){
         let url = '{{ success_url }}'
 
-        const request= await fetch(url, {
+        const request= fetch(url, {
             method: 'POST',
             headers:{
                 'Content-type':'application/json',
@@ -168,9 +168,9 @@
         },
         // Finalize the transaction after payer approval
         onApprove: (data, actions) => {
-            return actions.order.capture().then(async function (orderData) {
+            return actions.order.capture().then(function (orderData) {
                 const transaction = orderData.purchase_units[0].payments.captures[0];
-                return await completeOrder()})
+                return completeOrder()})
         }
     }).render('#paypal-button-container');
 </script>

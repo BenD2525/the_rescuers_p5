@@ -2,8 +2,8 @@ from django.shortcuts import redirect, render
 from django.views import View
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView
-from .models import Reviews, Resident
-from .forms import ReviewForm
+from .models import Reviews, Resident, Enquiry
+from .forms import ReviewForm, EnquiryForm
 from django.http import HttpResponse
 from django.contrib import messages
 
@@ -113,3 +113,30 @@ def residents(request):
         "residents": serialized_residents
         }
     return render(request, 'home/featured_residents.html', context)
+
+
+class ContactUs(View):
+    '''View which allows the user to contact the website.'''
+
+    def get(self, request, *args, **kwargs):
+
+        enquiry = Enquiry
+        enquiry_form = EnquiryForm
+
+        context = {
+            'enquiry': enquiry,
+            'enquiry_form': enquiry_form,
+            'title': enquiry.title,
+            'content': enquiry.content,
+        }
+        return render(request, 'home/contact_us.html', context)
+
+    def post(self, request, *args, **kwargs):
+
+        enquiry_form = EnquiryForm(data=request.POST)
+
+        if enquiry_form.is_valid():
+            obj = enquiry_form.save(commit=False)
+            obj.save()
+            messages.success(request, "Thanks for submitting an enquiry!")
+        return redirect("home:home")

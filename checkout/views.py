@@ -107,7 +107,8 @@ def thank_you(request):
     # Redirect to the custom 404 page if trying to access the page without
     # making an order
     if request.session.get('redirected_from_order_success'):
-        # Clear the bag and redirection token now that the order has been created
+        # Clear the bag and redirection token now that the order has been
+        # created
         request.session.pop('bag', None)
         request.session['redirected_from_order_success'] = False
         print("Made it: ", request.session)

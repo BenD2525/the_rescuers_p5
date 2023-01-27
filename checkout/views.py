@@ -5,21 +5,28 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.urls import reverse
 from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
 from products.models import Product
 from django.views.decorators.http import require_POST
 from .models import Order, OrderDetail
 from django.core.mail import send_mail
 from the_rescuers.settings import DEFAULT_FROM_EMAIL
 from templated_email import send_templated_mail
+from django.contrib.auth.models import User
 
 from .forms import OrderForm
 
 
 def checkout(request):
+    # Redirect to products if nothing in bag
     bag = request.session.get('bag', {})
     if not bag:
         messages.error(request, "There's nothing in your bag at the moment")
         return redirect(reverse('products:products_list'))
+    # Redirect to login/signup if user not logged in
+    if not request.user.is_authenticated:
+        messages.error(request, "Please login or create an account to continue with your purchase.")
+        return redirect(reverse('account_login'))
     order_form = OrderForm()
     bag_products = []
     for item_id, quantity in bag.items():
@@ -30,22 +37,21 @@ def checkout(request):
     bag_products = json.dumps(bag_products)
     # Attempt to prefill the form with any info the user maintains in
     # their profile
-    if request.user.is_authenticated:
-        profile = UserProfile.objects.get(user=request.user)
-        order_form = OrderForm(initial={
-            'first_name': profile.default_first_name,
-            'last_name': profile.default_last_name,
-            'email': profile.default_email,
-            'phone_number': profile.default_phone_number,
-            'country': profile.default_country,
-            'postcode': profile.default_postcode,
-            'city': profile.default_city,
-            'street_address_1': profile.default_street_address_1,
-            'street_address_2': profile.default_street_address_2,
-            'county': profile.default_county,
-        })
+    profile = UserProfile.objects.get(user=request.user)
+    order_form = OrderForm(initial={
+        'first_name': profile.default_first_name,
+        'last_name': profile.default_last_name,
+        'email': profile.default_email,
+        'phone_number': profile.default_phone_number,
+        'country': profile.default_country,
+        'postcode': profile.default_postcode,
+        'city': profile.default_city,
+        'street_address_1': profile.default_street_address_1,
+        'street_address_2': profile.default_street_address_2,
+        'county': profile.default_county,
+    })
     template = 'checkout/checkout.html'
-    success_url = '/checkout/order_success'
+    success_url = reverse('checkout:order_success')
     thank_you = reverse('checkout:thank_you')
     context = {
         'order_form': order_form,
@@ -72,10 +78,7 @@ def order_success(request):
         order_data = json_data.get('jsonData')
         order_data = json.loads(order_data)
         # Manually fill the user_id field with the user's id
-        try:
-            order_data["user_id"] = request.user.id
-        except Exception as e:
-            print(e)
+        order_data["user_id"] = request.user.id
         # Remove the csrf token from the data
         order_data.pop("csrfmiddlewaretoken", None)
         # Create a new instance of the Order model using the order_data received
@@ -90,6 +93,25 @@ def order_success(request):
         order.update_total()
         # Create a value to check in the thank_you view
         request.session['redirected_from_order_success'] = True
+        # Update profile with details
+        profile = UserProfile.objects.get(user=request.user)
+        # Save the user's info
+
+        profile_data = {
+            'default_first_name': order.first_name,
+            'default_last_name': order.last_name,
+            'default_email': order.email,
+            'default_phone_number': order.phone_number,
+            'default_country': order.country,
+            'default_postcode': order.postcode,
+            'default_city': order.city,
+            'default_street_address_1': order.street_address_1,
+            'default_street_address_2': order.street_address_2,
+            'default_county': order.county,
+        }
+        user_profile_form = UserProfileForm(profile_data, instance=profile)
+        if user_profile_form.is_valid():
+            user_profile_form.save()
         print("Original: ", request.session)
         # Send email to the provided email address
         send_templated_mail(

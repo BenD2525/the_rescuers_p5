@@ -60,15 +60,7 @@
                             {{ order_form.county | as_crispy_field }}
                             {{ order_form.country | as_crispy_field }}
                             <div class="form-check form-check-inline float-right mr-0">
-                                {% if user.is_authenticated %}
-                                <label class="form-check-label" for="id-save-info">This info will save to your profile</label>
-                                {% else %}
-                                <label class="form-check-label" for="id-save-info">
-                                    <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
-                                    <a class="text-info" href="{% url 'account_login' %}">login</a> to save this
-                                    information
-                                </label>
-                                {% endif %}
+                                <label class="form-check-label" for="id-save-info">Save </label>
                             </div>
                         </fieldset>
                         <fieldset class="px-3">
@@ -99,7 +91,7 @@
 {% block postloadjs %}
 <!-- Paypal Script -->
 <script
-    src="https://www.paypal.com/sdk/js?client-id=ARwpTasqupsB1v8gSLJQDf9bguf0Zsn2Cp8oNyfylFWcb0kwQ6p6A-HVk9DXGnyWs3MBuZkM8QxGSEX2&currency=GBP">
+    src="https://www.paypal.com/sdk/js?client-id=ARwpTasqupsB1v8gSLJQDf9bguf0Zsn2Cp8oNyfylFWcb0kwQ6p6A-HVk9DXGnyWs3MBuZkM8QxGSEX2&currency=GBP&debug=true">
 </script>
 <!-- Script to load bag contents -->
 <script>
@@ -166,12 +158,15 @@
                 }]
             });
         },
+        onError: function (err) {
+        window.location.href = "{% url 'checkout:payment_failed' %}";
+        },
         // Finalize the transaction after payer approval
         onApprove: (data, actions) => {
             return actions.order.capture().then(function (orderData) {
                 const transaction = orderData.purchase_units[0].payments.captures[0];
                     return completeOrder()}).then(()=>{
-                        let url = window.location.origin + "{% url 'checkout:thank_you' %}";;
+                        let url = window.location.origin + "{% url 'checkout:thank_you' %}";
                             actions.redirect(url);
                         });
                     }

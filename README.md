@@ -414,7 +414,7 @@ The below buttons are displayed which allow the user to pay via Paypal.
 ![Paypal Options]()
 
 #### **Thankyou Page**
-This page is displayed once the user has paid for their order- if the user tries to access this url without being redirected from a successful order, this page will be replaced by the custom 404 page.
+This page is displayed once the user has paid for their order- if the user tries to access this url without first being redirected from a successful order, this page will be replaced by the custom 404 page. I did originally only allow the user to access this page directly from the payment process, however I decided to change this so that the user can go back to this page if required after making an order.
 
 ![Thankyou Page]()
 

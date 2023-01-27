@@ -153,7 +153,7 @@
             },
         body:JSON.stringify({"bagContents": bagContents, "jsonData": jsonData} )
         })
-    }
+    };
 
     paypal.Buttons({
         // Sets up the transaction when a payment button is clicked
@@ -170,9 +170,12 @@
         onApprove: (data, actions) => {
             return actions.order.capture().then(function (orderData) {
                 const transaction = orderData.purchase_units[0].payments.captures[0];
-                return completeOrder()})
-        }
-    }).render('#paypal-button-container');
+                    return completeOrder()}).then(()=>{
+                        let url = window.location.origin + "{% url 'checkout:thank_you' %}";;
+                            actions.redirect(url);
+                        });
+                    }
+                }).render('#paypal-button-container');
 </script>
 
 {% endblock %}

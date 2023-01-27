@@ -72,7 +72,10 @@ def order_success(request):
         order_data = json_data.get('jsonData')
         order_data = json.loads(order_data)
         # Manually fill the user_id field with the user's id
-        order_data["user_id"] = request.user.id
+        try:
+            order_data["user_id"] = request.user.id
+        except Exception as e:
+            print(e)
         # Remove the csrf token from the data
         order_data.pop("csrfmiddlewaretoken", None)
         # Create a new instance of the Order model using the order_data received
@@ -89,19 +92,20 @@ def order_success(request):
         request.session['redirected_from_order_success'] = True
         print("Original: ", request.session)
         # Send email to the provided email address
-        # send_templated_mail(
-        #     template_name='order_confirmation',
-        #     from_email=DEFAULT_FROM_EMAIL,
-        #     recipient_list=[order.email],
-        #     context={'name': order.first_name,
-        #              'order_number': order.order_number,
-        #              'order_total': order.order_total,
-        #              },
-        # )
+        send_templated_mail(
+            template_name='order_confirmation',
+            from_email=DEFAULT_FROM_EMAIL,
+            recipient_list=[order.email],
+            context={'name': order.first_name,
+                     'order_number': order.order_number,
+                     'order_total': order.order_total,
+                     },
+        )
         messages.success(request, "Thank you for your order!")
         return redirect(reverse('checkout:thank_you'))
-    except Exception:
-        return redirect(reverse('checkout:payment_canceled'))
+    except Exception as e:
+        print(e)
+    return redirect(reverse('checkout:payment_failed'))
 
 
 def thank_you(request):
@@ -111,11 +115,11 @@ def thank_you(request):
     # Redirect to the custom 404 page if trying to access the page without
     # making an order
     if request.session.get('redirected_from_order_success'):
-        # Clear the bag and redirection token now that the order has been
+        # Clear the bag now that the order has been
         # created
         request.session.pop('bag', None)
-        request.session['redirected_from_order_success'] = False
         print("Made it: ", request.session)
+        messages.success(request, "Thankyou for your order!")
         return render(request, 'checkout/thank_you.html')
     else:
         print("Diverted it: ", request.session)

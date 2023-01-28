@@ -9,8 +9,12 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
 ## Contents
 
 - [The Rescuers](#the-rescuers)
-- [SEO](#seo)
-- [Agile Development Process](#agile-development-process)
+- [Business Model](#business-model)
+- [Web Marketing](#web-marketing)
+  - [SEO](#seo)
+    - [Keywords](#keywords)
+  - [Facebook Business Page](#facebook-business-page)
+  - [MailChimp](#mailchimp)
 - [UX Design](#ux-design)
   - [Strategy Plane](#strategy-plane)
   - [Scope Plane](#scope-plane)
@@ -63,7 +67,19 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
 - [Honourable Mentions](#honourable-mentions)
 - [Credits](#credits)
 
-## Web Marketing
+## Business Model
+
+Who:
+
+I chose to adopt a B2C (Business to Customer) business model, which is normal for a smaller, local charity. Because of this, I will be selling direct to consumers from my website, and as such I will need to make payments as easy as possible. I have chosen Paypal as my payment method due to it being a world-renowned payments company which is well-trusted, secure and easy to use.
+
+What:
+
+I chose to sell physical products, which are ordered and then delivered to the user at their supplied shipping address on the checkout screen. I therefore decided it was key to include images with my products alongside the price, name and description in order to allow customers to feel secure in what they are buying.
+
+How:
+
+Based on my adoption of a B2C business model selling physical products, I decided to allow single payments only, and not a subscription.
 
 ### SEO
 
@@ -116,11 +132,27 @@ Long tail (Toys):
 
 I then used these keywords and phrases and incorporated them in my meta section in the head of my base template, which will be picked up by search engines. I have also ensured my title and introductory paragraph are in strong tags on my home page, to ensure these are prioritised by search engines.
 
-I have also included a sitemap file from ![XML Sitemaps](https://www.xml-sitemaps.com/) which allows search engines to crawl through my website structure and not miss any pages, aiding content discovery.
+I have also included a sitemap file from [XML Sitemaps](https://www.xml-sitemaps.com/) which allows search engines to crawl through my website structure and not miss any pages, aiding content discovery.
 
 Lastly, I have added a robots.txt file to my root directory, which provides the location of the sitemap and advises any crawlers to miss out the accounts and profiles urls, as these hold sensitive data.
 
-### 
+### Facebook Business Page
+
+I also created a Facebook Business Page, the link to which I have included here:
+
+[Facebook Business Page](https://www.facebook.com/profile.php?id=100089655048550)
+
+As this may be taken down before this project is assessed, I have also included a screenshot as evidence:
+
+![Facebook Business Page](readme/images/facebook_business_page.PNG)
+
+This page has been created as a social media marketing strategy, in order to display the website to as many potential customers as possible. Social Media marketing was chosen because it's free, and has a large outreach for users of all ages. Animals are also very popular on the internet on sites such as Youtube, and the ethical side of my business resonates with social media users. Facebook was chosen as the initial marketing method because of the number of users and the target audience. Due to the Facebook demographic, the site will be advertised to user's of all ages, which is ideal for my site, as an animal charity is not specifically aiming at younger or older users.
+
+### Mailchimp
+
+I also created a Mailchimp account and used an embedded form on my home page, allowing users to subscribe to my mailchimp account. This will allow me to easily market my business through email marketing to the list of subscribers I have.
+
+![MailChimp](readme/images/mailchimp.PNG)
 
 ## UX Design
 
@@ -272,17 +304,7 @@ Using Balsamiq, I then created a flow map showing what I would visualise as the 
 
 #### Database Schema
 I created a visual representation of my databases in [Lucid Chart](https://www.lucidchart.com/).
-![Database Schema]()
-- Health Stats
-  - The Health Stats model is designed for the user to be able to store their weight, run distance and run time using the update stats form.
-  - The user and date fields are stored on each instance automatically, the date being registered as the current date/time, and the user being registered as the current logged in user. I decided to set the date field to 'auto_now_add = True' so that the initial date would be registered, however it would not be overwritten once edited, as I felt it was important to keep the original date of registering the data.
-  - The weight and run distance fields are both decimal fields, with a max digits limitation of 5 and 2 decimal places.
-  - The run time field is a duration field. This was originally created as a time field, however this did not work as expected. If a user input the a time of 1:00, this would register as a time of 1am. I then changed the field to a duration field and this fixed the issue and worked as expected.
-- Article
-  - The article model is designed to be able to store articles for the website, and display them in a list on the homepage, with the full content of each article available in the subsequent article pages. This model can only be added to via the admin panel using the admin login, so that the site admin can control the information available to all users.
-  - The title and topic fields are set as character fields because they should only include text.
-  - The featured image field is set as a cloudinary field because I am using Cloudinary to host my images.
-  - The content field is set as a text field because this is where the main content of the article is held.
+![Database Schema](readme/images/database_schema.png)
 
 ### Surface Plane
 
@@ -299,6 +321,10 @@ I used Github's issues functionality, and organised them into milestones, which 
 ### Custom 404 page
 This page is a page which shows whenever a 404 error occurs. It displays a funny image of a dog looking unimpressed, and a link to take the user back to the home page.
 ![Custom 404]()
+
+### Toasts
+I have implemented toasts across the site in order to maintain communication with the user and provide feedback whenever they action a change in one of the databases.
+![Toasts]()
 
 ### Base Features
 The below features are part of my base template, and as such are included on all pages.

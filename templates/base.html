@@ -98,7 +98,7 @@
       </div>
       <div class="col-2">
         <div class="text-center">
-          <a href="{% url 'bag:bag' %}">
+          <a href="{% url 'bag:bag' %}" aria-label="Shopping Cart">
             <i class="fa-solid fa-cart-shopping fa-lg"></i>
             <p class="d-none d-sm-inline">{{ product_count }} items
               £{{ total }}</p>
@@ -164,7 +164,7 @@
     <a href="https://github.com/BenD2525" target="_blank" rel="noopener" aria-label="GitHub" class="fw-bold">
       Ben Dawson 2022 <i class="fa-brands fa-github"></i>
     </a>
-    <a href="#"><i class="fa-solid fa-arrow-up fa-lg"></i></a>
+    <a href="#" aria-label="Arrow to top of page"><i class="fa-solid fa-arrow-up fa-lg"></i></a>
   </footer>
 
   {% block postloadjs %}

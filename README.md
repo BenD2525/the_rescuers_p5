@@ -17,6 +17,7 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
   - [MailChimp](#mailchimp)
 - [UX Design](#ux-design)
   - [Strategy Plane](#strategy-plane)
+  - [User Acceptance Criteria and Prioritisation](#user-acceptance-criteria-and-prioritisation)
   - [Scope Plane](#scope-plane)
   - [Structure Plane](#structure-plane)
     - [User Stories](#user-stories)
@@ -27,6 +28,8 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
     - [Colour Scheme](#colour-scheme)
 - [Agile Development Process](#agile-development-process)
 - [Current Features](#current-features)
+  - [Custom 404](#custom-404-page)
+  - [Toasts](#toasts)
   - [Base Features](#base-features)
     - [Title](#title)
     - [Navbar (Logged in and out)](#navbar-logged-out)
@@ -42,6 +45,7 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
     - [Add a Review Form](#add-a-review-form)
     - [Edit a Review Form](#edit-a-review-form)
     - [Delete a Review](#delete-a-review)
+    - [Contact Us](#contact-us-page)
   - [Login Page](#login-page)
   - [Signup Page](#signup-page)
   - [Logout Page](#logout-page)
@@ -59,6 +63,15 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
   - [Bag](#bag)
     - [Empty Bag](#empty-bag)
     - [Products in Bag](#products-in-bag)
+  - [Checkout](#checkout)
+    - [Shipping Details](#shipping-details)
+    - [Paypal Payment Options](#paypal-payment-options)
+    - [Thankyou Page](#thankyou-page)
+  - [Profile](#profile)
+    - [Current Details](#current-details)
+    - [Edit Details](#edit-details)
+    - [Order History](#order-history)
+    - [Order Details](#order-details)
 - [Future Development](#future-development)
 - [Testing](#testing)
 - [Deployment](#deployment)
@@ -198,7 +211,7 @@ When creating a functional, informative website, a developer must consider all p
 | Checkout link from bag				 | 5          | 5                     |
 | Payment details form					 | 5          | 5                     |
 | Use saved payment details checkbox			 | 4          | 4                     |
-| Stripe						 | 5          | 4                     |
+| Paypal						 | 5          | 4                     |
 | Email setup						 | 4          | 5                     |
 | Add user profile					 | 4          | 4                     |
 | Login functionality					 | 5          | 5                     |
@@ -295,19 +308,17 @@ I decided to remove the below user stories from my development using the agile p
 
 ### Skeleton Plane
 A wireframe for the website was produced using a desktop version of Balsamiq in order to provide a clear image of what the website should look like.
-![Home page]()
-![Reviews page]()
-![Login]()
-![Signup]()
-![Products page]()
-![Bag page]()
-![Checkout page]()
-![Profile page]()
-![Contact Us page]()
+![Home page](readme/images/home_wireframe.PNG)
+![Products page](readme/images/products_wireframe.PNG)
+![Bag page](readme/images/bag_wireframe.PNG)
+![Checkout page](readme/images/checkout_wireframe.PNG)
+![Profile page](readme/images/profile_wireframe.PNG)
+
+As you will see from the wireframes, there were some style changes made during the development process, and the contact page was created later on in the development process.
 
 #### Site Flow
 Using Balsamiq, I then created a flow map showing what I would visualise as the user's journey through the website.
-![Link to Site map]()
+![Link to Site map](readme/images/site_map.PNG)
 
 #### Database Schema
 I created a visual representation of my databases in [Lucid Chart](https://www.lucidchart.com/).
@@ -327,11 +338,11 @@ I used Github's issues functionality, and organised them into milestones, which 
 
 ### Custom 404 page
 This page is a page which shows whenever a 404 error occurs. It displays a funny image of a dog looking unimpressed, and a link to take the user back to the home page.
-![Custom 404]()
+![Custom 404](readme/images/custom_404.PNG)
 
 ### Toasts
 I have implemented toasts across the site in order to maintain communication with the user and provide feedback whenever they action a change in one of the databases.
-![Toasts]()
+![Toasts](readme/images/toast.PNG)
 
 ### Base Features
 The below features are part of my base template, and as such are included on all pages.
@@ -413,7 +424,7 @@ If a user clicks the 'delete' button, they are presented with a screen asking th
 ### Contact Us Page
 This page is accessible from the nav bar and allows the user to submit an enquiry to the website. The page displays a form which allows the user to provide their email, a title for their enquiry, and a text box in which they can submit the enquiry. Upon submitting the enquiry, the user will receive a successful enquiry pop up in their top right corner, and they will receive an email as acknowledgement of the enquiry being received. The email displays the details of the enquiry and advises the user of a timeframe in which they can expect an answer.
 
-![Contact Us Page]()
+![Contact Us Page](readme/images/contact_us.PNG)
 
 ### **Login Page**
 The login page features a login form using AllAuth and formatted with the crispy forms package.
@@ -500,17 +511,17 @@ The checkout displays the bag and allows the user to fill in their shipping deta
 #### **Shipping Details**
 The below form is displayed which allows the user to input their shipping details. If the user is logged in and has their details saved to their profile, this form will be pre-filled, making it easier for the user to checkout.
 
-![Shipping Details]()
+![Shipping Details](readme/images/checkout_form.PNG)
 
 #### **Paypal Payment Options**
 The below buttons are displayed which allow the user to pay via Paypal.
 
-![Paypal Options]()
+![Paypal Options](readme/images/checkout_paypal.PNG)
 
 #### **Thankyou Page**
 This page is displayed once the user has paid for their order- if the user tries to access this url without first being redirected from a successful order, this page will be replaced by the custom 404 page. I did originally only allow the user to access this page directly from the payment process, however I decided to change this so that the user can go back to this page if required after making an order.
 
-![Thankyou Page]()
+![Thankyou Page](readme/images/checkout_thank_you.PNG)
 
 ### **Profile**
 The profile section is only available to logged in users, and will not display if a non-authenticated user attempts to access the url without logging in. Within the profile section, the user can see and edit their current contact and shipping details, and see any previous orders they have made. They can also click on any of the orders to see all of the information concerning the order.
@@ -518,25 +529,30 @@ The profile section is only available to logged in users, and will not display i
 #### **Current Details**
 The below section displays the current contact and shipping details saved to the user's profile. If these are incorrect, the user is able to amend them.
 
-![Profile Details]()
+![Profile Details](readme/images/profile_current_details.PNG)
 
 #### **Edit Details**
 If the user wishes to edit their details within the profile app, they can click the 'Update my Details' button, to allow them to amend their current details. Once any amendments have been made to the form, they can submit and the new details will be saved. The new details will also pull through to the checkout when the user next goes to pay for a product.
 
-![Edit Details]()
+![Edit Details](readme/images/profile_edit_details.PNG)
 
 #### **Order History**
 At the bottom of the user profile, there is a table which displays any past orders that the user has made. There is some limited information displayed in this table, however the user is able to click the 'order details' button next to any of the orders to see that order in more detail.
 
-![Order History]()
+![Order History](readme/images/profile_order_history.PNG)
 
 #### **Order Details**
 If the user wishes to see a particular order in more detail, they can see the contact and shipping details, as well as the product details in this screen.
 
-![Order Details]()
+![Order Details](readme/images/profile_order_details.PNG)
 
 ## **Future Development**
-
+For future development, I would like to develop the below features.
+- Ability to save the details added to the order form to the user's profile.
+- Functionality to enable guest checkout.
+- Product reviews and ratings.
+- Profile pictures.
+- A blog which user's can comment on and like.
 
 ## Testing
 Details of all testing undertaken can be found [here](TESTING.md).
@@ -714,10 +730,6 @@ if 'USE_AWS' in os.environ:
 - s3transfer==0.6.0
 - sqlparse==0.4.3
 
-## Honourable Mentions
-- Slack
-- Stack Overflow
-
 ## Credits
 - Boutique Ado
   - Code Institute walkthrough project for guidance on implementing many features, including the product list, bag and checkout pages.
@@ -743,3 +755,6 @@ if 'USE_AWS' in os.environ:
   - Justin Veenema, Marliese Streefland and Pauline Loroy for the images on the home page.
   - Angel Luciano, Victor Grabarczyk and my personal photos for the featured residents images.
 - [Lucid Chart](https://www.lucidchart.com/)- used for the creation of the database schema table.
+- Christian Brown for checking in on me while completing his own project and jumping on calls when we needed to vent!
+- Sam Revanoor for helping me figure out why my JSON wasn't coming through correctly to my order_success view.
+- Fran from CI London Community for helping me with Paypal implementation.

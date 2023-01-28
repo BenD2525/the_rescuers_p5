@@ -83,8 +83,7 @@
                 <br>
                 Feel free to add your own review if you have bought something and your furry friend loves it!
             </p>
-            <a href="{% url 'home:reviews' %}" class="positive-button-lg mb-5">Reviews
-            </a>
+            <button class="my-1 positive-button-lg" onclick="location.href='{% url 'home:reviews' %}'">Reviews</button>
         </div>
         <hr class="hr-1">
         <!-- Facebook business page -->
@@ -141,6 +140,7 @@
 {% endblock %}
 
 {% block postloadjs %}
+{{ block.super }}
 <!-- Mailchimp Scripts -->
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
 <script type='text/javascript'>

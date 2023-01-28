@@ -69,7 +69,7 @@ This was tested on a laptop, PC, iPad, Iphone SE, Galaxy S8, Pixel 6 and a Motor
 
 ![Reviews HTML validation](readme/testing/html_checker_reviews.PNG)
 
-There are some warnings regarding the javscript in the html checker, however they don't affect the usability of the site and don't present any errors.
+There are some warnings regarding the javscript in the html checker, however they don't affect the usability of the site and don't present any errors. All templates have been passed through the HTML validation with no errors showing. I have included two screenshots above as examples. There initially were errors due to the fact that I had been using buttons wrapped in anchor tags to move around the site. I have now removed these and replaced them with solely buttons with onclick attributes.
 
 ### CSS
 
@@ -77,9 +77,9 @@ No errors or warnings were found for my custom CSS.
 
 ### JavaScript
 
-There are 2 scripts in my files, one located in base.html which is my function for setting the timeout of messages. The other is my chart.js script which was based on the example provided in the chart.js [documentation](https://www.chartjs.org/docs/latest/).
+There are 3 scripts in my files, one located in base.html which is my function for setting the timeout of messages. There is another which holds the Paypal checkout logic in my checkout template, and another which is from mailchimp on my index.html page.
 
-When posting each script into the [javascript validator](https://jsvalidator.com/)- the only errors found were as a consequence of using django's template language.
+When posting each script into the [javascript validator](https://jsvalidator.com/)- there were no errors.
 
 ### Python
 

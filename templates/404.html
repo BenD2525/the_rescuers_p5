@@ -5,9 +5,7 @@
 <div class="col-12 text-center">
     <img src="{% static '404_mike_burke.jpg' %}" alt="Unimpressed dog facing forwards" class="my-4 error-image">
     <h1>Uh oh! Looks like something's missing here!</h1>
-    <a href="{% url 'home:home' %}">
-        <button class="negative-button-lg mx-auto my-4">Back</button>
-    </a>
+    <button class="my-1 negative-button-lg" onclick="location.href='{% url 'home:home' %}'">Back</button>
 </div>
 
 {% endblock %}

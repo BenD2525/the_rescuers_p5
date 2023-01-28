@@ -16,9 +16,7 @@
 {% if user.is_authenticated %}
 <div class="row align-items-center">
     <div class="col-sm-12 text-center my-4">
-        <a href="{% url 'profiles:user_profile' %}">
-            <button class="negative-button mx-4">My Profile</button>
-        </a>
+        <button class="my-1 negative-button-lg" onclick="location.href='{% url 'profiles:user_profile' %}'">My Profile</button>
     </div>
 </div>
 {% else %}

@@ -19,10 +19,8 @@
             </div>
             {% if review.user == user %}
             <div class="text-center">
-                <a href="reviews/edit/{{ review.id }}" class="mx-2">
-                    <button class="positive-button mb-2">Edit</button></a>
-                <a href="reviews/delete/{{ review.id }}" class="mx-2 mb-2">
-                    <button class="negative-button">Delete</button></a>
+                <button class="positive-button mb-2" onclick="location.href='reviews/edit/{{ review.id }}'">Edit</button>
+                <button class="negative-button mb-2" onclick="location.href='reviews/delete/{{ review.id }}'">Delete</button>
             </div>
             {% endif %}
         </div>
@@ -33,14 +31,11 @@
 <div class="row">
     <div class="col-sm-12 text-center py-4">
         {% if user.is_authenticated %}
-        <a href="{% url 'home:add_review' %}">
-            <button class="positive-button-lg mb-4">Add a review</button>
-        </a>
+        <button class="my-1 negative-button-lg" onclick="location.href='{% url 'home:add_review' %}'">Add a Review</button>
         {% else %}
         <p>If you would like to add your own review, please login or sign up if you haven't already!</p>
         {% endif %}
     </div>
 </div>
 
-</div>
 {% endblock %}

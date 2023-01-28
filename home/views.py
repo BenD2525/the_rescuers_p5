@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, reverse
 from django.views import View
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView
@@ -46,18 +46,21 @@ class AddReview(View):
     '''View which allows the user to add a new review.'''
 
     def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, "Please login or create an account to add a review.")
+            return redirect(reverse('account_login'))
+        else:
+            review = Reviews
+            review_form = ReviewForm
 
-        review = Reviews
-        review_form = ReviewForm
-
-        context = {
-            'review': review,
-            'review_form': review_form,
-            'user': review.user,
-            'title': review.title,
-            'content': review.content,
-        }
-        return render(request, 'home/add_review.html', context)
+            context = {
+                'review': review,
+                'review_form': review_form,
+                'user': review.user,
+                'title': review.title,
+                'content': review.content,
+            }
+            return render(request, 'home/add_review.html', context)
 
     def post(self, request, *args, **kwargs):
 
@@ -81,6 +84,12 @@ class DeleteReview(DeleteView):
         '''Displays message on successful deletion of the review.'''
         messages.success(self.request, 'Your review was deleted successfully.')
         return super().delete(request, *args, **kwargs)
+    
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.warning(request, 'Please login or create an account to delete a review.')
+            return redirect(reverse('account_login'))
+        return super().dispatch(request, *args, **kwargs)
 
 
 class EditReview(UpdateView):
@@ -93,6 +102,12 @@ class EditReview(UpdateView):
         '''Displays message on successful editing of the review.'''
         messages.success(self.request, 'Your review was updated successfully.')
         return super().form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.warning(request, 'Please login or create an account to edit a review.')
+            return redirect(reverse('account_login'))
+        return super().dispatch(request, *args, **kwargs)
 
 
 def residents(request):

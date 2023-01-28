@@ -68,8 +68,8 @@ def order_success(request):
     thankyou page.
     """
     try:
-        # Take the request, decode it, split it into bag_contents and order_data
-        # and use this data to create a new order
+        # Take the request, decode it, split it into bag_contents and
+        # order_data and use this data to create a new order
         request2 = request.body
         my_json = request2.decode('utf8').replace("'", '"')
         json_data = json.loads(my_json)
@@ -81,10 +81,12 @@ def order_success(request):
         order_data["user_id"] = request.user.id
         # Remove the csrf token from the data
         order_data.pop("csrfmiddlewaretoken", None)
-        # Create a new instance of the Order model using the order_data received
+        # Create a new instance of the Order model using the order_data
+        # received
         order = Order.objects.create(**order_data)
         order.save()
-        # Loop through the bag_contents and save the details in OrderDetail model
+        # Loop through the bag_contents and save the details in OrderDetail
+        # model
         for item in bag_contents:
             product = Product.objects.get(pk=item['id'])
             order_detail = OrderDetail(order=order, product=product,

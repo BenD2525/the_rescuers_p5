@@ -83,36 +83,81 @@ When posting each script into the [javascript validator](https://jsvalidator.com
 
 ### Python
 
-![Pep8online Testing](readme/testing/python_checker.PNG)
-
-[Python Checker](https://www.pythonchecker.com) was used to test all python files. All efforts were made to make all code pep8 compliant, with the exception of the settings.py file, which Django state in their docs is okay to ignore should it make the code uglier or harder to read.
+[Python Checker](https://www.pythonchecker.com) was used to test all python files. All efforts were made to make all code pep8 compliant, with the exception of the settings.py file, which Django state in their docs is okay to ignore should it make the code uglier or harder to read. There are some errors within the terminal where the line is too long, however when I have attempted to amend some of them (urls), they no longer work. So I have left them and accepted the error.
 
 ## User Stories
 
-### As a user, I want to be able to learn about health and fitness.
-- On the home page the user can read articles about health and fitness. Whenever the admin adds a new article, this will automatically be updated on the home page.
+### As a new user I want to see what the purpose of the site is from the home page.
+- On the home page the user can read the about us section which describes the site's purpose.
 
-### As a user I want to be able to sign up to access the website’s features.
-- There is signup functionality clearly shown from the navbar, and the user is able to create a user account using their email to confirm.
+### As a new user I want to be able to navigate to each part of the site easily.
+- There is a burger menu on the header of the site, in the top left corner which allows the user to navigate the site easily.
 
-### As a user I want to be able to Log in to access my details privately.
-- There is login functionality clearly shown from the navbar, and will allow a previously signed up user to log in as themselves. This provides access to the health hub section of the website, where the user can track their health stats.
+### As a new user I want to understand what I can do on the site.
+- There is an about us section on the landing page which explains the site and what the user can do.
 
-### As a user I want to be able to logout to protect my data.
-- There is logout functionality clearly shown from the navbar when the user is logged in. If the user has not logged in, this will not show as an option.
+### As a current user I want to easily leave a review.
+- There is a link to the reviews section on the navbar, and also a button link to the reviews page on the home page. If the user is not logged in, they are advised that they will only be able to add a review if they are logged in.
 
-### As a user I want to be able to view my stats.
-- Once the user has logged in, they can access the health hub section using 'My Health' from the navbar. From here, they are shown their most recent stats and have the ability to view all of their stats within a table.
+### As a current user I want to easily edit a review.
+- Once the user has logged in, they can edit a review they have previously added. A button will display under their previously added reviews directing them to the edit review page. If the user is not logged in, they are advised that they will only be able to add a review if they are logged in.
 
-### As a user I want to be able to edit my stats.
-- When viewing their stats history in table format, the user is able to click the 'edit' button next to the stat they wish to edit. They are then presented with a form, in which they can change any of the stats that they wish. Once they confirm, the entry will be edited and they will be redirected.
+### As a current user I want to easily delete a review.
+- Once the user has logged in, they can edit a review they have previously added. A button will display under their previously added reviews directing them to the edit review page. If the user is not logged in, they are advised that they will only be able to add a review if they are logged in.
 
-### As a user I want to be able to delete my stats.
-- When viewing their stats history in table format, the user is able to click the 'delete' button next to the stat they wish to delete. They are then taken to another screen asking the user to confirm that they are happy to delete this entry. Once they confirm, the entry will be deleted and they will be redirected.
+### As a new user I want to easily see the list of products.
+- The user is able to access the products list by clicking on 'Products' from the nav bar. This will take the user to the products list, where they can see all of the products on offer.
 
-### As a user I want to be able to see how my weight changes over time in graph format.
-- The user can access and see their weight stats on a tracker using the weight tracker page. This allows the user to track their weight over time, with the weight being shown in the form of a line graph. Along the bottom, the dates of each weight entry are registered.
+### As a current user I want to be able to easily see the price of the products I choose.
+- The user is able to clearly see the price of any product on the product list page, the price is clearly marked on the products which are arranged on the page.
 
+### As a current user I want to be able to sort the products to suit my needs.
+- The user is able to sort the products in price and name, ascending or descending.
+
+### As a current user I want to be able to filter the products to suit my needs.
+- The user is able to search for a keyword and the products will only display which have that word either in the title or description.
+
+### As a current user I want to be able to select the products I require and add them to my bag.
+- The user is able to click on a product and add a quantity of the product to their bag from the product detail page.
+
+### As a new user I want to easily access my bag.
+- The user can access their bag by clicking on the shopping cart icon in the top right corner of any screen.
+
+### As a current user I want to be able to adjust quantities of items in my bag.
+- The user is able to update quantities of the items in the bag by using the plus or minus buttons on the bag page.
+
+### As a current user I want to be able to remove items from my bag.
+- The user is able to remove items from the bag by using the remove button on the bag page.
+
+### As a current user I want to be able to see at a glance how many items I have in my bag.
+- The site displays the number of items in the bag along with the price next to the cart icon.
+
+### As a current user I want to be able to see the details of the products in my bag.
+- When clicking on their bag, the user is taken to a table which displays the full contents and details of products currently in their bag.
+
+### As a new user I want to be able to easily access the checkout area.
+- The user can access the checkout area when they have items in their bag, from the bag screen. If they try to access the checkout with nothing in their bag, they will be redirected to the products list.
+
+### As a current user I want to be able to add my details to the payment screen.
+- The user can fill out the order form on the checkout screen.
+
+### As a current user I want to be able to pay using Paypal.
+- The user can login to Paypal using the Paypal button and pay through Paypal.
+
+### As a current user I want to receive a confirmation email once my payment has been accepted.
+- The user receives a confirmation email to their provided email address once they have completed an order.
+
+### As a new user I want to easily create my profile.
+- The user can create a profile by accessing 'My Profile' from the navbar if logged in, and can fill out their default details.
+
+### As a current user I want to be able to log in to my account.
+- The user can log in to their account from the navbar, accessible from the burger menu.
+
+### As a current user I want to be able to log out of my account.
+- The user can log out from their account from the navbar, this option will only show if the user is already logged in.
+
+### As a current user I want to be able to see and edit my account details when I want.
+- The user can enter their profile under 'My Profile' then edit their profile using the 'Edit Profile' button.
 
 ## Manual Testing
 
@@ -129,8 +174,12 @@ When posting each script into the [javascript validator](https://jsvalidator.com
 - Login form
     - When trying to submit a blank form, user is provided with an error message asking them to fill out the form.
     - When trying to submit incorrect details on the form, the user is provided with an error message asking them to provide correct details.
-- Update form
-    - When trying to submit a blank form, user is provided with an error message asking them to fill out the form.
+- Contact Us form
+    - 
+- Order Form
+    - 
+- Profile Form
+    - 
 
 ### Links
 All external links work correctly and the Github/Facebook links open in a new tab, to avoid the user leaving the website.

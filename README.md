@@ -210,6 +210,14 @@ When creating a functional, informative website, a developer must consider all p
 
 The viability score is higher than the importance score, so I should be able to implement all of the above features. These scores were based on my skill level at the beginning of the project.
 
+### User Acceptance Criteria and Prioritisation
+
+I then organised my user stories by the apps I need to create, and logged user acceptance criteria for each user story. Based on the importance scores above, I prioritised these user stories and sorted them into 'Must Have', 'Should Have' and 'Could Have'.
+
+![User Acceptance Criteria](readme/images/user_acceptance_criteria.PNG)
+
+I decided that my one 'Could Have' user story- User is able to see the product's review under the product in the list' was not needed as a feature as it did not add enough to the user experience to warrant the time required in this time-constrained project.
+
 ### Scope Plane
 Assessing the scope of a website is based on the information gathered from forumlating a strategy. Using the target audience and the established website goals, the website requirements were set out.
 - Content Requirements:
@@ -241,9 +249,9 @@ Home
 	- I want to be able to navigate to each part of the site easily.
 - As a current user...
 	- I want to easily return to the part of the site I require.
-	- I want to easily leave a review for the product I choose.
-	- I want to easily edit a review for the product I choose.
-	- I want to easily delete a review for the product I choose.
+	- I want to easily leave a review.
+	- I want to easily edit a review.
+	- I want to easily delete a review.
   - I want to be able to see the residents of the shelter, and who I will be helping when I buy products.
 
 Products
@@ -270,7 +278,6 @@ Checkout
 	- I want to be able to easily access the checkout area.
 - As a current user...
 	- I want to be able to add my details to the payment screen.
-	- I want to be able to use my existing payment details from my profile
 	- I want to be able to pay using Stripe.
 	- I want to receive a confirmation email once my payment has been accepted.
 

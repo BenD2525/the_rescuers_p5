@@ -9,6 +9,8 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
 ## Contents
 
 - [The Rescuers](#the-rescuers)
+- [SEO](#seo)
+- [Agile Development Process](#agile-development-process)
 - [UX Design](#ux-design)
   - [Strategy Plane](#strategy-plane)
   - [Scope Plane](#scope-plane)
@@ -60,6 +62,65 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
 - [Technologies Used](#technologies-used)
 - [Honourable Mentions](#honourable-mentions)
 - [Credits](#credits)
+
+## Web Marketing
+
+### SEO
+
+When creating an e-commerce website, a developer must consider how to ensure the website is easy to find through search engines. SEO is imperative at ensuring that the website is promoted well and visible to the target audience.
+
+#### Keywords
+
+For this project, I began with a list of topics:
+
+- Animals
+- Charity
+- Toys
+
+I then drilled down into these topics and collated some short-tail and long-tail phrases to ensure the visibility of my website to the target audience.
+
+Short tail (Animals):
+
+- Pets
+- Dogs
+- Cats
+
+Short tail (Charity):
+- Gifts
+- Donate
+- Support
+
+Short tail (Toys):
+- Cuddly toy
+- Teddy bear
+- Cuddly animals
+- Fun toys
+
+Long tail (Animals):
+- Buy gifts for pets
+- Gifts for dogs
+- Presents for cats
+
+Long tail (Charity):
+
+- Support charity buy buying gifts
+- Animal charity London
+- Look after cats and dogs
+
+Long tail (Toys):
+
+- Cuddly toys for animals
+- Presents for dogs and cats
+- Fun toys for dogs and cats
+- Toys for pets in London
+
+I then used these keywords and phrases and incorporated them in my meta section in the head of my base template, which will be picked up by search engines. I have also ensured my title and introductory paragraph are in strong tags on my home page, to ensure these are prioritised by search engines.
+
+I have also included a sitemap file from ![XML Sitemaps](https://www.xml-sitemaps.com/) which allows search engines to crawl through my website structure and not miss any pages, aiding content discovery.
+
+Lastly, I have added a robots.txt file to my root directory, which provides the location of the sitemap and advises any crawlers to miss out the accounts and profiles urls, as these hold sensitive data.
+
+### 
 
 ## UX Design
 

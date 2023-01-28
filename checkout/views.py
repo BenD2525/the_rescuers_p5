@@ -93,25 +93,6 @@ def order_success(request):
         order.update_total()
         # Create a value to check in the thank_you view
         request.session['redirected_from_order_success'] = True
-        # Update profile with details
-        profile = UserProfile.objects.get(user=request.user)
-        # Save the user's info
-
-        profile_data = {
-            'default_first_name': order.first_name,
-            'default_last_name': order.last_name,
-            'default_email': order.email,
-            'default_phone_number': order.phone_number,
-            'default_country': order.country,
-            'default_postcode': order.postcode,
-            'default_city': order.city,
-            'default_street_address_1': order.street_address_1,
-            'default_street_address_2': order.street_address_2,
-            'default_county': order.county,
-        }
-        user_profile_form = UserProfileForm(profile_data, instance=profile)
-        if user_profile_form.is_valid():
-            user_profile_form.save()
         print("Original: ", request.session)
         # Send email to the provided email address
         send_templated_mail(
@@ -126,8 +107,8 @@ def order_success(request):
         messages.success(request, "Thank you for your order!")
         return redirect(reverse('checkout:thank_you'))
     except Exception as e:
-        print(e)
-    return redirect(reverse('checkout:payment_failed'))
+        print("EXCEPTION: ", e)
+        return redirect(reverse('checkout:payment_failed'))
 
 
 def thank_you(request):

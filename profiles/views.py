@@ -49,6 +49,13 @@ class EditProfile(UpdateView):
               'default_city', 'default_postcode', 'default_county',
               'default_country']
 
+    def get_object(self, queryset=None):
+        """
+        Retrieves the correct UserProfile object based on the slug variable
+        passed in the URL.
+        """
+        return UserProfile.objects.get(user__username=self.kwargs['slug'])
+
     def form_valid(self, form):
         '''Displays message on successful editing of the profile.'''
         messages.success(self.request, 'Profile updated successfully.')
@@ -58,6 +65,9 @@ class EditProfile(UpdateView):
 def order_detail(request, pk):
     '''View for the Order Detail page.
     Displays the selected Order from the Order model.'''
+    valid_user = request.user.is_authenticated
+    if valid_user is False:
+        return render(request, "404.html")
 
     order = get_object_or_404(Order, pk=pk)
     order_products = OrderDetail.objects.filter(order=order)

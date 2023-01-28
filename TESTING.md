@@ -65,7 +65,7 @@ This was tested on a laptop, PC, iPad, Iphone SE, Galaxy S8, Pixel 6 and a Motor
 
 ### HTML
 
-![Home HTML validation](readme/testing/html_checker_home.PNG)
+![Home HTML validation](readme/testing/html_checker.PNG)
 
 ![Reviews HTML validation](readme/testing/html_checker_reviews.PNG)
 

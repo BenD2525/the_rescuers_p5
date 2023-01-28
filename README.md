@@ -1,8 +1,8 @@
 # The Rescuers
 
-The Rescuers is a website for a fictional animal rescue charity, which is a remake of my first project, which was built using only HTML and CSS. This website is a newer iteration of this original website and as an eCommerce site, it allows the user to create an account, login, logout and edit their profile. The user can learn more about the purpose of the site on the home page, and can buy products from the charity to support their work. There is a list of products available, which the user is able to sort and filter. Once the user has decided what they wish to purchase, they are able to check their bag and make any required amendments to quantities of products or remove anything they no longer want. Once the user is happy and ready to purchase, they can manually input payment details, or use the ones they already have saved to their profile. The user can then pay using Stripe, and once their payment has been accepted, they will receive a confirmation email with their order number and a thankyou. 
+The Rescuers is a website for a fictional animal rescue charity, which is a remake of my first project, which was built using only HTML and CSS. This website is a newer iteration of this original website and as an eCommerce site, it allows the user to create an account, login, logout and edit their profile. The user can learn more about the purpose of the site on the home page, and can buy products from the charity to support their work. There is a list of products available, which the user is able to sort and filter. Once the user has decided what they wish to purchase, they are able to check their bag and make any required amendments to quantities of products or remove anything they no longer want. Once the user is happy and ready to purchase, they can manually input payment details, or use the ones they already have saved to their profile. The user can then pay using Paypal, and once their payment has been accepted, they will receive a confirmation email with their order number and a thankyou. 
 
-![Multi Screen Image]()
+![Multi Screen Image](readme/images/responsive_screenshot.PNG)
 
 ## [Live Site](https://the-rescuers-p5.herokuapp.com/)
 
@@ -543,19 +543,133 @@ Details of all testing undertaken can be found [here](TESTING.md).
 
 ## Deployment
 
-This project was deployed to Heroku after being developed in the GitPod environment.
+The live site was deployed to [Heroku](https://dashboard.heroku.com) using the following steps:
 
-Steps to deploy:
+Below are the steps I took to deploy the site to Heroku and any console commands required to initiate it.
 
-- For the live project, ensure that DEBUG = False in settings.py.
-- Go to your Heroku project dashboard, and click on the 'Deploy' tab.
-- Click on the Github icon 'connect to GitHub'.
-- Login to your GitHub account if needed, then search for the repository you want to connect the site to.
-- When it shows up below, click 'connect'.
-- Next to 'Automatic deploys' choose the branch you'd like to deploy from. In most cases this will be 'main'.
-- Click 'Enable Automatic Deploys' if you would like Heroku to deploy your code everytime you push it to the above branch.
-- If you prefer to deploy manually, scroll down to 'Manual deploy', choose your branch, and click 'Deploy Branch'.
-- Scroll back to the top, and once it's finished deploying, click 'Open app', on the top right side.
+### Create repository:
+
+1. Create a new repository in GitHub, ticking the boxes for readme, and gitignore files, and clone it locally following [these instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+   - Clone my project, and run the following command in the terminal to install all the required libraries/packages at once:
+     - `pip3 install -r requirements.txt`
+
+### Create Heroku App:
+
+The below works on the assumption that you already have an account with [Heroku](https://id.heroku.com/login) and are already signed in.
+
+1. Create a new Heroku app:
+   - Click "New" in the top right-hand corner of the landing page, then click "Create new app."
+1. Give the app a unique name:
+   - Will form part of the URL (in the case of this project, I called the Heroku app the-rescuers-p5)
+1. Select the nearest location:
+   - For me, this was Europe.
+1. Add Database to the Heroku app:
+   - Navigate to the Resources tab of the app dashboard. Under the heading "Add ons," search for "Heroku Postgres" and click on it when it appears.
+   - Select "Hobby Dev - Free" from the "plan name" drop-down menu and click "Submit Order Form."
+1. From your editor, go to your projects settings.py file and copy the SECRET_KEY variable. Add this to the same name variable under the Heroku App's config vars.
+   - left box under config vars (variable KEY) = SECRET_KEY
+   - right box under config vars (variable VALUE) = Value copied from settings.py in project.
+
+### Creating Environmental Variables Locally:
+
+1. In the top level of your directory, type `touch env.py` and add this to the .gitignore file.
+2. From the Heroku app settings tab, click "reveal config vars" and copy the value of the variable DATABASE_URL. Add this value to a variable called DATABASE_URL in your create .env file:
+   - `"DATABASE_URL"="databaseurl"`
+3. From your projects settings.py file, copy the SECRET_KEY value and assign it to a variable called SECRET_KEY in your .env file
+   - `"SECRET_KEY"="thisismysecretkey"` If you'd rather change this, you can generate a new one with [Djecrety](https://djecrety.ir/)
+4. Add AWS_SECRET_ACCESS_KEY variable to .env file:
+
+### Setting up setting.py File:
+
+1. At the top of your settings.py file, add the following snippet immediately after the other imports:
+   ```
+       import os
+       import dj_database_url
+       if os.path.isfile('env.py'):
+           import env.py
+       SECRET_KEY = os.environ.get("SECRET_KEY")
+       DEBUG = True
+   ```
+1. Delete the value from the setting.py DATABASES section and replace it with the following snippet to link up the Heroku Postgres server:
+
+   ```
+   DATABASES = {
+   'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+   }
+   ```
+
+1. Tell Django to use AWS to store media and static files by placing this snippet into settings.py:
+
+```
+if 'USE_AWS' in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
+    # Bucket Config
+    AWS_STORAGE_BUCKET_NAME = 'the-rescuers-p5'
+    AWS_S3_REGION_NAME = 'eu-west-2'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+    # Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+
+1. Under the line with BASE_DIR, link templates directly in Heroku via settings.py:
+
+   - `TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')`
+
+1. Within the TEMPLATES array, add `'DIRS':[TEMPLATES_DIR]` like the below example:
+
+```
+   TEMPLATES = [
+       {
+           …,
+           'DIRS': [TEMPLATES_DIR],
+           …,
+
+        },
+       },
+   ]
+```
+
+1. Add allowed hosts to settings.py:
+
+   - `ALLOWED_HOSTS = ["PROJECT_NAME.herokuapp.com", 'local host']`
+
+1. Create a Procfile at the top level of the file structure and insert the following:
+
+   - `touch Procfile` (the capital P is important!)
+   - Inside that file, add `web: gunicorn PROJECT_NAME.wsgi`
+
+1. Make an initial commit and push the code to the GitHub Repository.
+   - `git add .`
+   - `git commit -m "Initial deployment"`
+   - `git push`
+
+### Deploy the project
+
+1. For the live project, ensure that `DEBUG = False` in settings.py
+1. Go to your Heroku project dashboard, and click on the 'Deploy' tab
+1. Next to 'Deployment method', choose the right one for you. I deplyed via Github so the instructions below are related to that.
+1. Click on the Github icon 'connect to GitHub'
+1. Login to your GitHub account if needed, then search for the repository you want to connect the site to.
+1. When it shows up below, click 'connect'.
+1. Next to 'Automatic deploys' choose the branch you'd like to deploy from. In most cases this will be 'main'.
+1. Click 'Enable Automatic Deploys' if you would like Heroku to deploy your code everytime you push it to the above branch.
+1. If you prefer to deploy manually, scroll down to 'Manual deploy', choose your branch, and click 'Deploy Branch'
+1. Scroll back to the top, and once it's finished deploying, click 'Open app', on the top right side.
 
 ## **Languages used**
 - Python
@@ -573,6 +687,32 @@ Steps to deploy:
 - Lucid Chart
 - Unsplash (for images)
 - ElephantSQL
+
+## **Dependencies**
+- asgiref==3.5.2
+- boto3==1.26.22
+- botocore==1.29.22
+- dj-database-url==0.5.0
+- Django==3.2.16
+- django-allauth==0.41.0
+- django-countries==7.2.1
+- django-crispy-forms==1.14.0
+- django-jsonify==0.3.0
+- django-paypal==2.0
+- django-render-block==0.9.2
+- django-storages==1.13.1
+- django-templated-email==3.0.1
+- gunicorn==20.1.0
+- jmespath==1.0.1
+- jsonpickle==3.0.1
+- oauthlib==3.2.2
+- Pillow==9.3.0
+- psycopg2==2.9.5
+- python3-openid==3.2.0
+- pytz==2022.6
+- requests-oauthlib==1.3.1
+- s3transfer==0.6.0
+- sqlparse==0.4.3
 
 ## Honourable Mentions
 - Slack

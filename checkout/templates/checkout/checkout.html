@@ -60,10 +60,14 @@
                             {{ order_form.county | as_crispy_field }}
                             {{ order_form.country | as_crispy_field }}
                         </fieldset>
+                        {% if order_form.is_valid %}
                         <fieldset class="px-3">
                             <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
-                            <div id="paypal-button-container"></div>
-                            <p class="small text-danger my-0">
+                            {% else %}
+                        <button onclick="checkForm()" class="positive-button-lg" id="check-details" type="button">Check Details</button>
+                        {% endif %}
+                            <div id="paypal-button-container" class="d-none"></div>
+                            <p class="small text-danger my-2">
                                 Your card will be charged <strong>£{{ total|floatformat:2 }}</strong>
                             </p>
                 </div>
@@ -94,8 +98,27 @@
 <!-- Script to load bag contents -->
 <script>
     let bagContents = '{{ bag_products|safe }}';
-</script>
-<script>
+// Validates order form input
+function checkForm() {
+    event.preventDefault();
+        let isFormValid = true;
+        let formElements = document.querySelectorAll("#order_form input");
+        let paypal = document.querySelector("#paypal-button-container");
+        let checkDetails = document.querySelector("#check-details");
+        formElements.forEach(element => {
+            if (!element.checkValidity()) {
+                isFormValid = false;
+            }
+        });
+        if (!isFormValid) {
+            alert("Form is not valid. Please fill out all fields correctly.");
+        } else {
+            paypal.classList.remove('d-none');
+            checkDetails.classList.add('d-none');
+            alert("Form is valid. You may proceed with your purchase.");
+        }
+    }
+
     // Taken from Django docs, allows creation of a csrf token for fetch
     function getCookie(name) {
         let cookieValue = null;

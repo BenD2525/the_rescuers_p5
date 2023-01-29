@@ -67,6 +67,7 @@ The Rescuers is a website for a fictional animal rescue charity, which is a rema
     - [Shipping Details](#shipping-details)
     - [Paypal Payment Options](#paypal-payment-options)
     - [Thankyou Page](#thankyou-page)
+    - [Payment Failed Page](#payment-failed)
   - [Profile](#profile)
     - [Current Details](#current-details)
     - [Edit Details](#edit-details)
@@ -522,6 +523,11 @@ The below buttons are displayed which allow the user to pay via Paypal.
 This page is displayed once the user has paid for their order- if the user tries to access this url without first being redirected from a successful order, this page will be replaced by the custom 404 page. I did originally only allow the user to access this page directly from the payment process, however I decided to change this so that the user can go back to this page if required after making an order.
 
 ![Thankyou Page](readme/images/checkout_thank_you.PNG)
+
+#### **Payment Failed**
+This page is displayed is the user encounters an error with Paypal and they are unable to pay for their order. The page displays an apology advising the user that their payment has failed, and also displays a toast with an error message. The button allows the user to go to their profile.
+
+![Payment Failed Page](readme/images/payment_failed.PNG)
 
 ### **Profile**
 The profile section is only available to logged in users, and will not display if a non-authenticated user attempts to access the url without logging in. Within the profile section, the user can see and edit their current contact and shipping details, and see any previous orders they have made. They can also click on any of the orders to see all of the information concerning the order.

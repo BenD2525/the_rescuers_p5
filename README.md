@@ -510,7 +510,7 @@ The bag displays the details of the products contained in it in table format. In
 The checkout displays the bag and allows the user to fill in their shipping details. If the user is signed in and has details already saved in their profile, the form will pre-fill with these details. The user is then able to pay via Paypal. In order to pay via Paypal, the user can log into the test account using the details provided and click 'pay'. Once payment is successful, the site will create an order and send a confirmation email to the e-mail address provided. After this, the user will be redirected to a thank you page.
 
 #### **Shipping Details**
-The below form is displayed which allows the user to input their shipping details. If the user is logged in and has their details saved to their profile, this form will be pre-filled, making it easier for the user to checkout.
+The below form is displayed which allows the user to input their shipping details. If the user is logged in and has their details saved to their profile, this form will be pre-filled, making it easier for the user to checkout. If the user clicks the 'check details' button, this will validate the details provided and let the user know if they are valid or not. If they are, the paypal payment options, below will become visible and the user can continue with checkout.
 
 ![Shipping Details](readme/images/checkout_form.PNG)
 
@@ -551,6 +551,19 @@ At the bottom of the user profile, there is a table which displays any past orde
 If the user wishes to see a particular order in more detail, they can see the contact and shipping details, as well as the product details in this screen.
 
 ![Order Details](readme/images/profile_order_details.PNG)
+
+### **Payments**
+All payments are handled by Paypal and require the user to have a login to the sandbox account in order to pay through the Paypal button. These details have been supplied alongside submission of this project. If the user would like to use a card to pay rather than their Paypal account, they have the option of 'Debit or Credit card'.
+
+A test card that the user can use to checkout:
+
+- Card Number: 4005519200000004
+- Expiry Date: Any future date
+- Security Code: 888
+
+Billing details can be whatever the user wishes, as long as they match the validations required by Paypal (valid postcode format for example).
+
+Any errors on Paypal's side are handled by the onError function in the checkout template. This is provided by Paypal, and I have set it to redirect to my payment failed template to ensure the user is aware of the payment failure.
 
 ## **Future Development**
 For future development, I would like to develop the below features.

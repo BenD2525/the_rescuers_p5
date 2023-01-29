@@ -395,3 +395,8 @@ footer {
 #mc-embedded-subscribe {
     width: fit-content!important;
 }
+
+/* Paypal */
+iframe {
+    background-color: white!important;
+}

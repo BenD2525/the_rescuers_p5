@@ -175,11 +175,15 @@ When posting each script into the [javascript validator](https://jsvalidator.com
     - When trying to submit a blank form, user is provided with an error message asking them to fill out the form.
     - When trying to submit incorrect details on the form, the user is provided with an error message asking them to provide correct details.
 - Contact Us form
-    - 
+    - When trying to submit a blank form, user is provided with an error message asking them to fill out the form.
+    - When leaving any of the fields blank, user is provided with an error message asking them to fill out the relevant field.
+    - When trying to use something other than an email address in the email field, the user is provided with an error message advising them to provide an email in the correct format.
 - Order Form
-    - 
+    - When trying to submit a blank form, the user is provided with an error message stating that the form is invalid.
+    - When trying to use something other than an email address in the email field, the user is provided with an error message stating that the form is invalid.
+    - When leaving any of the fields blank, the user is provided with an error message stating that the form is invalid.
 - Profile Form
-    - 
+    - No validations were used on this form, as I do not want to force users into populating and storing their own personal information on the site. This is particularly important when considering GDPR and the power consumers have to request deletion of information whenever they wish. If a user wishes to request this, they can submit an enquiry requesting this deletion. Unless the site owner has any reason to store their data (for an ongoing order for example), then they must delete it. The site owner is able to sign in as an admin user and delete any data which is not required.
 
 ### Links
 All external links work correctly and the Github/Facebook links open in a new tab, to avoid the user leaving the website.

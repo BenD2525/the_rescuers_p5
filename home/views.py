@@ -86,7 +86,8 @@ class DeleteReview(DeleteView):
         return super().delete(request, *args, **kwargs)
     
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
+        review = Reviews.objects.get(id=kwargs['pk'])
+        if review.user != self.request.user:
             messages.warning(request, 'Please login or create an account to delete a review.')
             return redirect(reverse('account_login'))
         return super().dispatch(request, *args, **kwargs)
@@ -104,7 +105,8 @@ class EditReview(UpdateView):
         return super().form_valid(form)
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
+        review = Reviews.objects.get(id=kwargs['pk'])
+        if review.user != self.request.user:
             messages.warning(request, 'Please login or create an account to edit a review.')
             return redirect(reverse('account_login'))
         return super().dispatch(request, *args, **kwargs)

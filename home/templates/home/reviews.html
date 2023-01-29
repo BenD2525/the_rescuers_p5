@@ -34,7 +34,7 @@
         {% if user.is_authenticated %}
         <button class="my-1 negative-button-lg" onclick="location.href='{% url 'home:add_review' %}'">Add a Review</button>
         {% else %}
-        <p>If you would like to add your own review, please login or sign up if you haven't already!</p>
+        <p>If you would like to add your own review, please <a href="{% url 'account_login' %}">login</a> or <a href="{% url 'account_signup' %}">sign up</a> if you haven't already!</p>
         {% endif %}
     </div>
 </div>

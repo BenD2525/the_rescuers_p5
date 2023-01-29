@@ -93,9 +93,6 @@ def order_success(request):
                                        quantity=item['quantity'])
             order_detail.save()
         order.update_total()
-        # Create a value to check in the thank_you view
-        request.session['redirected_from_order_success'] = True
-        print("Original: ", request.session)
         # Send email to the provided email address
         send_templated_mail(
             template_name='order_confirmation',
@@ -119,16 +116,14 @@ def thank_you(request):
     """
     # Redirect to the custom 404 page if trying to access the page without
     # making an order
-    if request.session.get('redirected_from_order_success'):
-        # Clear the bag now that the order has been
-        # created
-        request.session.pop('bag', None)
-        print("Made it: ", request.session)
-        messages.success(request, "Thankyou for your order!")
-        return render(request, 'checkout/thank_you.html')
-    else:
-        print("Diverted it: ", request.session)
+    valid_user = request.user.is_authenticated
+    if valid_user is False:
         return render(request, "404.html")
+    # Clear the bag now that the order has been
+    # created
+    request.session.pop('bag', None)
+    messages.success(request, "Thankyou for your order!")
+    return render(request, 'checkout/thank_you.html')
 
 
 def payment_failed(request):
@@ -136,5 +131,8 @@ def payment_failed(request):
     View that displays the cancelled payment page after an order has
     been cancelled.
     """
+    valid_user = request.user.is_authenticated
+    if valid_user is False:
+        return render(request, "404.html")
     messages.error(request, "There was an error with your payment, please contact your bank.")
     return render(request, 'checkout/payment_failed.html')

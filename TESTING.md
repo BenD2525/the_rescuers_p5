@@ -42,6 +42,10 @@
     - Issue - Order was not being created after successful payment.
     - Cause - The JSON data was not coming through to the order_success view in the correct format.
     - Solution - I added this code to the order_success view in order to decode the JSON before using it.  my_json = request2.decode('utf8').replace("'", '"')
+- Redirection after successful order
+    - Issue - 404 page was being displayed every time a successful order was made.
+    - Cause - There was no clear cause, although from the logs and liaison with other developers, it looked like the thank_you view was being triggered prior to making an order. Because of the redirection token I was creating in my order_success view (which was therefore not being picked up by my thankyou view), the first time a user made an order, they would be greeted by my custom 404 page.
+    - Solution - While I was unable to fix the issue, I decided to remove the redirect token from both of my views, ensuring the custom 404 page would not show in error. I instead made sure that the user is only able to access either the thankyou page or payment failed page when they are logged in. I also add a disclaimer to the thankyou page, ensuring that the user understands that if they had accessed that URL manually (without being redirected from a successful order) then no order had been made. I also advise that any successful orders will show under the order history section of their profile, adding a link to their profile and a link to the contact us page, in case they have any questions. From a user experience perspective, although this doesn't work quite as I would like it to, the user is not negatively impacted by this bug and I am comfortable with the solution I have provided. This is a known bug and I have made every attempt to mitigate any potential risk posed by it.
 
 ## Lighthouse
 

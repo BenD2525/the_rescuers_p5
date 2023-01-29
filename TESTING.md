@@ -163,6 +163,9 @@ When posting each script into the [javascript validator](https://jsvalidator.com
 ### As a current user I want to be able to see and edit my account details when I want.
 - The user can enter their profile under 'My Profile' then edit their profile using the 'Edit Profile' button.
 
+## Automated Testing
+I created some automated tests to test the URL resolution of my home app. These are all held within the tests.py file in my home app.
+
 ## Manual Testing
 
 ### Forms

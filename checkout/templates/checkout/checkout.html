@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-  
+  <!-- Bag display -->
 <div class="container-fluid">
     <div class="row justify-content-center mx-4 w-80">
         <div class="col-12 text-center table-responsive bg-white px-0">
@@ -47,6 +47,7 @@
                 </tr>
             </table>
         </div>
+        <!-- Order Form -->
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-sm-12 text-center mt-4">
@@ -75,12 +76,10 @@
                             {{ order_form.county | as_crispy_field }}
                             {{ order_form.country | as_crispy_field }}
                         </fieldset>
-                        {% if order_form.is_valid %}
                         <fieldset class="px-3">
+                            <!-- Check form validity button -->
+                            <button onclick="checkForm()" class="positive-button-lg" id="check-details" type="button" data-toggle="modal" data-target="#exampleModalCenter">Check Details</button>
                             <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
-                            {% else %}
-                        <button onclick="checkForm()" class="positive-button-lg" id="check-details" type="button" data-toggle="modal" data-target="#exampleModalCenter">Check Details</button>
-                        {% endif %}
                             <div id="paypal-button-container" class="d-none"></div>
                             <p class="small text-danger my-2">
                                 Your card will be charged <strong>£{{ total|floatformat:2 }}</strong>

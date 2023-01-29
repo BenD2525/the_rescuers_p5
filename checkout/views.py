@@ -18,6 +18,11 @@ from .forms import OrderForm
 
 
 def checkout(request):
+    """
+    View that displays the checkout page. User will be redirected if they have
+    an empty bag, or are not logged in. The order form will be pre-filled with
+    any details the user holds in their profile.
+    """
     # Redirect to products if nothing in bag
     bag = request.session.get('bag', {})
     if not bag:

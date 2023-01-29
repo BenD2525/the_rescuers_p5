@@ -20,7 +20,7 @@ def products_list(request):
             "price": product.price,
             "image_url": product.image_url,
             "id": product.id,
-        })  
+        })
 
     if request.GET:
         if 'sort' in request.GET:
@@ -40,7 +40,6 @@ def products_list(request):
             if not query:
                 messages.error(request, "Please enter search criteria")
                 return redirect(reverse('products:products_list'))
-            
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             serialized_products = products.filter(queries)
 
@@ -67,5 +66,3 @@ def product_detail(request, item_id):
         }
 
     return render(request, 'products/product_detail.html', context)
-
-

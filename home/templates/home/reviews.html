@@ -5,6 +5,7 @@
 <div class="jumbotron home-1 text-center mb-4">
     <h1 class="display-4"><strong>Reviews</strong></h1>
 </div>
+<!-- Display Reviews -->
 <div class="container-fluid">
     {% for review in reviews %}
     <hr class="hr-1">
@@ -27,7 +28,7 @@
     </div>
     {% endfor %}
 </div>
-
+<!-- Add review button for logged in users -->
 <div class="row">
     <div class="col-sm-12 text-center py-4">
         {% if user.is_authenticated %}

@@ -11,6 +11,7 @@ from templated_email import send_templated_mail
 
 
 def custom_404(request, exception):
+    ''' Returns the custom 404 page.'''
     return render(request, '404.html', status=404)
 
 
@@ -84,7 +85,7 @@ class DeleteReview(DeleteView):
         '''Displays message on successful deletion of the review.'''
         messages.success(self.request, 'Your review was deleted successfully.')
         return super().delete(request, *args, **kwargs)
-    
+
     def dispatch(self, request, *args, **kwargs):
         review = Reviews.objects.get(id=kwargs['pk'])
         if review.user != self.request.user:

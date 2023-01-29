@@ -12,10 +12,12 @@
         <hr class="hr-1">
         If you have not received an email after 15 minutes, please contact us and we will be happy to help!
         <hr class="hr-1">
+        <!-- Disclaimer -->
         If you have not been redirected here from making a successful order, please note that no new order will have been created.
         Any orders you have made will show under the order history section of your profile. If you have any questions, <a href="{% url 'home:contact_us' %}">please contact us.</a>
     </p>
 </div>
+<!-- Link to profile -->
 {% if user.is_authenticated %}
 <div class="row align-items-center">
     <div class="col-sm-12 text-center my-4">

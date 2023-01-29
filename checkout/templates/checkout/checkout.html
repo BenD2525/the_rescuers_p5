@@ -7,7 +7,22 @@
 <div class="jumbotron home-1 text-center mb-4">
     <h1 class="display-4"><strong>Checkout</strong></h1>
 </div>
-
+  
+  <!-- Modal for Details Check -->
+  <div class="d-none" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="negative-button-lg" data-dismiss="modal" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 <div class="container-fluid">
     <div class="row justify-content-center mx-4 w-80">
         <div class="col-12 text-center table-responsive bg-white px-0">
@@ -64,7 +79,7 @@
                         <fieldset class="px-3">
                             <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
                             {% else %}
-                        <button onclick="checkForm()" class="positive-button-lg" id="check-details" type="button">Check Details</button>
+                        <button onclick="checkForm()" class="positive-button-lg" id="check-details" type="button" data-toggle="modal" data-target="#exampleModalCenter">Check Details</button>
                         {% endif %}
                             <div id="paypal-button-container" class="d-none"></div>
                             <p class="small text-danger my-2">
@@ -93,7 +108,7 @@
 {{ block.super }}
 <!-- Paypal Script -->
 <script
-    src="https://www.paypal.com/sdk/js?client-id=ARwpTasqupsB1v8gSLJQDf9bguf0Zsn2Cp8oNyfylFWcb0kwQ6p6A-HVk9DXGnyWs3MBuZkM8QxGSEX2&currency=GBP&debug=true">
+    src="https://www.paypal.com/sdk/js?client-id=ARwpTasqupsB1v8gSLJQDf9bguf0Zsn2Cp8oNyfylFWcb0kwQ6p6A-HVk9DXGnyWs3MBuZkM8QxGSEX2&currency=GBP">
 </script>
 <!-- Script to load bag contents -->
 <script>
@@ -105,18 +120,34 @@ function checkForm() {
         let formElements = document.querySelectorAll("#order_form input");
         let paypal = document.querySelector("#paypal-button-container");
         let checkDetails = document.querySelector("#check-details");
+        let modal = document.querySelector("#Modal")
+        let modalHeader = document.querySelector(".modal-header");
+        let modalBody = document.querySelector(".modal-body");
         formElements.forEach(element => {
             if (!element.checkValidity()) {
                 isFormValid = false;
             }
         });
         if (!isFormValid) {
-            alert("Form is not valid. Please fill out all fields correctly.");
+            modal.classList.add('modal');
+            modal.classList.remove('d-none');
+            modalHeader.textContent = 'Uh oh!';
+            modalBody.textContent = 'Looks like there is an error with your form, have another look.';
         } else {
+            modal.classList.add('modal');
+            modal.classList.remove('d-none');
             paypal.classList.remove('d-none');
             checkDetails.classList.add('d-none');
-            alert("Form is valid. You may proceed with your purchase.");
+            modalHeader.textContent = 'All good!';
+            modalBody.textContent = 'Your details look valid to us!';
         }
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        let modal = document.querySelector("#Modal")
+        modal.classList.remove('modal');
+        modal.classList.add('d-none');
     }
 
     // Taken from Django docs, allows creation of a csrf token for fetch
@@ -138,16 +169,6 @@ function checkForm() {
     const csrftoken = getCookie('csrftoken');
 
     const paymentAmount = '{{ total | safe }}';
-    // Parse bagContents, then for each create a variable for name, id and quantity
-    let bag = JSON.parse(bagContents);
-    for (let i = 0; i < bag.length; i++) {
-        let itemName = bag[i].name;
-        let itemId = bag[i].id;
-        let itemQuantity = bag[i].quantity;
-        console.log(itemName);
-        console.log(itemId);
-        console.log(itemQuantity);
-    }   
 
     const form = document.getElementById("order_form");
 

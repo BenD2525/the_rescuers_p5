@@ -106,7 +106,6 @@ def order_success(request):
         messages.success(request, "Thank you for your order!")
         return redirect(reverse('checkout:thank_you'))
     except Exception as e:
-        print("EXCEPTION: ", e)
         return redirect(reverse('checkout:payment_failed'))
 
 

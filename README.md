@@ -211,7 +211,6 @@ When creating a functional, informative website, a developer must consider all p
 | Details of each product showing in bag		 | 4	      |	4		      |
 | Checkout link from bag				 | 5          | 5                     |
 | Payment details form					 | 5          | 5                     |
-| Use saved payment details checkbox			 | 4          | 4                     |
 | Paypal						 | 5          | 4                     |
 | Email setup						 | 4          | 5                     |
 | Add user profile					 | 4          | 4                     |
@@ -219,7 +218,7 @@ When creating a functional, informative website, a developer must consider all p
 | Logout functionality					 | 5          | 5                     |
 | Edit profile details					 | 4          | 4                     |
 | ----------------------------------------               | ----       | ----                  |
-| Totals:25                                              | 110        | 113                   |
+| Totals:24                                              | 106        | 109                   |
 
 
 The viability score is higher than the importance score, so I should be able to implement all of the above features. These scores were based on my skill level at the beginning of the project.
@@ -273,7 +272,6 @@ Products
 	- I want to easily see the list of products.
 - As a current user...
 	- I want to be able to easily see the price of the products I choose.
-	- I want to be able to easily see the reviews of the products I choose.
 	- I want to be able to sort the products to suit my needs.
 	- I want to be able to filter the products to suit my needs.
 	- I want to be able to select the products I require and add them to my bag.

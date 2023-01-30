@@ -169,14 +169,11 @@ function checkForm() {
 
     const paymentAmount = '{{ total | safe }}';
 
-    const form = document.getElementById("order_form");
-
-    let formData = new FormData(form);
-    let jsonData = JSON.stringify(Object.fromEntries(formData));
-
-
     function completeOrder(){
         let url = '{{ success_url }}'
+        const form = document.getElementById("order_form");
+        let formData = new FormData(form);
+        let jsonData = JSON.stringify(Object.fromEntries(formData));
 
         const request= fetch(url, {
             method: 'POST',

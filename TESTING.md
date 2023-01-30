@@ -46,7 +46,10 @@
     - Issue - 404 page was being displayed every time a successful order was made.
     - Cause - There was no clear cause, although from the logs and liaison with other developers, it looked like the thank_you view was being triggered prior to making an order. Because of the redirection token I was creating in my order_success view (which was therefore not being picked up by my thankyou view), the first time a user made an order, they would be greeted by my custom 404 page.
     - Solution - While I was unable to fix the issue, I decided to remove the redirect token from both of my views, ensuring the custom 404 page would not show in error. I instead made sure that the user is only able to access either the thankyou page or payment failed page when they are logged in. I also add a disclaimer to the thankyou page, ensuring that the user understands that if they had accessed that URL manually (without being redirected from a successful order) then no order had been made. I also advise that any successful orders will show under the order history section of their profile, adding a link to their profile and a link to the contact us page, in case they have any questions. From a user experience perspective, although this doesn't work quite as I would like it to, the user is not negatively impacted by this bug and I am comfortable with the solution I have provided. This is a known bug and I have made every attempt to mitigate any potential risk posed by it.
-
+- Order Details Form
+    - Issue - Order details weren't saving correctly for each order, they were reverting to the default details on the user's profile.
+    - Cause - The logic for saving the json data was held globally, and so the data was being saved as JSON prior to the completeOrder form. This meant that only the default details were ever being logged to each order.
+    - Solution - I moved the form data and json data logic into the completeOrder function, so that the updated information would be sent to the order_success view.
 ## Lighthouse
 
 ### Desktop
